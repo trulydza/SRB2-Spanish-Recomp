@@ -719,21 +719,21 @@ void Y_IntermissionDrawer(void)
 			V_DrawFill(160, 32, 1, 152, 0);
 
 			if (intertype == int_race)
-				V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "TIME");
+				V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "TIEMPO");
 			else
-				V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "SCORE");
+				V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "PUNTAJE");
 
 			V_DrawCenteredString(x+(BASEVIDWIDTH/2)+6, 32, V_YELLOWMAP, "#");
-			V_DrawString(x+(BASEVIDWIDTH/2)+36, 32, V_YELLOWMAP, "NAME");
+			V_DrawString(x+(BASEVIDWIDTH/2)+36, 32, V_YELLOWMAP, "NOMBRE");
 		}
 
 		V_DrawCenteredString(x+6, 32, V_YELLOWMAP, "#");
-		V_DrawString(x+36, 32, V_YELLOWMAP, "NAME");
+		V_DrawString(x+36, 32, V_YELLOWMAP, "NOMBRE");
 
 		if (intertype == int_race)
-			V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "TIME");
+			V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "TIEMPO");
 		else
-			V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "SCORE");
+			V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "PUNTAJE");
 
 		for (i = 0; i < data.match.numplayers; i++)
 		{
@@ -838,11 +838,11 @@ void Y_IntermissionDrawer(void)
 		V_DrawCenteredString(x+6, 32, V_YELLOWMAP, "#");
 		V_DrawCenteredString(x+(BASEVIDWIDTH/2)+6, 32, V_YELLOWMAP, "#");
 
-		V_DrawString(x+36, 32, V_YELLOWMAP, "NAME");
-		V_DrawString(x+(BASEVIDWIDTH/2)+36, 32, V_YELLOWMAP, "NAME");
+		V_DrawString(x+36, 32, V_YELLOWMAP, "NOMBRE");
+		V_DrawString(x+(BASEVIDWIDTH/2)+36, 32, V_YELLOWMAP, "NOMBRE");
 
-		V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "SCORE");
-		V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "SCORE");
+		V_DrawRightAlignedString(x+152, 32, V_YELLOWMAP, "PUNTAJE");
+		V_DrawRightAlignedString(x+(BASEVIDWIDTH/2)+152, 32, V_YELLOWMAP, "PUNTAJE");
 
 		for (i = 0; i < data.match.numplayers; i++)
 		{
@@ -895,26 +895,26 @@ void Y_IntermissionDrawer(void)
 		V_DrawFill(4, 42, 312, 1, 0);
 
 		V_DrawCenteredString(x+6, 32, V_YELLOWMAP, "#");
-		V_DrawString(x+36, 32, V_YELLOWMAP, "NAME");
+		V_DrawString(x+36, 32, V_YELLOWMAP, "NOMBRE");
 		// Time
-		V_DrawRightAlignedString(x+160, 32, V_YELLOWMAP, "TIME");
+		V_DrawRightAlignedString(x+160, 32, V_YELLOWMAP, "TIEMPO");
 
 		// Rings
-		V_DrawThinString(x+168, 32, V_YELLOWMAP, "RING");
+		V_DrawThinString(x+168, 32, V_YELLOWMAP, "AROS");
 
 		// Total rings
 		V_DrawThinString(x+191, 24, V_YELLOWMAP, "TOTAL");
-		V_DrawThinString(x+196, 32, V_YELLOWMAP, "RING");
+		V_DrawThinString(x+196, 32, V_YELLOWMAP, "AROS");
 
 		// Monitors
 		V_DrawThinString(x+223, 24, V_YELLOWMAP, "ITEM");
-		V_DrawThinString(x+229, 32, V_YELLOWMAP, "BOX");
+		V_DrawThinString(x+229, 32, V_YELLOWMAP, "CAJA");
 
 		// Score
-		V_DrawRightAlignedString(x+288, 32, V_YELLOWMAP, "SCORE");
+		V_DrawRightAlignedString(x+288, 32, V_YELLOWMAP, "PUNTAJE");
 
 		// Points
-		V_DrawRightAlignedString(x+312, 32, V_YELLOWMAP, "PT");
+		V_DrawRightAlignedString(x+312, 32, V_YELLOWMAP, "PTS");
 
 		for (i = 0; i < data.competition.numplayers; i++)
 		{
@@ -978,11 +978,11 @@ skiptallydrawer:
 
 	if (timer)
 		V_DrawCenteredString(BASEVIDWIDTH/2, 188, V_YELLOWMAP,
-			va("start in %d seconds", timer/TICRATE));
+			va("empieza en %d segundos", timer/TICRATE));
 
 	// Make it obvious that scrambling is happening next round.
 	if (cv_scrambleonchange.value && cv_teamscramble.value && (intertic/TICRATE % 2 == 0))
-		V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT/2, V_YELLOWMAP, M_GetText("Teams will be scrambled next round!"));
+		V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT/2, V_YELLOWMAP, M_GetText("Los equipos se mezclaran la proxima ronda!"));
 }
 
 //
@@ -1377,7 +1377,7 @@ void Y_StartIntermission(void)
 				}
 				else
 				{
-					strcpy(data.coop.passed2, "Zone");
+					strcpy(data.coop.passed2, "Zona");
 				}
 			}
 			else
@@ -1385,21 +1385,21 @@ void Y_StartIntermission(void)
 				// too long so just show "YOU GOT THROUGH THE ACT"
 				if (strlen(skins[players[consoleplayer].skin]->realname) > 13)
 				{
-					strcpy(data.coop.passed1, "you got");
-					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "through act" : "through the act");
+					strcpy(data.coop.passed1, "Bien hecho");
+					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "completo acto" : "zona completa");
 				}
 				// long enough that "X GOT" won't fit so use "X PASSED THE ACT"
 				else if (strlen(skins[players[consoleplayer].skin]->realname) > 8)
 				{
 					strcpy(data.coop.passed1, skins[players[consoleplayer].skin]->realname);
-					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "passed act" : "passed the act");
+					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "completo acto" : "zona completa");
 				}
 				// length is okay for normal use
 				else
 				{
-					snprintf(data.coop.passed1, sizeof data.coop.passed1, "%s got",
+					snprintf(data.coop.passed1, sizeof data.coop.passed1, "%s",
 						skins[players[consoleplayer].skin]->realname);
-					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "through act" : "through the act");
+					strcpy(data.coop.passed2, (mapheaderinfo[gamemap-1]->actnum) ? "completo acto" : "zona completa");
 				}
 			}
 
@@ -1463,7 +1463,7 @@ void Y_StartIntermission(void)
 			// set up the "got through act" message according to skin name
 			if (stagefailed)
 			{
-				strcpy(data.spec.passed2, "Special Stage");
+				strcpy(data.spec.passed2, "Etapa Especial");
 				data.spec.passed1[0] = '\0';
 			}
 			else if (ALL7EMERALDS(emeralds))
@@ -1472,13 +1472,13 @@ void Y_StartIntermission(void)
 					sizeof data.spec.passed1, "%s",
 					skins[players[consoleplayer].skin]->realname);
 				data.spec.passed1[sizeof data.spec.passed1 - 1] = '\0';
-				strcpy(data.spec.passed2, "got them all!");
+				strcpy(data.spec.passed2, "obtuvo las 7!");
 
 				if (players[consoleplayer].charflags & SF_SUPER)
 				{
-					strcpy(data.spec.passed3, "can now become");
+					strcpy(data.spec.passed3, "ya puede ser");
 					if (strlen(skins[players[consoleplayer].skin]->supername) > 20) //too long, use generic
-						strcpy(data.spec.passed4, "their super form");
+						strcpy(data.spec.passed4, "su forma Super");
 					else
 						strcpy(data.spec.passed4, skins[players[consoleplayer].skin]->supername);
 				}
@@ -1488,17 +1488,16 @@ void Y_StartIntermission(void)
 				if (strlen(skins[players[consoleplayer].skin]->realname) <= SKINNAMESIZE-5)
 				{
 					snprintf(data.spec.passed1,
-						sizeof data.spec.passed1, "%s got",
+						sizeof data.spec.passed1, "%s obtuvo",
 						skins[players[consoleplayer].skin]->realname);
 					data.spec.passed1[sizeof data.spec.passed1 - 1] = '\0';
 				}
 				else
-					strcpy(data.spec.passed1, "You got");
-				strcpy(data.spec.passed2, "a Chaos Emerald");
+					strcpy(data.spec.passed1, "Obtuviste");
+				strcpy(data.spec.passed2, "una Esmeralda");
 				if (P_GetNextEmerald() > 6)
 				{
-					data.spec.passed2[15] = '?';
-					data.spec.passed2[16] = '\0';
+					strcat(data.spec.passed2, "?");
 				}
 			}
 			data.spec.passedx1 = (BASEVIDWIDTH - V_LevelNameWidth(data.spec.passed1))/2;

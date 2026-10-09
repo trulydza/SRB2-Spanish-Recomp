@@ -142,18 +142,18 @@ hudinfo_t hudinfo[NUMHUDITEMS] =
 	{  16, 152, V_SNAPTOLEFT|V_SNAPTOBOTTOM}, // HUD_INPUT
 
 	{  16,  42, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_RINGS
-	{  96,  42, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_RINGSNUM
-	{ 120,  42, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_RINGSNUMTICS
+	{  104,  42, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_RINGSNUM
+	{ 128,  42, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_RINGSNUMTICS
 
 	{  16,  10, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SCORE
-	{ 120,  10, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SCORENUM
+	{ 128,  10, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SCORENUM
 
 	{  16,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TIME
-	{  72,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_MINUTES
-	{  72,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TIMECOLON
-	{  96,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SECONDS
-	{  96,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TIMETICCOLON
-	{ 120,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TICS
+	{  88,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_MINUTES
+	{  88,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TIMECOLON
+	{  112,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SECONDS
+	{  112,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TIMETICCOLON
+	{ 136,  26, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_TICS
 
 	{   0,  56, V_SNAPTOLEFT|V_SNAPTOTOP}, // HUD_SS_TOTALRINGS
 
@@ -1411,7 +1411,7 @@ void ST_drawTitleCard(void)
 		lvlttlxpos -= V_LevelActNumWidth(actnum);
 
 	ttlnumxpos = lvlttlxpos + V_LevelNameWidth(lvlttl);
-	zonexpos = ttlnumxpos - V_LevelNameWidth(M_GetText("Zone"));
+	zonexpos = ttlnumxpos - V_LevelNameWidth((mapheaderinfo[gamemap-1]->actnum ? "Acto" : "Zona"));
 	ttlnumxpos++;
 
 	if (lvlttlxpos < 0)
@@ -1440,7 +1440,7 @@ void ST_drawTitleCard(void)
 
 	V_DrawLevelTitle(lvlttlxpos - ttlscroll, 80, V_PERPLAYER, lvlttl);
 	if (!(mapheaderinfo[gamemap-1]->levelflags & LF_NOZONE))
-		V_DrawLevelTitle(zonexpos + ttlscroll, 104, V_PERPLAYER, M_GetText("Zone"));
+		V_DrawLevelTitle(zonexpos + ttlscroll, 104, V_PERPLAYER, (mapheaderinfo[gamemap-1]->actnum ? "Acto" : "Zona"));
 	V_DrawCenteredString(subttlxpos - ttlscroll, 135, V_PERPLAYER|V_ALLOWLOWERCASE, subttl);
 
 	lt_lasttic = lt_ticker;
@@ -1745,13 +1745,13 @@ static void ST_drawNightsRecords(void)
 	{
 		case NTV_BONUSTIMESTART: // A "Bonus Time Start" by any other name...
 		{
-			V_DrawCenteredString(BASEVIDWIDTH/2, 52, V_GREENMAP|aflag, M_GetText("GET TO THE GOAL!"));
-			V_DrawCenteredString(BASEVIDWIDTH/2, 60,            aflag, M_GetText("SCORE MULTIPLIER START!"));
+			V_DrawCenteredString(BASEVIDWIDTH/2, 52, V_GREENMAP|aflag, M_GetText("LLEGA A LA META!"));
+			V_DrawCenteredString(BASEVIDWIDTH/2, 60,            aflag, M_GetText("MULTIPLICADOR DE PUNTAJE!"));
 
 			if (stplyr->finishedtime)
 			{
 				tic_t maretime = stplyr->startedtime - stplyr->finishedtime;
-				V_DrawString(BASEVIDWIDTH/2 - 48, 140, V_YELLOWMAP|aflag, "TIME:");
+				V_DrawString(BASEVIDWIDTH/2 - 48, 140, V_YELLOWMAP|aflag, "TIEMPO:");
 				V_DrawString(BASEVIDWIDTH/2 - 48, 148, V_YELLOWMAP|aflag, "BONUS:");
 				V_DrawRightAlignedString(BASEVIDWIDTH/2 + 48, 140, aflag, va("%i:%02i.%02i", G_TicsToMinutes(maretime,true), G_TicsToSeconds(maretime), G_TicsToCentiseconds(maretime)));
 				V_DrawRightAlignedString(BASEVIDWIDTH/2 + 48, 148, aflag, va("%d", (stplyr->finishedtime/TICRATE) * 100));
@@ -1774,8 +1774,8 @@ static void ST_drawNightsRecords(void)
 		}
 		case NTV_BONUSTIMEEND: // End Bonus
 		{
-			V_DrawString(BASEVIDWIDTH/2 - 48, 132, V_YELLOWMAP|aflag, "TIME:");
-			V_DrawString(BASEVIDWIDTH/2 - 48, 140, V_YELLOWMAP|aflag, (G_IsSpecialStage(gamemap)) ? "SPHERES:" : "CHIPS:");
+			V_DrawString(BASEVIDWIDTH/2 - 48, 132, V_YELLOWMAP|aflag, "TIEMPO:");
+			V_DrawString(BASEVIDWIDTH/2 - 48, 140, V_YELLOWMAP|aflag, (G_IsSpecialStage(gamemap)) ? "ESFERAS:" : "FICHAS:");
 			V_DrawString(BASEVIDWIDTH/2 - 48, 148, V_YELLOWMAP|aflag, "BONUS:");
 			V_DrawRightAlignedString(BASEVIDWIDTH/2 + 48, 132, aflag, va("%i:%02i.%02i", G_TicsToMinutes(stplyr->lastmaretime,true), G_TicsToSeconds(stplyr->lastmaretime), G_TicsToCentiseconds(stplyr->lastmaretime)));
 			V_DrawRightAlignedString(BASEVIDWIDTH/2 + 48, 140, aflag, va("%d", stplyr->finishedspheres));
@@ -2297,21 +2297,21 @@ static void ST_drawTextHUD(void)
 		return;
 
 	if (stplyr->spectator && (!G_CoopGametype() || stplyr->playerstate == PST_LIVE))
-		textHUDdraw(M_GetText("\x86""Spectator mode:"))
+		textHUDdraw(M_GetText("\x86""Modo espectador:"))
 
 	if (circuitmap)
 	{
 		if (stplyr->exiting)
-			textHUDdraw(M_GetText("\x82""FINISHED!"))
+			textHUDdraw(M_GetText("\x82""TERMINADO!"))
 		else
-			textHUDdraw(va("Lap:""\x82 %u/%d", stplyr->laps+1, cv_numlaps.value))
+			textHUDdraw(va("Vuelta:""\x82 %u/%d", stplyr->laps+1, cv_numlaps.value))
 	}
 
 	if (!G_CoopGametype() && (stplyr->exiting || (G_GametypeUsesLives() && stplyr->lives <= 0 && countdown != 1)))
 	{
 		if (!splitscreen && !donef12)
 		{
-			textHUDdraw(M_GetText("\x82""VIEWPOINT:""\x80 Switch view"))
+			textHUDdraw(M_GetText("\x82""PUNTO DE VISTA:""\x80 Cambiar vista"))
 			donef12 = true;
 		}
 	}
@@ -2328,7 +2328,7 @@ static void ST_drawTextHUD(void)
 	{
 		if (!splitscreen && !donef12)
 		{
-			textHUDdraw(M_GetText("\x82""VIEWPOINT:""\x80 Switch view"))
+			textHUDdraw(M_GetText("\x82""PUNTO DE VISTA:""\x80 Cambiar vista"))
 			donef12 = true;
 		}
 
@@ -2402,7 +2402,7 @@ static void ST_drawTextHUD(void)
 			{
 				if (!splitscreen && !donef12)
 				{
-					textHUDdraw(M_GetText("\x82""VIEWPOINT:""\x80 Switch view"))
+					textHUDdraw(M_GetText("\x82""PUNTO DE VISTA:""\x80 Cambiar vista"))
 					donef12 = true;
 				}
 				total -= exiting;
@@ -2429,7 +2429,7 @@ static void ST_drawTextHUD(void)
 		{
 			if (!splitscreen && !donef12)
 			{
-				textHUDdraw(M_GetText("\x82""VIEWPOINT:""\x80 Switch view"))
+				textHUDdraw(M_GetText("\x82""PUNTO DE VISTA:""\x80 Cambiar vista"))
 				donef12 = true;
 			}
 			textHUDdraw(M_GetText("You cannot move while hiding."))
@@ -2783,7 +2783,7 @@ static void ST_overlayDrawer(void)
 		// If you are in overtime, put a big honkin' flashin' message on the screen.
 		if (((gametyperules & GTR_TIMELIMIT) && (gametyperules & GTR_OVERTIME)) && cv_overtime.value
 		&& (leveltime > (timelimitintics + TICRATE/2)) && cv_timelimit.value && (leveltime/TICRATE % 2 == 0))
-			V_DrawCenteredString(BASEVIDWIDTH/2, 184, V_PERPLAYER, M_GetText("OVERTIME!"));
+			V_DrawCenteredString(BASEVIDWIDTH/2, 184, V_PERPLAYER, M_GetText("TIEMPO EXTRA!"));
 
 		// Draw Match-related stuff
 		//\note Match HUD is drawn no matter what gametype.

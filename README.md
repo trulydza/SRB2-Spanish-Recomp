@@ -1,22 +1,53 @@
-# Sonic Robo Blast 2
-[![latest release](https://badgen.net/github/release/STJr/SRB2/stable)](https://github.com/STJr/SRB2/releases/latest)
+# Sonic Robo Blast 2 — Spanish Recompilation (v2.2.15)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/399d4hcw9yy7hg2y?svg=true)](https://ci.appveyor.com/project/STJr/srb2)
-[![Build status](https://travis-ci.org/STJr/SRB2.svg?branch=master)](https://travis-ci.org/STJr/SRB2)
-[![CircleCI](https://circleci.com/gh/STJr/SRB2/tree/master.svg?style=svg)](https://circleci.com/gh/STJr/SRB2/tree/master)
+<p align="center">
+  <b>Recompilación nativa de SRB2 v2.2.15 con traducción completa al español en el motor en C.</b><br>
+  <i>100% compatible con servidores vanilla y multijugador online.</i>
+</p>
 
-[Sonic Robo Blast 2](https://srb2.org/) is a 3D Sonic the Hedgehog fangame based on a modified version of [Doom Legacy](http://doomlegacy.sourceforge.net/).
+---
 
-## Dependencies
-- SDL2 (Linux/OS X only)
-- SDL2-Mixer (Linux/OS X only)
-- libupnp (Linux/OS X only)
-- libgme (Linux/OS X only)
-- libopenmpt (Linux/OS X only)
+## 📌 ¿De qué trata este proyecto?
 
-## Compiling
+**Sonic Robo Blast 2** contiene prácticamente todos sus textos (menús, HUD, pantallas de intermisión, mensajes de confirmación, créditos, nombres de zonas y desbloqueables) directamente integrados en el código fuente en C.
 
-See [SRB2 Wiki/Source code compiling](http://wiki.srb2.org/wiki/Source_code_compiling)
+Tradicionalmente, las traducciones que usan scripts de **Lua** o archivos **SOC** externos no pueden entrar a servidores normales porque el juego bloquea el multijugador si los archivos de juego difieren.
 
-## Disclaimer
-Sonic Team Junior is in no way affiliated with SEGA or Sonic Team. We do not claim ownership of any of SEGA's intellectual property used in SRB2.
+**SRB2 Spanish Recomp** soluciona esto traduciendo los textos directamente en el ejecutable en C.
+- ✅ **Totalmente compatible con servidores normales / netplay:** Los servidores sólo verifican archivos `.pk3`/`.wad`, no ejecutables de cliente.
+- ✅ **Menús, HUD y mensajes en español nativo.**
+- ✅ **Nombres de niveles vanilla traducidos** en el parser nativo sin desincronizaciones.
+- ✅ **16 páginas completas de la cinemática de introducción** portadas con sus tiempos exactos.
+
+---
+
+## 🚀 ¿Cómo jugar?
+
+1. Descarga el paquete listo para jugar desde la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
+2. Extrae los archivos dentro de tu carpeta donde tengas instalado SRB2 v2.2 (o colócalos en una carpeta con acceso a `srb2.pk3`).
+3. Ejecuta `Jugar_online.bat` para disfrutar con los gráficos cosméticos traducidos en servidores online, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
+
+---
+
+## 🛠️ Contenido traducido (Lotes 1 al 11)
+
+- **Menú Principal y Submenús:** 1 Jugador, Multijugador, Opciones (Video, Sonido, Controles, Mouse, Cámara, Datos, Pantalla dividida).
+- **Cargar Partida y Estadísticas:** Guardado/Nueva Partida, marcadores de tiempo, puntaje y anillos.
+- **HUD in-game:** HUD de NiGHTS, mensajes de tiempo extra, multiplicadores, puntajes, modo espectador.
+- **Intermisiones:** Pantallas post-nivel en cooperativo, etapas especiales (Special Stages), conteos y tablas de resultados multijugador.
+- **Nombres de Niveles y Zonas:** Los 66 niveles vanilla y etapas especiales adaptados en el parser de cabeceras C (`deh_soc.c`).
+- **Narrativa y Créditos:** Cinemática inicial completa (16 páginas) en `f_finale.c`, créditos y pantalla de Maratón.
+- **Mensajes Humorísticos:** Las 24 frases clásicas al salir del juego adaptadas al español.
+
+---
+
+## 📖 Documentación técnica
+
+Para consultar la arquitectura interna, glosario, mapas de archivos y proceso de compilación paso a paso, abre el archivo local interactivo [`guia.html`](./guia.html) en cualquier navegador web.
+
+---
+
+## 👤 Créditos
+
+- **Proyecto y Traducción:** Daza ([@trulydza](https://github.com/trulydza))
+- **Base original:** Sonic Team Junior ([STJr / SRB2](https://github.com/STJr/SRB2)) — Versión v2.2.15

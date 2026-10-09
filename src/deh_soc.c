@@ -48,6 +48,178 @@
 // also used for LUA_UpdateSprName
 #include "deh_tables.h"
 
+// --- Traduccion al espanol de nombres/objetivos de unlockables ---
+typedef struct { const char *en, *es; } unlocktr_t;
+static const unlocktr_t unlocktr_table[] = {
+	{"Game Complete", "Juego completado"},
+	{"All Emeralds", "Todas las esmeraldas"},
+	{"Challenge Mastery", "Maestria de desafios"},
+	{"Record Attack", "Contrarreloj"},
+	{"Play as Fang", "Jugar como Fang"},
+	{"Play as Metal Sonic", "Jugar como Metal Sonic"},
+	{"Haunted Heights Zone", "Alturas Encantadas"},
+	{"Aerial Garden Zone", "Jardin Aereo"},
+	{"Azure Temple Zone", "Templo Azur"},
+	{"NiGHTS Mode", "Modo NiGHTS"},
+	{"Dream Hill Zone", "Colina del Sueno"},
+	{"Alpine Paradise Zone 1", "Paraiso Alpino 1"},
+	{"Alpine Paradise Zone 2", "Paraiso Alpino 2"},
+	{"Christmas Chime Zone", "Campanas Navidenas"},
+	{"Black Hole Zone", "Agujero Negro"},
+	{"Frozen Hillside Zone", "Ladera Helada"},
+	{"Pipe Towers Zone", "Torres de Tuberias"},
+	{"Play as Amy", "Jugar como Amy"},
+	{"Emblem Hints", "Pistas de emblemas"},
+	{"Forest Fortress Zone", "Fortaleza Forestal"},
+	{"Emblem Radar", "Radar de emblemas"},
+	{"Final Demo Zone", "Demo Final"},
+	{"Level Select", "Seleccion de nivel"},
+	{"Pandora's Box", "Caja de Pandora"},
+	{"Sound Test", "Prueba de sonido"},
+	{"Play Credits", "Ver creditos"},
+	{"Secret Levels", "Niveles secretos"},
+	{"Complete 1P Mode", "Completa el modo 1P"},
+	{"Complete 1P Mode with all Emeralds", "Completa 1P con todas las esmeraldas"},
+	{"Conquer the Challenge Levels!", "Conquista los niveles de desafio!"},
+	{"Complete Greenflower Zone", "Completa Greenflower"},
+	{"Complete Arid Canyon Zone", "Completa Canon Arido"},
+	{"Complete the game", "Completa el juego"},
+	{"Complete Haunted Heights Zone", "Completa Alturas Encantadas"},
+	{"Complete Aerial Garden Zone", "Completa Jardin Aereo"},
+	{"Complete Special Stage 1", "Completa Etapa Especial 1"},
+	{"Complete the game with all emeralds", "Completa el juego con todas las esmeraldas"},
+	{"Get grade C in all Special Stages", "Nota C en todas las Etapas Especiales"},
+	{"Get grade B in all Special Stages", "Nota B en todas las Etapas Especiales"},
+	{"Get grade A in any Special Stage", "Nota A en alguna Etapa Especial"},
+	{"Get grade A in all Special Stages", "Nota A en todas las Etapas Especiales"},
+	{"Complete Frozen Hillside Zone", "Completa Ladera Helada"},
+	{"Complete Deep Sea Zone", "Completa Mar Profundo"},
+	{"Unlock a secret level", "Desbloquea un nivel secreto"},
+	{"Get 5 emblems", "Consigue 5 emblemas"},
+	{"Get 20 emblems", "Consigue 20 emblemas"},
+	{"Get 40 emblems", "Consigue 40 emblemas"},
+	{"Get 60 emblems", "Consigue 60 emblemas"},
+	{"Get 80 emblems", "Consigue 80 emblemas"},
+	{"Get 100 emblems", "Consigue 100 emblemas"},
+	{"Get 200 emblems", "Consigue 200 emblemas"},
+	{NULL, NULL}
+};
+static const char *M_UnlockTr(const char *s)
+{
+	size_t i;
+	for (i = 0; unlocktr_table[i].en; i++)
+		if (!stricmp(s, unlocktr_table[i].en))
+			return unlocktr_table[i].es;
+	return s;
+}
+struct leveltr_s {
+	const char *en;
+	const char *es;
+};
+
+static const struct leveltr_s leveltr_table[] = {
+	{"Techno Hill", "Colina Tecno"},
+	{"Deep Sea", "Mar Profundo"},
+	{"Castle Eggman", "Castillo De Eggman"},
+	{"Arid Canyon", "Canon Arido"},
+	{"Red Volcano", "Volcan Rojo"},
+	{"Black Core", "Nucleo Negro"},
+	{"Frozen Hillside", "Ladera Helada"},
+	{"Pipe Towers", "Torres de Tuberias"},
+	{"Forest Fortress", "Fortaleza Forestal"},
+	{"Final Demo", "Demo Final"},
+	{"Haunted Heights", "Alturas Encantadas"},
+	{"Aerial Garden", "Jardin Aereo"},
+	{"Azure Temple", "Templo Azur"},
+	{"Floral Field", "Campo Floral"},
+	{"Toxic Plateau", "Meseta Toxica"},
+	{"Flooded Cove", "Cala Inundada"},
+	{"Cavern Fortress", "Fortaleza Cavernosa"},
+	{"Dusty Wasteland", "Tierra Polvorienta"},
+	{"Magma Caves", "Cuevas de Magma"},
+	{"Egg Satellite", "Satelite Egg"},
+	{"Black Hole", "Agujero Negro"},
+	{"MP Special Stage 1", "Etapa Especial MP 1"},
+	{"MP Special Stage 2", "Etapa Especial MP 2"},
+	{"MP Special Stage 3", "Etapa Especial MP 3"},
+	{"MP Special Stage 4", "Etapa Especial MP 4"},
+	{"MP Special Stage 5", "Etapa Especial MP 5"},
+	{"MP Special Stage 6", "Etapa Especial MP 6"},
+	{"MP Special Stage 7", "Etapa Especial MP 7"},
+	{"Christmas Chime", "Campanas Navidenas"},
+	{"Dream Hill", "Colina del Sueno"},
+	{"Alpine Paradise", "Paraiso Alpino"},
+	{"Lime Forest", "Bosque Lima"},
+	{"Lost Palace", "Palacio Perdido"},
+	{"Silver Cascade", "Cascada Plateada"},
+	{"Icicle Falls", "Cascadas de Hielo"},
+	{"Twisted Terminal", "Terminal Retorcida"},
+	{"Clockwork Towers", "Torres de Relojeria"},
+	{"Iron Turret", "Torreta de Hierro"},
+	{"Dual Fortress", "Fortaleza Dual"},
+	{"Nimbus Ruins", "Ruinas Nimbo"},
+	{"Blazing Precipice", "Precipicio Ardiente"},
+	{"Meadow Match", "Pradera Match"},
+	{"Sapphire Rapids", "Rapidos de Zafiro"},
+	{"Metal Star", "Estrella de Metal"},
+	{"Conveyor Conflict", "Conflicto Transport."},
+	{"Isolated Canyon", "Canon Aislado"},
+	{"Jade Valley", "Valle de Jade"},
+	{"Noxious Factory", "Fabrica Nociva"},
+	{"Tidal Palace", "Palacio de Mareas"},
+	{"Thunder Citadel", "Ciudadela del Trueno"},
+	{"Desolate Twilight", "Crepusculo Desolado"},
+	{"Frigid Mountain", "Montana Gelida"},
+	{"Orbital Hangar", "Hangar Orbital"},
+	{"Sapphire Falls", "Cascadas de Zafiro"},
+	{"Diamond Blizzard", "Ventisca de Diamante"},
+	{"Celestial Sanctuary", "Santuario Celestial"},
+	{"Frost Columns", "Columnas de Escarcha"},
+	{"Granite Lake", "Lago de Granito"},
+	{"Summit Showdown", "Duelo en la Cumbre"},
+	{"Silver Shiver", "Escalofrio Plateado"},
+	{"Uncharted Badlands", "Tierras Inexploradas"},
+	{"Pristine Shores", "Costas Pristinas"},
+	{"Crystalline Heights", "Alturas Cristalinas"},
+	{"Starlit Warehouse", "Almacen Estelar"},
+	{"Midnight Abyss", "Abismo de Medianoche"},
+	{"Airborne Temple", "Templo Aereo"},
+	{NULL, NULL}
+};
+
+static const struct leveltr_s levelsubtr_table[] = {
+	{"Special Stage 1", "Etapa Especial 1"},
+	{"Special Stage 2", "Etapa Especial 2"},
+	{"Special Stage 3", "Etapa Especial 3"},
+	{"Special Stage 4", "Etapa Especial 4"},
+	{"Special Stage 5", "Etapa Especial 5"},
+	{"Special Stage 6", "Etapa Especial 6"},
+	{"Special Stage 7", "Etapa Especial 7"},
+	{"Special Stage 8", "Etapa Especial 8"},
+	{NULL, NULL}
+};
+
+static const char *M_LevelTr(const char *s)
+{
+	size_t i;
+	for (i = 0; leveltr_table[i].en; i++)
+		if (!stricmp(s, leveltr_table[i].en))
+			return leveltr_table[i].es;
+	return s;
+}
+
+static const char *M_LevelSubTr(const char *s)
+{
+	size_t i;
+	for (i = 0; levelsubtr_table[i].en; i++)
+		if (!stricmp(s, levelsubtr_table[i].en))
+			return levelsubtr_table[i].es;
+	return s;
+}
+
+
+
+
 // Loops through every constant and operation in word and performs its calculations, returning the final value.
 fixed_t get_number(const char *word)
 {
@@ -1406,15 +1578,15 @@ void readlevelheader(MYFILE *f, INT32 num)
 
 			if (fastcmp(word, "LEVELNAME"))
 			{
-				deh_strlcpy(mapheaderinfo[num-1]->lvlttl, word2,
+				deh_strlcpy(mapheaderinfo[num-1]->lvlttl, M_LevelTr(word2),
 					sizeof(mapheaderinfo[num-1]->lvlttl), va("Level header %d: levelname", num));
-				strlcpy(mapheaderinfo[num-1]->selectheading, word2, sizeof(mapheaderinfo[num-1]->selectheading)); // not deh_strlcpy so only complains once
+				strlcpy(mapheaderinfo[num-1]->selectheading, M_LevelTr(word2), sizeof(mapheaderinfo[num-1]->selectheading)); // not deh_strlcpy so only complains once
 				continue;
 			}
 			// CHEAP HACK: move this over here for lowercase subtitles
 			if (fastcmp(word, "SUBTITLE"))
 			{
-				deh_strlcpy(mapheaderinfo[num-1]->subttl, word2,
+				deh_strlcpy(mapheaderinfo[num-1]->subttl, M_LevelSubTr(word2),
 					sizeof(mapheaderinfo[num-1]->subttl), va("Level header %d: subtitle", num));
 				continue;
 			}
@@ -3242,10 +3414,10 @@ void readunlockable(MYFILE *f, INT32 num)
 			i = atoi(word2); // used for numerical settings
 
 			if (fastcmp(word, "NAME"))
-				deh_strlcpy(unlockables[num].name, word2,
+				deh_strlcpy(unlockables[num].name, M_UnlockTr(word2),
 					sizeof (unlockables[num].name), va("Unlockable %d: name", num));
 			else if (fastcmp(word, "OBJECTIVE"))
-				deh_strlcpy(unlockables[num].objective, word2,
+				deh_strlcpy(unlockables[num].objective, M_UnlockTr(word2),
 					sizeof (unlockables[num].objective), va("Unlockable %d: objective", num));
 			else
 			{

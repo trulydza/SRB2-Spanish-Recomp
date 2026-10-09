@@ -599,7 +599,7 @@ static void G_SetMainRecords(gamedata_t *data, player_t *player)
 				if (FIL_FileExists(bestdemo))
 					remove(bestdemo);
 				FIL_WriteFile(bestdemo, buf, len);
-				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NEW RECORD TIME!"), M_GetText("Saved replay as"), bestdemo);
+				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NUEVO RECORD DE TIEMPO!"), M_GetText("Replay guardado como"), bestdemo);
 			}
 
 			snprintf(bestdemo, 255, "%s-%s-score-best.lmp", gpath, skins[cv_chooseskin.value-1]->name);
@@ -608,7 +608,7 @@ static void G_SetMainRecords(gamedata_t *data, player_t *player)
 				if (FIL_FileExists(bestdemo))
 					remove(bestdemo);
 				FIL_WriteFile(bestdemo, buf, len);
-				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NEW HIGH SCORE!"), M_GetText("Saved replay as"), bestdemo);
+				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NUEVO RECORD DE PUNTAJE!"), M_GetText("Replay guardado como"), bestdemo);
 			}
 
 			snprintf(bestdemo, 255, "%s-%s-rings-best.lmp", gpath, skins[cv_chooseskin.value-1]->name);
@@ -617,10 +617,10 @@ static void G_SetMainRecords(gamedata_t *data, player_t *player)
 				if (FIL_FileExists(bestdemo))
 					remove(bestdemo);
 				FIL_WriteFile(bestdemo, buf, len);
-				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NEW MOST RINGS!"), M_GetText("Saved replay as"), bestdemo);
+				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NUEVO RECORD DE ANILLOS!"), M_GetText("Replay guardado como"), bestdemo);
 			}
 
-			//CONS_Printf("%s '%s'\n", M_GetText("Saved replay as"), lastdemo);
+			//CONS_Printf("%s '%s'\n", M_GetText("Replay guardado como"), lastdemo);
 
 			Z_Free(buf);
 		}
@@ -630,7 +630,7 @@ static void G_SetMainRecords(gamedata_t *data, player_t *player)
 	// Check emblems when level data is updated
 	if ((earnedEmblems = M_CheckLevelEmblems(data)))
 	{
-		CONS_Printf(M_GetText("\x82" "Earned %hu emblem%s for Record Attack records.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
+		CONS_Printf(M_GetText("\x82" "Ganaste %hu emblema%s por records de Contrarreloj.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
 	}
 
 	// Update timeattack menu's replay availability.
@@ -737,7 +737,7 @@ static void G_SetNightsRecords(gamedata_t *data, player_t *player)
 				if (FIL_FileExists(bestdemo))
 					remove(bestdemo);
 				FIL_WriteFile(bestdemo, buf, len);
-				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NEW RECORD TIME!"), M_GetText("Saved replay as"), bestdemo);
+				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NUEVO RECORD DE TIEMPO!"), M_GetText("Replay guardado como"), bestdemo);
 			}
 
 			snprintf(bestdemo, 255, "%s-%s-score-best.lmp", gpath, skins[cv_chooseskin.value-1]->name);
@@ -746,10 +746,10 @@ static void G_SetNightsRecords(gamedata_t *data, player_t *player)
 				if (FIL_FileExists(bestdemo))
 					remove(bestdemo);
 				FIL_WriteFile(bestdemo, buf, len);
-				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NEW HIGH SCORE!"), M_GetText("Saved replay as"), bestdemo);
+				CONS_Printf("\x83%s\x80 %s '%s'\n", M_GetText("NUEVO RECORD DE PUNTAJE!"), M_GetText("Replay guardado como"), bestdemo);
 			}
 
-			//CONS_Printf("%s '%s'\n", M_GetText("Saved replay as"), lastdemo);
+			//CONS_Printf("%s '%s'\n", M_GetText("Replay guardado como"), lastdemo);
 
 			Z_Free(buf);
 		}
@@ -758,7 +758,7 @@ static void G_SetNightsRecords(gamedata_t *data, player_t *player)
 
 	if ((earnedEmblems = M_CheckLevelEmblems(data)))
 	{
-		CONS_Printf(M_GetText("\x82" "Earned %hu emblem%s for NiGHTS records.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
+		CONS_Printf(M_GetText("\x82" "Ganaste %hu emblema%s por records de NiGHTS.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
 	}
 
 	// If the mare count changed, this will update the score display
@@ -775,7 +775,7 @@ void G_SetGameModified(boolean silent)
 	savemoddata = false;
 
 	if (!silent)
-		CONS_Alert(CONS_NOTICE, M_GetText("Game must be restarted to play Record Attack.\n"));
+		CONS_Alert(CONS_NOTICE, M_GetText("Debes reiniciar el juego para jugar Contrarreloj.\n"));
 
 	// If in record attack recording, cancel it.
 	if (modeattacking)
@@ -792,7 +792,7 @@ void G_SetUsedCheats(boolean silent)
 	usedCheats = true;
 
 	if (!silent)
-		CONS_Alert(CONS_NOTICE, M_GetText("Game must be restarted to save progress.\n"));
+		CONS_Alert(CONS_NOTICE, M_GetText("Debes reiniciar el juego para guardar progreso.\n"));
 
 	// If in record attack recording, cancel it.
 	if (modeattacking)
@@ -3925,7 +3925,7 @@ static void G_UpdateVisited(gamedata_t *data, player_t *player, boolean global)
 
 		if ((earnedEmblems = M_CompletionEmblems(data)) && !global)
 		{
-			CONS_Printf(M_GetText("\x82" "Earned %hu emblem%s for level completion.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
+			CONS_Printf(M_GetText("\x82" "Ganaste %hu emblema%s por completar el nivel.\n"), (UINT16)earnedEmblems, earnedEmblems > 1 ? "s" : "");
 		}
 
 		if (global)

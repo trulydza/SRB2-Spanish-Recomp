@@ -352,144 +352,138 @@ void F_StartIntro(void)
 	introtext[0] = " #";
 
 	introtext[1] = M_GetText(
-	"Two months had passed since Dr. Eggman\n"
-	"tried to take over the world using his\n"
-	"Ring Satellite.\n#");
+	"Habian pasado dos meses desde que el\n"
+	"Dr. Eggman intento conquistar el mundo\n"
+	"usando su Satelite de Anillos.\n#");
 
 	introtext[2] = M_GetText(
-	"As it was about to drain the rings\n"
-	"away from the planet, Sonic burst into\n"
-	"the control room and for what he thought\n"
-	"would be the last time,\xB4 defeated\n"
-	"Dr. Eggman.\n#");
+	"Cuando estaba por drenar los anillos\n"
+	"del planeta, Sonic irrumpio en la sala\n"
+	"de control y,\xB4 creyendo que seria la\n"
+	"ultima vez,\xB4 derroto al Dr. Eggman.\n#");
 
 	introtext[3] = M_GetText(
-	"\nWhat Sonic, Tails, and Knuckles had\n"
-	"not anticipated was that Eggman would\n"
-	"return,\xB8 bringing an all new threat.\n#");
+	"\nLo que Sonic, Tails y Knuckles no\n"
+	"habian previsto era que Eggman\n"
+	"volveria,\xB8 trayendo una nueva amenaza.\n#");
 
 	introtext[4] = M_GetText(
-	"\xA8""About every five years, a strange asteroid\n"
-	"hovers around the planet.\xBF It suddenly\n"
-	"appears from nowhere, circles around, and\n"
-	"\xB6- just as mysteriously as it arrives -\xB6\n"
-	"vanishes after only one week.\xBF\n"
-	"No one knows why it appears, or how.\n#");
+	"\xA8""Cada cinco anios, un extrano asteroide\n"
+	"orbita el planeta.\xBF Aparece de la nada,\n"
+	"da vueltas y,\n"
+	"\xB6- tan misteriosamente como llego -\xB6\n"
+	"desaparece tras solo una semana.\xBF\n"
+	"Nadie sabe por que aparece, ni como.\n#");
 
 	introtext[5] = M_GetText(
-	"\xA7\"Curses!\"\xA9\xBA Eggman yelled. \xA7\"That hedgehog\n"
-	"and his ridiculous friends will pay\n"
-	"dearly for this!\"\xA9\xC8 Just then his scanner\n"
-	"blipped as the Black Rock made its\n"
-	"appearance from nowhere.\xBF Eggman looked at\n"
-	"the screen, and just shrugged it off.\n#");
+	"\xA7\"Maldicion!\"\xA9\xBA grito Eggman. \xA7\"Ese erizo\n"
+	"y sus amigos pagaran caro por esto!\"\xA9\xC8\n"
+	"Justo entonces su escaner detecto la\n"
+	"Roca Negra apareciendo de la nada.\xBF\n"
+	"Eggman miro la pantalla y se encogio\n"
+	"de hombros.\n#");
 
 	introtext[6] = M_GetText(
-	"It was hours later\n"
-	"that he had an\n"
-	"idea. \xBF\xA7\"The Black\n"
-	"Rock has a large\n"
-	"amount of energy\n"
-	"within it\xAC...\xA7\xBF\n"
-	"If I can somehow\n"
-	"harness this,\xB8 I\n"
-	"can turn it into\n"
-	"the ultimate\n"
-	"battle station\xAC...\xA7\xBF\n"
-	"And every last\n"
-	"person will be\n"
-	"begging for mercy,\xB8\xA8\n"
-	"including Sonic!\"\n#");
+	"Horas despues\n"
+	"se le ocurrio\n"
+	"una idea. \xBF\xA7\"La Roca\n"
+	"Negra tiene una\n"
+	"gran cantidad de\n"
+	"energia...\xA7\xBF\n"
+	"Si logro\n"
+	"canalizarla,\xB8\n"
+	"podre crear la\n"
+	"estacion de combate\n"
+	"definitiva...\xA7\xBF\n"
+	"Y todos suplicaran\n"
+	"piedad,\xB8\xA8\n"
+	"incluso Sonic!\"\n#");
 
 	introtext[7] = M_GetText(
-	"\xA8\nBefore beginning his scheme,\n"
-	"Eggman decided to give Sonic\n"
-	"a reunion party...\n#");
+	"\xA8\nAntes de comenzar con su plan,\n"
+	"Eggman decidio prepararle a Sonic\n"
+	"una fiesta de bienvenida...\n#");
 
 	introtext[8] = M_GetText(
-	"\xA5\"PRE-""\xB6""PARING-""\xB6""TO-""\xB4""FIRE-\xB6IN-""\xB6""15-""\xB6""SECONDS!\"\xA8\xB8\n"
-	"his targeting system crackled\n"
-	"robotically down the com-link. \xBF\xA7\"Good!\"\xA8\xB8\n"
-	"Eggman sat back in his eggmobile and\n"
-	"began to count down as he saw the\n"
-	"Greenflower mountain on the monitor.\n#");
+	"\xA5\"PRE-\"\"\xB6\"\"PARANDO-\"\"\xB6\"\"DISPARO-\"\"\xB4\"\"EN-\"\"\xB6\"\"15-\"\"\xB6\"\"SEGUNDOS!\"\xA8\xB8\n"
+	"anuncio roboticamente el sistema\n"
+	"de punteria por el intercomunicador. \xBF\xA7\"Excelente!\"\xA8\xB8\n"
+	"Eggman fijo la montana Greenflower\n"
+	"e inicio la cuenta regresiva.\n#");
 
 	introtext[9] = M_GetText(
-	"\xA5\"10...\xD2""9...\xD2""8...\"\xA8\xD2\n"
-	"Meanwhile, Sonic was tearing across the\n"
-	"zones. Everything became a blur as he\n"
-	"ran up slopes, skimmed over water,\n"
-	"and catapulted himself off rocks with\n"
-	"his phenomenal speed.\n#");
+	"\xA5\"10...\xD2\"\"9...\xD2\"\"8...\"\xA8\xD2\n"
+	"Sonic devoraba terreno a toda velocidad.\n"
+	"Todo era un borron mientras subia\n"
+	"colinas, cruzaba aguas y saltaba riscos\n"
+	"con su velocidad descomunal.\n#");
 
 	introtext[10] = M_GetText(
-	"\xA5\"6...\xD2""5...\xD2""4...\"\xA8\xD2\n"
-	"Sonic knew he was getting closer to the\n"
-	"zone, and pushed himself harder.\xB4 Finally,\n"
-	"the mountain appeared on the horizon.\xD2\xD2\n"
-	"\xA5\"3...\xD2""2...\xD2""1...\xD2""Zero.\"\n#");
+	"\xA5\"6...\xD2\"\"5...\xD2\"\"4...\"\xA8\xD2\n"
+	"Sonic sintio que estaba muy cerca y\n"
+	"acelero aun mas.\xB4 Por fin, la montana\n"
+	"asomo en el horizonte.\xD2\xD2\n"
+	"\xA5\"3...\xD2\"\"2...\xD2\"\"1...\xD2\"\"Cero.\"\n#");
 
 	introtext[11] = M_GetText(
-	"Greenflower Mountain was no more.\xC4\n"
-	"Sonic arrived just in time to see what\n"
-	"little of the 'ruins' were left.\n"
-	"The natural beauty of the zone\n"
-	"had been obliterated.\n#");
+	"La montana Greenflower ya no existia.\xC4\n"
+	"Sonic llego justo a tiempo para ver\n"
+	"lo poco que sobrevivio del impacto.\n"
+	"La belleza natural de la zona\n"
+	"habia sido aniquilada.\n#");
 
 	introtext[12] = M_GetText(
-	"\xA7\"You're not\n"
-	"quite as gone\n"
-	"as we thought,\n"
-	"huh?\xBF Are you\n"
-	"going to tell\n"
-	"us your plan as\n"
-	"usual or will I\n"
-	"\xA8\xB4'have to work\n"
-	"it out'\xA7 or\n"
-	"something?\"\xD2\xD2\n#");
+	"\xA7\"Asi que no\n"
+	"estabas tan\n"
+	"acabado como\n"
+	"creiamos, eh?\xBF\n"
+	"Nos confesaras tu\n"
+	"plan como siempre\n"
+	"o \xA8\xB4'tendre que\n"
+	"adivinarlo'\xA7 o\n"
+	"algo por el estilo?\"\xD2\xD2\n#");
 
 	introtext[13] = M_GetText(
-	"\"We'll see\xAA...\xA7\xBF let's give you a quick warm\n"
-	"up, Sonic!\xA6\xC4 JETTYSYNS!\xA7\xBD Open fire!\"\n#");
+	"\"Ya lo veremos\xAA...\xA7\xBF primero un calentamiento\n"
+	"rapido, Sonic!\xA6\xC4 JETTYSYNS!\xA7\xBD Abran fuego!\"\n#");
 
 	introtext[14] = M_GetText(
-	"Eggman took this\n"
-	"as his cue and\n"
-	"blasted off,\n"
-	"leaving Sonic\n"
-	"and Tails behind.\xB6\n"
-	"Tails looked at\n"
-	"the once-perfect\n"
-	"mountainside\n"
-	"with a grim face\n"
-	"and sighed.\xC6\n"
-	"\xA7\"Now\xB6 what do we\n"
-	"do?\",\xA9 he asked.\n#");
+	"Eggman aprovecho\n"
+	"la distraccion\n"
+	"para escapar,\n"
+	"dejando atras a\n"
+	"Sonic y Tails.\xB6\n"
+	"Tails miro la\n"
+	"destrozada\n"
+	"ladera con cara\n"
+	"triste y suspiro.\xC6\n"
+	"\xA7\"Y ahora,\xB6 que\n"
+	"haremos?\",\xA9\n"
+	"pregunto.\n#");
 
 	introtext[15] = M_GetText(
-	"\xA7\"Easy!\xBF We go\n"
-	"find Eggman\n"
-	"and stop his\n"
-	"latest\n"
-	"insane plan.\xBF\n"
-	"Just like\n"
-	"we've always\n"
-	"done,\xBA right?\xD2\n\n"
+	"\xA7\"Facil!\xBF Iremos\n"
+	"tras Eggman\n"
+	"para detener su\n"
+	"nuevo plan\n"
+	"chiflado.\xBF\n"
+	"Como siempre,\n"
+	"verdad?\xBA\xD2\n\n"
 	"\xAE...\xA9\xD2\n\n"
-	"\"Tails, what\n"
-	"\xAA*ARE*\xA9 you\n"
-	"doing?\"\n#");
+	"\"Tails, que\n"
+	"\xAA*ESTAS*\xA9\n"
+	"haciendo?\"\n#");
 
 	introtext[16] = M_GetText(
-	"\xA8\"I'm just finding what mission obje\xAC\xB1...\xBF\n"
-	"\xA6""a-\xB8""ha!\xBF Here it is!\xA8\xBF This will only give us\n"
-	"the robot's primary objective.\xBF It says\xAC\xB1...\"\n"
+	"\xA8\"Rastreo el objetivo del robot\xAC\xB1...\xBF\n"
+	"\xA6 ja!\xBF Aqui esta!\xA8\xBF Nos dira su mision.\xBF\n"
+	"Dice\xAC\xB1...\"\n"
 	"\xD2\xA3\x83"
-	"* LOCATE  AND  RETRIEVE:  CHAOS  EMERALDS *"
+	"* LOCALIZAR:  ESMERALDAS  DEL  CAOS *"
 	"\xBF\n"
-	"*  CLOSEST  LOCATION:  GREENFLOWER  ZONE  *"
+	"* LUGAR CERCANO:  ZONA  GREENFLOWER *"
 	"\x80\n\xA9\xD2\xD2"
-	"\"All right, then\xAF... \xD2\xD2\xA7let's go!\"\n#");
+	"\"Bien pensado, Tails\xAF... \xD2\xD2\xA7vamos!\"\n#");
 
 /*
 	"What are we waiting for? The first emerald is ours!" Sonic was about to
@@ -1040,14 +1034,14 @@ boolean F_IntroResponder(event_t *event)
 // =========
 static const char *credits[] = {
 	"\1Sonic Robo Blast 2",
-	"\1Credits",
+	"\1Creditos",
 	"",
-	"\1Game Design",
+	"\1Diseno del juego",
 	"Sonic Team Junior",
 	"\"SSNTails\"",
 	"Johnny \"Sonikku\" Wallbank",
 	"",
-	"\1Programming",
+	"\1Programacion",
 	"\"altaluna\"",
 	"Alam \"GBC\" Arias",
 	"Logan \"GBA\" Arias",
@@ -1096,7 +1090,7 @@ static const char *credits[] = {
 	"Marco \"mazmazz\" Zafra",
 	"\"Zwip-Zwap Zapony\"",
 	"",
-	"\1Art",
+	"\1Arte",
 	"Victor \"VAdaPEGA\" Ara\x1Fjo", // Araújo -- sorry for our limited font! D:
 	"\"Arrietty\"",
 	"Ryan \"Blaze Hedgehog\" Bloom",
@@ -1134,8 +1128,8 @@ static const char *credits[] = {
 	"\"VelocitOni\"",
 	"Jarrett \"JEV3\" Voight",
 	"",
-	"\1Music and Sound",
-	"\1Production",
+	"\1Musica y diseno",
+	"\1sonoro",
 	"Victor \"VAdaPEGA\" Ara\x1Fjo", // Araújo
 	"Malcolm \"RedXVI\" Brown",
 	"Dave \"DemonTomatoDave\" Bulmer",
@@ -1154,7 +1148,7 @@ static const char *credits[] = {
 	"David \"instantSonic\" Spencer",
 	"\"SSNTails\"",
 	"",
-	"\1Level Design",
+	"\1Diseno de niveles",
 	"Colette \"fickleheart\" Bordelon",
 	"Hank \"FuriousFox\" Brannock",
 	"Matthew \"Fawfulfan\" Chapman",
@@ -1186,7 +1180,7 @@ static const char *credits[] = {
 	"Johnny \"Sonikku\" Wallbank",
 	"Marco \"mazmazz\" Zafra",
 	"",
-	"\1Boss Design",
+	"\1Diseno de jefes",
 	"Ben \"Mystic\" Geyer",
 	"Vivian \"toaster\" Grannell",
 	"Thomas \"Shadow Hog\" Igoe",
@@ -1195,7 +1189,7 @@ static const char *credits[] = {
 	"\"SSNTails\"",
 	"Johnny \"Sonikku\" Wallbank",
 	"",
-	"\1Testing",
+	"\1Control de calidad",
 	"Discord Community Testers",
 	"Hank \"FuriousFox\" Brannock",
 	"Cody \"Playah\" Koester",
@@ -1206,7 +1200,7 @@ static const char *credits[] = {
 	"Colin \"Sonict\" Pfaff",
 	"Bill \"Tets\" Reed",
 	"",
-	"\1Special Thanks",
+	"\1Agradecimientos especiales",
 	"id Software",
 	"Doom Legacy Project",
 	"FreeDoom Project", // Used some of the mancubus and rocket launcher sprites for Brak
@@ -1218,14 +1212,14 @@ static const char *credits[] = {
 	"Simon \"sirjuddington\" Judd", // SLADE developer
 	"SRB2 Community Contributors",
 	"",
-	"\1Produced By",
+	"\1Producido por",
 	"Sonic Team Junior",
 	"",
-	"\1Published By",
+	"\1Publicado por",
 	"A 28K dialup modem",
 	"",
-	"\1Thank you       ",
-	"\1for playing!       ",
+	"\1Gracias por      ",
+	"\1jugar!            ",
 	NULL
 };
 
@@ -1615,8 +1609,8 @@ void F_GameEvaluationDrawer(void)
 	if (marathonmode)
 	{
 		const char *rtatext, *cuttext;
-		rtatext = (marathonmode & MA_INGAME) ? "In-game timer" : "RTA timer";
-		cuttext = (marathonmode & MA_NOCUTSCENES) ? "" : " w/ cutscenes";
+		rtatext = (marathonmode & MA_INGAME) ? "Tiempo in-game" : "Tiempo RTA";
+		cuttext = (marathonmode & MA_NOCUTSCENES) ? "" : " con cinematicas";
 		if (botskin)
 			endingtext = va("%s & %s, %s%s", skins[players[consoleplayer].skin]->realname, skins[botskin-1]->realname, rtatext, cuttext);
 		else
@@ -3695,7 +3689,7 @@ void F_ContinueDrawer(void)
 	if (timetonext >= (11*TICRATE)+10)
 		return;
 
-	V_DrawLevelTitle(x - (V_LevelNameWidth("Continue?")>>1), 16, 0, "Continue?");
+	V_DrawLevelTitle(x - (V_LevelNameWidth("Continuar?")>>1), 16, 0, "Continuar?");
 
 	// Two stars...
 	patch = W_CachePatchName("CONTSTAR", PU_PATCH_LOWPRIORITY);

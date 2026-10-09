@@ -296,7 +296,7 @@ UINT8 M_UpdateUnlockablesAndExtraEmblems(gamedata_t *data)
 		{
 			if (unlockables[i].nocecho)
 				continue;
-			strcat(cechoText, va(M_GetText("\"%s\" unlocked!\\"), unlockables[i].name));
+			strcat(cechoText, va(M_GetText("\"%s\" desbloqueado!\\"), unlockables[i].name));
 			++cechoLines;
 		}
 	}
