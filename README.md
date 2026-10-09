@@ -1,56 +1,49 @@
-# Sonic Robo Blast 2 — Spanish Recompilation (v2.2.15)
+# Sonic Robo Blast 2 en Español (Recompilación v2.2.15)
 
-<p align="center">
-  <b>Recompilación nativa de SRB2 v2.2.15 con traducción completa al español en el motor en C.</b><br>
-  <i>100% compatible con servidores vanilla y multijugador online.</i>
-</p>
+Traducción al español de **Sonic Robo Blast 2** hecha directamente en el código fuente en C. 
 
----
-
-## 📌 ¿De qué trata este proyecto?
-
-**Sonic Robo Blast 2** contiene prácticamente todos sus textos (menús, HUD, pantallas de intermisión, mensajes de confirmación, créditos, nombres de zonas y desbloqueables) directamente integrados en el código fuente en C.
-
-Tradicionalmente, las traducciones que usan scripts de **Lua** o archivos **SOC** externos no pueden entrar a servidores normales porque el juego bloquea el multijugador si los archivos de juego difieren.
-
-**SRB2 Spanish Recomp** soluciona esto traduciendo los textos directamente en el ejecutable en C.
-- ✅ **Totalmente compatible con servidores normales / netplay:** Los servidores sólo verifican archivos `.pk3`/`.wad`, no ejecutables de cliente.
-- ✅ **Menús, HUD y mensajes en español nativo.**
-- ✅ **Nombres de niveles vanilla traducidos** en el parser nativo sin desincronizaciones.
-- ✅ **16 páginas completas de la cinemática de introducción** portadas con sus tiempos exactos.
+A diferencia de los mods tradicionales basados en scripts de Lua o archivos SOC (que suelen desincronizar o bloquear la entrada a partidas multijugador), esta versión modifica los textos en el propio motor. El resultado es que **puedes jugar online en cualquier servidor oficial o vanilla sin problemas de compatibilidad**.
 
 ---
 
-## 🚀 ¿Cómo instalar y jugar?
+### ✨ ¿Qué incluye?
 
-1. Descarga el paquete `SRB2_Spanish_Recomp_v2.2.15.zip` y el complemento de gráficos `srb2_spanish_gfx.pk3` desde la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
-2. **Elige una de las dos formas de instalación:**
-   - **Opción A (En tu misma carpeta de SRB2 v2.2):** Extrae el `.zip` directamente dentro de tu carpeta de SRB2 v2.2. Cuando Windows te pregunte, selecciona **"Reemplazar los archivos en el destino"** (esto actualizará las DLLs a 64-bit para el ejecutable recompilado; tus partidas y archivos `.pk3` originales se mantendrán intactos).
-   - **Opción B (En una carpeta separada - Recomendada si quieres conservar tu juego vanilla original intacto):** Crea una nueva carpeta (ej. `SRB2 Español/`), extrae el `.zip` allí, y copia dentro los archivos principales del juego original (`srb2.pk3`, `zones.pk3`, `characters.pk3` y `music.pk3`).
-3. Coloca el archivo `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (si no existe la carpeta `addons`, créala).
-4. Ejecuta `Jugar_online.bat` para jugar en servidores online con los gráficos en español, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
-
----
-
-## 🛠️ Contenido traducido (Lotes 1 al 11)
-
-- **Menú Principal y Submenús:** 1 Jugador, Multijugador, Opciones (Video, Sonido, Controles, Mouse, Cámara, Datos, Pantalla dividida).
-- **Cargar Partida y Estadísticas:** Guardado/Nueva Partida, marcadores de tiempo, puntaje y anillos.
-- **HUD in-game:** HUD de NiGHTS, mensajes de tiempo extra, multiplicadores, puntajes, modo espectador.
-- **Intermisiones:** Pantallas post-nivel en cooperativo, etapas especiales (Special Stages), conteos y tablas de resultados multijugador.
-- **Nombres de Niveles y Zonas:** Los 66 niveles vanilla y etapas especiales adaptados en el parser de cabeceras C (`deh_soc.c`).
-- **Narrativa y Créditos:** Cinemática inicial completa (16 páginas) en `f_finale.c`, créditos y pantalla de Maratón.
-- **Mensajes Humorísticos:** Las 24 frases clásicas al salir del juego adaptadas al español.
+- **Menús y configuración:** Menú principal, opciones de video, audio, controles, partida guardada y estadísticas.
+- **En partida:** Marcadores (puntos, tiempo, anillos), mensajes del HUD, modo espectador y tiempos extra.
+- **Niveles:** Los nombres de las 66 zonas vanilla y etapas especiales adaptados directamente.
+- **Historia y extras:** Cinemática inicial completa (las 16 páginas), créditos y las frases clásicas al cerrar el juego.
+- **Compatible con netplay:** Puedes entrar a servidores públicos sin que te desconecte por discrepancias de archivos.
 
 ---
 
-## 📖 Documentación técnica
+### 📦 ¿Cómo instalarlo para jugar?
 
-Para consultar la arquitectura interna, glosario, mapas de archivos y proceso de compilación paso a paso, abre el archivo local interactivo [`guia.html`](./guia.html) en cualquier navegador web.
+1. Ve a la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases) y descarga:
+   - `SRB2_Spanish_Recomp_v2.2.15.zip`
+   - `srb2_spanish_gfx.pk3` (parche gráfico complementario)
+
+2. **Instalación (elige la que prefieras):**
+   - **En tu carpeta actual de SRB2:**  
+     Descomprime el contenido del `.zip` dentro de tu carpeta donde ya tienes instalado SRB2 v2.2. Si Windows te pide reemplazar archivos, dale que sí (actualizará los ejecutables y librerías necesarias a 64-bit; tus partidas y configuraciones seguirán a salvo).
+   - **En una carpeta nueva (recomendado si no quieres tocar tu SRB2 original):**  
+     Crea una carpeta en cualquier lugar (por ejemplo `SRB2 Español`), extrae el `.zip` allí, y copia desde tu juego original los 4 archivos base: `srb2.pk3`, `zones.pk3`, `characters.pk3` y `music.pk3`.
+
+3. **Colocar los gráficos:**  
+   Mueve el archivo `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (si no la tienes, simplemente crea una carpeta llamada `addons` en el mismo directorio del juego).
+
+4. **Listo para jugar:**
+   - Abre **`Jugar_online.bat`** para jugar con los textos y gráficos traducidos (funciona tanto solo como en servidores online).
+   - Abre **`Jugar_vanilla.bat`** si prefieres jugar sin complementos visuales.
 
 ---
 
-## 👤 Créditos
+### 🛠️ Documentación técnica
 
-- **Proyecto y Traducción:** Daza ([@trulydza](https://github.com/trulydza))
-- **Base original:** Sonic Team Junior ([STJr / SRB2](https://github.com/STJr/SRB2)) — Versión v2.2.15
+Si te interesa ver cómo se estructuraron las traducciones en el código o quieres compilarlo por tu cuenta, puedes revisar [`guia.html`](./guia.html) abriéndolo en tu navegador.
+
+---
+
+### Créditos y agradecimientos
+
+- **Adaptación y traducción:** Daza ([@trulydza](https://github.com/trulydza))
+- **Juego base:** Sonic Team Junior ([STJr / SRB2](https://github.com/STJr/SRB2))
