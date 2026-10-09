@@ -21,12 +21,14 @@ Tradicionalmente, las traducciones que usan scripts de **Lua** o archivos **SOC*
 
 ---
 
-## 🚀 ¿Cómo jugar?
+## 🚀 ¿Cómo instalar y jugar?
 
 1. Descarga el paquete `SRB2_Spanish_Recomp_v2.2.15.zip` y el complemento de gráficos `srb2_spanish_gfx.pk3` desde la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
-2. Extrae `SRB2_Spanish_Recomp_v2.2.15.zip` dentro de tu carpeta donde tengas instalado SRB2 v2.2 (o en una carpeta con acceso a `srb2.pk3`).
-3. Coloca `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (si no existe la carpeta `addons`, créala).
-4. Ejecuta `Jugar_online.bat` para disfrutar con los gráficos cosméticos traducidos en servidores online, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
+2. **Elige una de las dos formas de instalación:**
+   - **Opción A (En tu misma carpeta de SRB2 v2.2):** Extrae el `.zip` directamente dentro de tu carpeta de SRB2 v2.2. Cuando Windows te pregunte, selecciona **"Reemplazar los archivos en el destino"** (esto actualizará las DLLs a 64-bit para el ejecutable recompilado; tus partidas y archivos `.pk3` originales se mantendrán intactos).
+   - **Opción B (En una carpeta separada - Recomendada si quieres conservar tu juego vanilla original intacto):** Crea una nueva carpeta (ej. `SRB2 Español/`), extrae el `.zip` allí, y copia dentro los archivos principales del juego original (`srb2.pk3`, `zones.pk3`, `characters.pk3` y `music.pk3`).
+3. Coloca el archivo `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (si no existe la carpeta `addons`, créala).
+4. Ejecuta `Jugar_online.bat` para jugar en servidores online con los gráficos en español, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
 
 ---
 
