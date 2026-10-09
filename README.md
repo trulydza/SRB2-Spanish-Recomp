@@ -23,9 +23,10 @@ Tradicionalmente, las traducciones que usan scripts de **Lua** o archivos **SOC*
 
 ## 🚀 ¿Cómo jugar?
 
-1. Descarga el paquete listo para jugar desde la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
-2. Extrae los archivos dentro de tu carpeta donde tengas instalado SRB2 v2.2 (o colócalos en una carpeta con acceso a `srb2.pk3`).
-3. Ejecuta `Jugar_online.bat` para disfrutar con los gráficos cosméticos traducidos en servidores online, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
+1. Descarga el paquete `SRB2_Spanish_Recomp_v2.2.15.zip` y el complemento de gráficos `srb2_spanish_gfx.pk3` desde la sección de [**Releases**](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
+2. Extrae `SRB2_Spanish_Recomp_v2.2.15.zip` dentro de tu carpeta donde tengas instalado SRB2 v2.2 (o en una carpeta con acceso a `srb2.pk3`).
+3. Coloca `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (si no existe la carpeta `addons`, créala).
+4. Ejecuta `Jugar_online.bat` para disfrutar con los gráficos cosméticos traducidos en servidores online, o `Jugar_vanilla.bat` para jugar sin mods cosméticos.
 
 ---
 
