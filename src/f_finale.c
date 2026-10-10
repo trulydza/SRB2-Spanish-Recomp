@@ -827,7 +827,7 @@ void F_IntroDrawer(void)
 		INT32 trans = intro_curtime + 10 - (5*TICRATE);
 		if (trans < 0)
 			trans = 0;
-		V_DrawRightAlignedString(BASEVIDWIDTH-4, BASEVIDHEIGHT-12, V_ALLOWLOWERCASE|(trans<<V_ALPHASHIFT), "\x86""Press ""\x82""ENTER""\x86"" to skip...");
+		V_DrawRightAlignedString(BASEVIDWIDTH-4, BASEVIDHEIGHT-12, V_ALLOWLOWERCASE|(trans<<V_ALPHASHIFT), "\x86""Pulsa ""\x82""ENTER""\x86"" para saltar...");
 	}
 
 	V_DrawString(cx, cy, V_ALLOWLOWERCASE, cutscene_disptext);
@@ -1486,11 +1486,11 @@ void F_GameEvaluationDrawer(void)
 	const char* endingtext;
 
 	if (marathonmode)
-		endingtext = "THANKS FOR THE RUN!";
+		endingtext = "GRACIAS POR JUGAR!";
 	else if (goodending)
-		endingtext = "CONGRATULATIONS!";
+		endingtext = "FELICITACIONES!";
 	else
-		endingtext = "TRY AGAIN...";
+		endingtext = "INTENTA DE NUEVO...";
 
 	V_DrawFill(0, 0, BASEVIDWIDTH, BASEVIDHEIGHT, 31);
 
@@ -4760,8 +4760,8 @@ void F_WaitingPlayersTicker(void)
 
 void F_WaitingPlayersDrawer(void)
 {
-	const char *waittext1 = "You will join";
-	const char *waittext2 = "next level...";
+	const char *waittext1 = "Entraras en el";
+	const char *waittext2 = "proximo nivel...";
 
 	V_DrawFill(0, 0, BASEVIDWIDTH, BASEVIDHEIGHT, 31);
 

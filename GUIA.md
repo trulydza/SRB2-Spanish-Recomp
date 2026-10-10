@@ -59,10 +59,12 @@ El problema: **el Lua y el SOC bloquean el multijugador** (el servidor exige que
 │                  │                          │
 │  • Menús         │  • Cabeceras de menú     │
 │  • HUD           │  • Iconos HUD            │
-│  • Mensajes      │  • Fuentes gráficas      │
-│  • Intermisiones │  • Parches visuales      │
-│  • Titlecards    │                          │
-│  • Unlockables   │  72 archivos, todos      │
+│  • Mensajes      │  • Fuentes extendidas:   │
+│  • Intermisiones │    12 LTFNT (Titlecard)   │
+│  • Titlecards    │    16 STCFN (texto std)   │
+│  • Unlockables   │  • Parches visuales      │
+│  • Soporte Latin-1│                          │
+│  • Fallback font │  100 archivos, todos     │
 │                  │  lumps cosméticos        │
 ├──────────────────┴──────────────────────────┤
 │  RESULTADO: Compatible con servidores       │
@@ -104,19 +106,13 @@ SRB2-recomp\
 │   └── libs\                      ← DLLs del proyecto
 │
 ├── dist\                          ← DISTRIBUCIÓN LISTA
-│   ├── srb2win_es.exe             ← Exe actual (último build, = p11)
+│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 15)
 │   ├── srb2win_es_p1.exe          ← Snapshot lote 1
-│   ├── srb2win_es_p2.exe          ← Snapshot lote 2
-│   ├── srb2win_es_p3.exe          ← Snapshot lote 3
-│   ├── srb2win_es_p4.exe          ← Snapshot lote 4
-│   ├── srb2win_es_p5.exe          ← Snapshot lote 5
-│   ├── srb2win_es_p6.exe          ← Snapshot lote 6
-│   ├── srb2win_es_p7.exe          ← Snapshot lote 7
-│   ├── srb2win_es_p8.exe          ← Snapshot lote 8
-│   ├── srb2win_es_p9.exe          ← Snapshot lote 9
-│   ├── srb2win_es_p10.exe         ← Snapshot lote 10
-│   ├── srb2win_es_p11.exe         ← Snapshot lote 11 (actual)
+│   ├── ...                        ← Snapshots lote 2-12
+│   ├── srb2win_es_p13.exe         ← Snapshot lote 13
 │   ├── *.dll                      ← Todas las DLLs necesarias
+│   ├── addons\
+│   │   └── srb2_spanish_gfx.pk3   ← Gráficos + fuentes LTFNT/STCFN (100 archivos)
 │   ├── Jugar_online.bat           ← Exe + pk3 cosmético (MP)
 │   ├── Jugar_traducido.bat        ← Exe + mod completo (offline)
 │   └── Jugar_vanilla.bat          ← Exe sin mod
@@ -237,21 +233,22 @@ grep -n 'TEXTO_ORIGINAL' src/ARCHIVO.c
 
 ### Caracteres permitidos
 
-| Permitido | Prohibido |
+| Permitido | Notas |
 |---|---|
-| ASCII 32-126 (letras sin acento, números, símbolos básicos) | Tildes (á, é, í, ó, ú) |
-| Códigos de control del motor (`\x82`, `\x83`, etc.) | Eñe (ñ) |
-| | Signos de apertura (¿, ¡) |
+| ASCII 32-126 (letras sin acento, números, símbolos básicos) | Siempre disponible |
+| Vocales acentuadas: á é í ó ú (y mayúsculas Á É Í Ó Ú) | Via hex: `\xE1`, `\xE9`, `\xED`, `\xF3`, `\xFA`, `\xC1`, `\xC9`, `\xCD`, `\xD3`, `\xDA` |
+| Eñe: ñ Ñ | Via hex: `\xF1`, `\xD1` |
+| Diéresis: ü Ü | Via hex: `\xFC`, `\xDC` |
+| Signos de apertura: ¡ ¿ | Via hex: `\xA1`, `\xBF` |
+| Códigos de control del motor (`\x82`, `\x83`, etc.) | Formato visual |
 
-> La fuente de SRB2 solo tiene glifos hasta ASCII 126. Para tildes haría falta un parche de fuente (pendiente, ver [sección 10](#10-lo-que-falta-por-traducir)).
-
-Convención usada en el código para la `ñ`: se reemplaza por `n` (`Diseno`, `extrano`) o por `ni` (`anios`).
+> Se crearon glifos nativos para **LTFNT** (fuente de Titlecard, 12 glifos) y **STCFN** (fuente estándar de menús/HUD, 16 glifos) empaquetados en `srb2_spanish_gfx.pk3`. El motor también tiene `V_FontFallback` que sustituye por la letra base sin acento si el glifo no existe.
 
 ### Estilo
 
 - **Resumir si es largo.** Se prefieren textos cortos que quepan en pantalla. Ejemplo: `"Complete 1P mode with all emeralds"` → `"Completa 1P con todas las esmeraldas"`.
 - **No traducir literal** si no suena natural en español.
-- **Preguntas sin signo de apertura:** `"Seguro que quieres salir?"` (no `"¿Seguro...?"`).
+- **Signos de apertura:** ahora se pueden usar `¡` y `¿` con hex escapes: `"\xA1""Conquista..."`, `"\xBF""Seguro...?"`.
 
 ### Cosas que NO se tocan
 
@@ -292,7 +289,7 @@ Algunos strings van a arrays de tamaño fijo. **No exceder el límite:**
 
 ## 7. Glosario de vocabulario fijado
 
-Estas traducciones ya están aplicadas en el código y deben mantenerse consistentes (en el juego se escriben en ASCII, sin tildes):
+Estas traducciones ya están aplicadas en el código y deben mantenerse consistentes. Los nombres de niveles y desbloqueables usan hex escapes para acentos (`\xE1`, `\xF1`, etc.); los strings de menú y HUD también pueden usarlos si hay glifos disponibles:
 
 | Inglés | Español | Notas |
 |---|---|---|
@@ -338,6 +335,7 @@ Qué archivo controla qué parte del juego:
 | `src/p_inter.c` | **Interacción de jugadores**: mensajes de muerte/combate, CTF flags, power-ups NiGHTS | ~2200 |
 | `src/command.c` | **Cvars**: valores On/Off/Yes/No/True/False (delicado, la consola los parsea) | ~1700 |
 | `src/hu_stuff.c` | **Chat y mensajes HUD**: comandos say/sayteam/csay | ~700 |
+| `src/v_video.c` | **Renderizado de texto**: `V_FontFallback` (fallback de glifos acentuados a letra base) | ~4000 |
 
 ---
 
@@ -425,11 +423,62 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lote 11 — Prioridad alta (Nombres de niveles y subtítulos SOC en C)
 - **Archivo:** `deh_soc.c`
-- **Exe:** `dist/srb2win_es_p11.exe` (= `dist/srb2win_es.exe`, **actual**)
+- **Exe:** `dist/srb2win_es_p11.exe`
 - **Contenido:**
-  - Nombres de los 66 niveles vanilla traducidos de forma nativa en el parser SOC (`readlevelheader`) usando la tabla `M_LevelTr()` (ej.: `Colina Tecno`, `Mar Profundo`, `Castillo De Eggman`, `Canon Arido`, `Volcan Rojo`, `Nucleo Negro`, `Ladera Helada`, `Torres de Tuberias`, etc.)
+  - Nombres de los 66 niveles vanilla traducidos de forma nativa en el parser SOC (`readlevelheader`) usando la tabla `M_LevelTr()`
   - Subtítulos de etapas traducidos mediante `M_LevelSubTr()` (`Etapa Especial 1` a `8`)
   - Totalmente compatible con netplay y servidores vanilla al no requerir archivos SOC externos
+- **Verificado:** compilado e integrado
+
+### Lote 12 — Parche de fuente para tildes y ñ
+- **Archivos:** `hu_stuff.h`, `v_video.c`, `console.c`, `hu_stuff.c`
+- **Exe:** `dist/srb2win_es_p12.exe` (= `dist/srb2win_es.exe`, **actual**)
+- **Contenido:**
+  - Expandido `FONTEND` de `'~'` (126) a `250` para soportar Latin-1
+  - Arreglada detección de color codes en 10 ubicaciones: de `& 0x80` (cualquier byte ≥128) a rango explícito `0x80-0x8F` (los 16 color codes reales)
+  - Arreglada máscara de 7 bits en `V_DrawFontCharacter`: `c &= 0x7f` → `c &= 0xFF`
+  - Arreglada sign-extension de `char` en 4 funciones de renderizado: cast a `(UINT8)` antes de `toupper()` y resta de FONTSTART
+  - Arreglados filtros de chat (validación, input, dibujo) para permitir caracteres Latin-1
+  - Generados 14 glifos como patches Doom: á é í ó ú Á É Í Ñ Ó Ú ñ ¿ ¡
+  - Empaquetados en `srb2_spanish_font.pk3` (compatible con NMU, no bloquea MP)
+  - Los strings traducidos ahora pueden usar `\xE1` (á), `\xE9` (é), `\xED` (í), `\xF1` (ñ), `\xF3` (ó), `\xFA` (ú), `\xBF` (¿), `\xA1` (¡)
+- **Verificado:** compilado e integrado; pendiente verificar glifos visualmente en juego
+
+### Lote 13 — Strings sueltos de finales y transiciones
+- **Archivo:** `f_finale.c`
+- **Exe:** `dist/srb2win_es_p13.exe`
+- **Contenido:**
+  - Prompt de salto de intro: `"Press ENTER to skip..."` $\to$ `"Pulsa ENTER para saltar..."`
+  - Evaluación final: `"GRACIAS POR JUGAR!"` (Marathon), `"FELICITACIONES!"` (Good ending), `"INTENTA DE NUEVO..."` (Bad ending)
+  - Sala de espera multijugador: `"You will join next level..."` $\to$ `"Entraras en el proximo nivel..."`
+- **Verificado:** compilado e integrado
+
+### Lote 14 — Parche tipográfico: glifos LTFNT para Titlecards
+- **Archivos:** `v_video.c`, `dist/addons/srb2_spanish_gfx.pk3`
+- **Exe:** `dist/srb2win_es.exe` (**actual**)
+- **Contenido:**
+  - Implementado decodificador/codificador de Doom Patches en Python para crear glifos auténticos
+  - Generados **12 glifos LTFNT** (fuente de Titlecard de nivel) usando los colores oficiales (índices 3=blanco, 14=bisel, 26=sombra):
+    - Mayúsculas (20x24px): Á(193) É(201) Í(205) Ñ(209) Ó(211) Ú(218) — base de glifos mayúsculos nativos + acentos grandes (7px acute / 11px tilde)
+    - Minúsculas (15-16x19px): á(225) é(233) í(237) ñ(241) ó(243) ú(250) — base de glifos **minúsculos** nativos + acentos proporcionales reducidos (5px acute / 8px tilde)
+  - Añadida función `V_FontFallback` en `v_video.c`: si una fuente no tiene el glifo acentuado, hace fallback a la letra base sin acento
+  - Inyectados en `dist/addons/srb2_spanish_gfx.pk3` (ruta `Graphics/Fonts/LTFNT/`)
+- **Verificado:** compilado e integrado; la Titlecard muestra "Cañón Árido" con tildes correctas y minúsculas/mayúsculas proporcionales
+
+### Lote 15 — Glifos STCFN y corrección ortográfica de nombres de niveles
+- **Archivos:** `deh_soc.c`, `dist/addons/srb2_spanish_gfx.pk3`
+- **Exe:** `dist/srb2win_es.exe` (**actual**)
+- **Contenido:**
+  - Generados **16 glifos STCFN** (fuente estándar 8x8 de menús/HUD) con paleta nativa (3=blanco, 26=sombra):
+    - Mayúsculas con acento: Á(193) É(201) Í(205) Ñ(209) Ó(211) Ú(218) Ü(220)
+    - Minúsculas con acento: á(225) é(233) í(237) ñ(241) ó(243) ú(250) ü(252)
+    - Puntuación española: ¡(161) ¿(191)
+  - Corregidos **20 nombres de niveles** en `leveltr_table` con acentos hex correctos:
+    - Volcán, Núcleo, Tuberías, Jardín Aéreo, Tóxica, Satélite, Navideñas, Sueño, Paraíso, Relojería, Rápidos, Cañón Aislado, Fábrica, Crepúsculo, Montaña Gélida, Escalofrío, Prístinas, Almacén, Aéreo, y "de" minúscula en "Castillo de Eggman"
+  - Corregidas **12 entradas** en `unlocktr_table`:
+    - Maestría de desafíos, Jardín Aéreo (×2), Sueño, Paraíso (×2), Navideñas, Tuberías, Selección, créditos, ¡Conquista...desafío!, Cañón Árido
+  - Separación correcta de literales hex con `""` cuando el siguiente carácter es un dígito hex (ej: `\xF1""as`, `\xE9""ditos`, `\xE1""brica`)
+  - Todos los glifos inyectados en `dist/addons/srb2_spanish_gfx.pk3` (ruta `Graphics/Fonts/STCFN/`)
 - **Verificado:** compilado e integrado
 
 ---
@@ -444,20 +493,24 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 > ✅ **Prioridad alta completada (Lote 11):** nombres de los 66 niveles vanilla y subtítulos de etapas especiales integrados de forma nativa en `deh_soc.c`.
 
+> ✅ **Transiciones y evaluación completadas (Lote 13):** prompt de saltar intro, textos de evaluación final y sala de espera en `f_finale.c`.
+
+> ✅ **Parche tipográfico completado (Lote 14):** 12 glifos LTFNT generados como Doom Patches auténticos (mayúsculas y minúsculas con acentos proporcionales), función `V_FontFallback`, Titlecards con tildes y ñ nativos.
+
+> ✅ **Glifos STCFN y ortografía completados (Lote 15):** 16 glifos STCFN (fuente de menú/HUD) para todos los caracteres españoles. Corregidos 20 nombres de nivel y 12 entradas de unlockables con acentos ortográficos correctos mediante hex escapes.
+
 ### Pendiente restante
 
 | # | Qué | Dónde | Dificultad |
 |---|---|---|---|
 | 1 | Tutorial prompts SOC en C (opcional, textos guiados en el mapa de tutorial) | `deh_soc.c` | Media |
-| 2 | Strings sueltos aún en inglés en `f_finale.c`: `"Press ENTER to skip..."` (intro), pantalla de evaluación final (`CONGRATULATIONS!`, `TRY AGAIN...`, `THANKS FOR THE RUN!`) y `"You will join next level..."` (sala de espera) | `f_finale.c` | Baja |
 
 ### Por evaluar
 
 | # | Qué | Por qué esperar |
 |---|---|---|
-| 3 | Mensajes de combate Ringslinger (~50 strings en `p_inter.c`) | Excluidos a propósito; modos de nicho |
-| 4 | On/Off/Yes/No de cvars (`command.c:78-82`) | Riesgo de romper consola/config.cfg |
-| 5 | Parche de fuente para tildes y eñe | Requiere crear glifos nuevos como lumps |
+| 4 | Mensajes de combate Ringslinger (~50 strings en `p_inter.c`) | Excluidos a propósito; modos de nicho |
+| 5 | On/Off/Yes/No de cvars (`command.c:78-82`) | Riesgo de romper consola/config.cfg |
 
 ---
 
@@ -549,10 +602,12 @@ El exe guarda su config y saves **separados** del juego original. No comparte `g
 
 | Problema | Solución |
 |---|---|
-| La fuente del juego no tiene tildes | Usar ASCII sin acentos: `Tamano`, `Opcion`, etc. |
+| Glifos de LTFNT y STCFN para acentos | ✅ Resuelto: glifos generados con Doom Patch encoder e inyectados en `srb2_spanish_gfx.pk3` |
+| Hex escape seguido de carácter hex | Separar el literal: `"\xF1""as"` para ñas, `"\xE9""ditos"` para éditos |
 | Confirmaciones con Y/N | El motor lee la tecla física. Escribir `'Y'`/`'N'`, nunca `'S'` |
 | Textos de menú con `strcmp` | Se verificó: `m_menu.c` NO compara strings de menú por contenido |
 | `config.cfg` guarda valores de cvars como texto | No traducir `"On"`/`"Off"` en `command.c` sin separar display de parse |
+| Fuente sin glifo para un carácter Latin-1 | `V_FontFallback` sustituye automáticamente por la letra base sin acento |
 
 ---
 
@@ -560,7 +615,12 @@ El exe guarda su config y saves **separados** del juego original. No comparte `g
 
 ### ¿Se pueden agregar tildes o la letra ñ?
 
-Todavía no. Se necesita crear glifos nuevos (lumps `STCFN161`, etc.) y modificar el renderer de texto para aceptar caracteres > ASCII 126. Está en la lista de pendientes como "parche de fuente".
+**Sí, ya están implementadas.** Se crearon glifos nativos como Doom Patches para ambas fuentes del juego:
+
+- **LTFNT** (fuente de Titlecard): 12 glifos (Á É Í Ñ Ó Ú á é í ñ ó ú) usando las bases originales mayúsculas/minúsculas de `srb2.pk3`, con acentos proporcionales al tamaño de cada letra
+- **STCFN** (fuente estándar de menús/HUD): 16 glifos (Á É Í Ñ Ó Ú Ü á é í ñ ó ú ü ¡ ¿) manteniendo el estilo 8x8 nativo
+
+Los glifos se inyectan en `srb2_spanish_gfx.pk3` como lumps cosméticos (no bloquean MP). En el código C, se usan hex escapes: `\xF1` para ñ, `\xE1` para á, etc. Si un glifo no existe, `V_FontFallback` muestra la letra base sin acento.
 
 ### Si modifico un archivo .c, ¿tengo que recompilar todo?
 
@@ -585,8 +645,8 @@ Por eso se usa el script Python con `assert` antes de escribir.
 
 En `dist\` del espacio de trabajo local:
 
-- `srb2win_es_p1.exe` hasta `srb2win_es_p11.exe`
-- `srb2win_es.exe` = último build (copia del p11)
+- `srb2win_es_p1.exe` hasta `srb2win_es_p13.exe`
+- `srb2win_es.exe` = último build (lote 15)
 
 Si algo sale mal, se puede volver a cualquier snapshot anterior. Los binarios publicados están en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
 

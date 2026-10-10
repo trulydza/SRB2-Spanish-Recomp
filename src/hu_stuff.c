@@ -667,7 +667,7 @@ static void Got_Saycmd(UINT8 **p, INT32 playernum)
 		const size_t j = strlen(msg);
 		for (i = 0; i < j; i++)
 		{
-			if (msg[i] & 0x80)
+			if ((UINT8)msg[i] >= 0x80 && (UINT8)msg[i] <= 0x8F)
 			{
 				CONS_Alert(CONS_WARNING, M_GetText("Illegal say command received from %s containing invalid characters\n"), player_names[playernum]);
 				if (server)
@@ -932,7 +932,7 @@ static void HU_sendChatMessage(void)
 	for (ci = 2; w_chat[ci-2]; ci++)
 	{
 		char c = w_chat[ci-2];
-		if (c >= ' ' && !(c & 0x80))
+		if (c >= ' ' && !((UINT8)c >= 0x80 && (UINT8)c <= 0x8F))
 			buf[ci] = c;
 	};
 	buf[ci] = '\0';
@@ -1293,7 +1293,7 @@ static void HU_drawMiniChat(void)
 				}
 				prev_linereturn = true;
 			}
-			else if (msg[j] & 0x80) // get colormap
+			else if ((UINT8)msg[j] >= 0x80 && (UINT8)msg[j] <= 0x8F) // get colormap
 				colormap = V_GetStringColormap(((msg[j] & 0x7f) << V_CHARCOLORSHIFT) & V_CHARCOLORMASK);
 			else if (msg[j] >= FONTSTART)
 			{
@@ -1380,7 +1380,7 @@ static void HU_drawChatLog(INT32 offset)
 				}
 				prev_linereturn = true;
 			}
-			else if (msg[j] & 0x80) // get colormap
+			else if ((UINT8)msg[j] >= 0x80 && (UINT8)msg[j] <= 0x8F) // get colormap
 				colormap = V_GetStringColormap(((msg[j] & 0x7f) << V_CHARCOLORSHIFT) & V_CHARCOLORMASK);
 			else
 			{

@@ -1923,6 +1923,40 @@ UINT8 *V_GetStringColormap(INT32 colorflags)
 	}
 }
 
+static inline INT32 V_FontToUpper(INT32 c)
+{
+	switch ((UINT8)c)
+	{
+		case 225: return 193; // á -> Á
+		case 233: return 201; // é -> É
+		case 237: return 205; // í -> Í
+		case 241: return 209; // ñ -> Ñ
+		case 243: return 211; // ó -> Ó
+		case 250: return 218; // ú -> Ú
+		default:  return toupper((UINT8)c);
+	}
+}
+
+static inline INT32 V_FontFallback(INT32 c, fontdef_t font)
+{
+	if (c >= 0 && c < FONTSIZE && !font.chars[c])
+	{
+		INT32 fb = -1;
+		switch (c + FONTSTART)
+		{
+			case 193: case 225: fb = 'A' - FONTSTART; break;
+			case 201: case 233: fb = 'E' - FONTSTART; break;
+			case 205: case 237: fb = 'I' - FONTSTART; break;
+			case 209: case 241: fb = 'N' - FONTSTART; break;
+			case 211: case 243: fb = 'O' - FONTSTART; break;
+			case 218: case 250: fb = 'U' - FONTSTART; break;
+		}
+		if (fb >= 0 && font.chars[fb])
+			return fb;
+	}
+	return c;
+}
+
 // Generalized character drawing function, combining console & chat functionality with a specified font.
 //
 void V_DrawFontCharacter(INT32 x, INT32 y, INT32 c, boolean lowercaseallowed, fixed_t scale, UINT8 *colormap, fontdef_t font)
@@ -1931,8 +1965,9 @@ void V_DrawFontCharacter(INT32 x, INT32 y, INT32 c, boolean lowercaseallowed, fi
 	const UINT8 *color = colormap ? colormap : V_GetStringColormap(c);
 
 	flags = c & ~(V_CHARCOLORMASK | V_PARAMMASK);
-	c &= 0x7f;
-	c = (lowercaseallowed ? c : toupper(c)) - FONTSTART;
+	c &= 0xFF; // keep full 8-bit character code (was 0x7f, extended for Latin-1)
+	c = (lowercaseallowed ? c : V_FontToUpper(c)) - FONTSTART;
+	c = V_FontFallback(c, font);
 	if (c < 0 || c >= FONTSIZE || !font.chars[c])
 		return;
 
@@ -1976,7 +2011,7 @@ char *V_FontWordWrap(INT32 x, INT32 w, INT32 option, fixed_t scale, const char *
 	for (i = 0; i < slen; ++i)
 	{
 		c = newstring[i];
-		if ((UINT8)c & 0x80) //color parsing! -Inuyasha 2.16.09
+		if ((UINT8)c >= 0x80 && (UINT8)c <= 0x8F) //color parsing! -Inuyasha 2.16.09
 			continue;
 
 		if (c == '\n')
@@ -1986,7 +2021,8 @@ char *V_FontWordWrap(INT32 x, INT32 w, INT32 option, fixed_t scale, const char *
 			continue;
 		}
 
-		c = (option & V_ALLOWLOWERCASE ? c : toupper(c)) - FONTSTART;
+		c = (option & V_ALLOWLOWERCASE ? (UINT8)c : V_FontToUpper(c)) - FONTSTART;
+		c = V_FontFallback(c, font);
 		if (c < 0 || c >= FONTSIZE || !font.chars[c])
 		{
 			chw = spacewidth;
@@ -2068,7 +2104,7 @@ void V_DrawFontStringAtFixed(fixed_t x, fixed_t y, INT32 option, fixed_t pscale,
 	{
 		if (!*ch)
 			break;
-		if (*ch & 0x80) //color parsing -x 2.16.09
+		if ((UINT8)*ch >= 0x80 && (UINT8)*ch <= 0x8F) //color parsing -x 2.16.09
 		{
 			// manually set flags override color codes
 			if (!(option & V_CHARCOLORMASK))
@@ -2082,7 +2118,8 @@ void V_DrawFontStringAtFixed(fixed_t x, fixed_t y, INT32 option, fixed_t pscale,
 			continue;
 		}
 
-		c = (lowercase ? *ch : toupper(*ch)) - FONTSTART;
+		c = (lowercase ? (UINT8)*ch : V_FontToUpper(*ch)) - FONTSTART;
+		c = V_FontFallback(c, font);
 		if (c < 0 || c >= FONTSIZE || !font.chars[c])
 		{
 			cx += FixedMul((spacewidth<<FRACBITS), dupx);
@@ -2261,7 +2298,7 @@ static void V_DrawNameTagLine(INT32 x, INT32 y, INT32 option, fixed_t scale, UIN
 			continue;
 		}
 
-		c = toupper(*ch) - FONTSTART;
+		c = V_FontToUpper(*ch) - FONTSTART;
 		if (c < 0 || c >= FONTSIZE || !ntb_font.chars[c] || !nto_font.chars[c])
 		{
 			cx += FixedMul((ntb_font.spacewidth * dup)*FRACUNIT, scale);
@@ -2423,10 +2460,11 @@ INT32 V_FontStringWidth(const char *string, INT32 option, fontdef_t font)
 			w = 0;
 			continue;
 		}
-		if (string[i] & 0x80)
+		if ((UINT8)string[i] >= 0x80 && (UINT8)string[i] <= 0x8F)
 			continue;
 
-		c = (option & V_ALLOWLOWERCASE ? string[i] : toupper(string[i])) - FONTSTART;
+		c = (option & V_ALLOWLOWERCASE ? (UINT8)string[i] : V_FontToUpper(string[i])) - FONTSTART;
+		c = V_FontFallback(c, font);
 		if (c < 0 || c >= FONTSIZE || !font.chars[c])
 			w += spacewidth;
 		else
@@ -2448,7 +2486,8 @@ INT32 V_FontStringHeight(const char *string, INT32 option, fontdef_t font)
 
 	for (size_t i = 0; i < strlen(string); i++)
 	{
-		c = (option & V_ALLOWLOWERCASE ? string[i] : toupper(string[i])) - FONTSTART;
+		c = (option & V_ALLOWLOWERCASE ? (UINT8)string[i] : V_FontToUpper(string[i])) - FONTSTART;
+		c = V_FontFallback(c, font);
 		if (c < 0 || c >= FONTSIZE || !font.chars[c])
 		{
 			if (string[i] == '\n')

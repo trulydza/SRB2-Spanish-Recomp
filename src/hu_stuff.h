@@ -22,7 +22,7 @@
 //           Fonts & stuff
 //------------------------------------
 #define FONTSTART '\x16' // the first font character
-#define FONTEND '~'
+#define FONTEND 250 // extended to support Latin-1 accented chars (was '~' = 126)
 #define FONTSIZE (FONTEND - FONTSTART + 1)
 
 #define HU_CROSSHAIRS 3 // maximum of 9 - see HU_Init();

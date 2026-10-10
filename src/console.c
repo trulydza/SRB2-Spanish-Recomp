@@ -1351,7 +1351,7 @@ static void CON_Print(char *msg)
 
 	Lock_state();
 
-	if (!(*msg & 0x80))
+	if (!((UINT8)*msg >= 0x80 && (UINT8)*msg <= 0x8F))
 	{
 		con_line[con_cx++] = '\x80';
 		controlchars = 1;
@@ -1362,7 +1362,7 @@ static void CON_Print(char *msg)
 		// skip non-printable characters and white spaces
 		while (*msg && *msg <= ' ')
 		{
-			if (*msg & 0x80)
+			if ((UINT8)*msg >= 0x80 && (UINT8)*msg <= 0x8F)
 			{
 				color = con_line[con_cx++] = *(msg++);
 				controlchars++;
@@ -1697,7 +1697,7 @@ static void CON_DrawHudlines(void)
 
 		for (c = 0, x = 0; c < con_width; c++, x += charwidth, p++)
 		{
-			while (*p & 0x80) // Graue 06-19-2004
+			while ((UINT8)*p >= 0x80 && (UINT8)*p <= 0x8F) // Graue 06-19-2004
 			{
 				charflags = (*p & 0x7f) << V_CHARCOLORSHIFT;
 				p++;
@@ -1813,7 +1813,7 @@ static void CON_DrawConsole(void)
 
 			for (c = 0, x = charwidth; c < con_width; c++, x += charwidth, p++)
 			{
-				while (*p & 0x80)
+				while ((UINT8)*p >= 0x80 && (UINT8)*p <= 0x8F)
 				{
 					charflags = (*p & 0x7f) << V_CHARCOLORSHIFT;
 					p++;
