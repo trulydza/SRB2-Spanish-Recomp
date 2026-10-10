@@ -481,6 +481,15 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - Todos los glifos inyectados en `dist/addons/srb2_spanish_gfx.pk3` (ruta `Graphics/Fonts/STCFN/`)
 - **Verificado:** compilado e integrado
 
+### Lote 16 — Tutorial completo y descripciones de personajes
+- **Archivos:** `src/deh_soc.c`
+- **Exe:** `dist/srb2win_es_p16.exe` (= `dist/srb2win_es.exe`, **actual**)
+- **Contenido:**
+  - **Tutorial completo:** 51 páginas de diálogos y guías de Amy Rose (`PROMPT 201` a `PROMPT 221`) y 8 nombres de cartel HUD (`Moverse`, `Control de cámara`, `Moverse y mirar`, `Saltar`, `Spin Dash y rodar`, `Habilidad especial`, `Consigue el escudo`, `Habilidad de escudo`) interceptados nativamente en el parser SOC (`readtextpromptpage`).
+  - **Descripciones de personajes vanilla:** los 7 personajes oficiales (`sonic&tails`, `sonic`, `tails`, `knuckles`, `amy`, `fang`, `metalsonic`) traducidos con acentos ortográficos y formateo limpio en `readPlayer` (`M_PlayerTextTr`).
+  - Todos los strings integrados con códigos de control del motor (`\x82`, `\x83`, `\x80`, `\xBA`, `\xB6`), signos de apertura (`\xA1`) y separación segura de literales hex con `""`.
+- **Verificado:** compilado e integrado
+
 ---
 
 ## 10. Lo que falta por traducir
@@ -499,11 +508,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 > ✅ **Glifos STCFN y ortografía completados (Lote 15):** 16 glifos STCFN (fuente de menú/HUD) para todos los caracteres españoles. Corregidos 20 nombres de nivel y 12 entradas de unlockables con acentos ortográficos correctos mediante hex escapes.
 
-### Pendiente restante
-
-| # | Qué | Dónde | Dificultad |
-|---|---|---|---|
-| 1 | Tutorial prompts SOC en C (opcional, textos guiados en el mapa de tutorial) | `deh_soc.c` | Media |
+> ✅ **Tutorial y Personajes completados (Lote 16):** 51 páginas de prompts del mapa tutorial, 8 carteles de aviso HUD y descripciones completas de habilidades y consejos para los 7 personajes vanilla en `deh_soc.c`.
 
 ### Por evaluar
 
