@@ -218,57 +218,57 @@ static const char *M_LevelSubTr(const char *s)
 }
 
 static const struct leveltr_s prompttr_table[] = {
-	{"Welcome to the tutorial! \\baTo continue, \\b6press the \\82Space Bar\\80, \\b6or the \\83A button\\80.", "\xA1""Bienvenido al tutorial! \xBA""Para continuar, \xB6""presiona la \x82""Barra espaciadora\x80, \xB6o el \x83""Bot\xF3n A\x80."},
-	{"To move around, \\b6press the \\82WASD\\80 keys on your keyboard.", "Para moverte, \xB6""presiona las teclas \x82WASD\x80 en tu teclado."},
-	{"If you're using a gamepad, \\b6move the \\83left control stick\\80.", "Si usas un mando, \xB6mueve la \x83palanca izquierda\x80."},
-	{"Move around to reach the exit!", "\xA1""Mu\xE9vete para llegar a la salida!"},
-	{"Use the \\82WASD\\80 keys, \\b6or the \\83left stick\\80 to move.", "Usa las teclas \x82WASD\x80, \xB6o la \x83palanca izquierda\x80 para moverte."},
-	{"Automatic braking is on by default, \\b6which causes you to slow down quickly", "El frenado autom\xE1tico est\xE1 activo por defecto, \xB6lo que hace que frenes r\xE1pido"},
+	{"Welcome to the tutorial! \xBATo continue, \xB6press the \x82Space Bar\x80, \xB6or the \x83""A button\x80.", "\xA1""Bienvenido al tutorial! \xBAPara continuar, \xB6presiona la \x82""Barra espaciadora\x80, \xB6o el \x83""Bot\xF3n A\x80."},
+	{"To move around, \xB6press the \x82WASD\x80 keys on your keyboard.", "Para moverte, \xB6presiona las teclas \x82WASD\x80 en tu teclado."},
+	{"If you're using a gamepad, \xB6move the \x83left control stick\x80.", "Si usas un mando, \xB6mueve la \x83palanca izquierda\x80."},
+	{"Move around to reach the exit!", "\xA1Mu\xE9vete para llegar a la salida!"},
+	{"Use the \x82WASD\x80 keys, \xB6or the \x83left stick\x80 to move.", "Usa las teclas \x82WASD\x80, \xB6o la \x83palanca izquierda\x80 para moverte."},
+	{"Automatic braking is on by default, \xB6which causes you to slow down quickly", "El frenado autom\xE1tico est\xE1 activo por defecto, \xB6lo que hace que frenes r\xE1pido"},
 	{"when you release the controls.", "cuando sueltas los controles."},
-	{"By default, \\b6the camera rotates when moving left or right, \\b6but it can also be controlled manually.", "Por defecto, \xB6la c\xE1mara gira al moverte a los lados, \xB6pero tambi\xE9n puedes controlarla manualmente."},
-	{"To control the camera, \\b6use the \\82Mouse\\80. \\baFor keyboard-only play, \\b6the \\82Arrow keys\\80 also control the camera.", "Para controlar la c\xE1mara, \xB6usa el \x82Rat\xF3n\x80. \xBA""Si juegas solo con teclado, \xB6las \x82""Flechas\x80 tambi\xE9n la controlan."},
-	{"When using a gamepad, \\b6use the \\83right stick\\80 to control the camera.", "Si usas un mando, \xB6usa la \x83palanca derecha\x80 para controlar la c\xE1mara."},
-	{"Use the camera controls to look in the direction you want to travel in, \\b6and find the exit!", "\xA1""Usa la c\xE1mara para mirar hacia donde quieres ir, \xB6y encuentra la salida!"},
-	{"Use the \\82Mouse\\80, \\b6\\82Arrow keys\\80 \\b6or \\83right stick\\80 to control the camera.", "Usa el \x82Rat\xF3n\x80, \xB6\x82""Flechas\x80 \xB6o la \x83palanca derecha\x80 para controlar la c\xE1mara."},
+	{"By default, \xB6the camera rotates when moving left or right, \xB6""but it can also be controlled manually.", "Por defecto, \xB6la c\xE1mara gira al moverte a los lados, \xB6pero tambi\xE9n puedes controlarla manualmente."},
+	{"To control the camera, \xB6use the \x82Mouse\x80. \xBA""For keyboard-only play, \xB6the \x82""Arrow keys\x80 also control the camera.", "Para controlar la c\xE1mara, \xB6usa el \x82Rat\xF3n\x80. \xBASi juegas solo con teclado, \xB6las \x82""Flechas\x80 tambi\xE9n la controlan."},
+	{"When using a gamepad, \xB6use the \x83right stick\x80 to control the camera.", "Si usas un mando, \xB6usa la \x83palanca derecha\x80 para controlar la c\xE1mara."},
+	{"Use the camera controls to look in the direction you want to travel in, \xB6""and find the exit!", "\xA1Usa la c\xE1mara para mirar hacia donde quieres ir, \xB6y encuentra la salida!"},
+	{"Use the \x82Mouse\x80, \xB6\x82""Arrow keys\x80 \xB6or \x83right stick\x80 to control the camera.", "Usa el \x82Rat\xF3n\x80, \xB6\x82""Flechas\x80 \xB6o la \x83palanca derecha\x80 para controlar la c\xE1mara."},
 	{"If moving the camera feels too fast or slow,", "Si la c\xE1mara se mueve demasiado r\xE1pido o lento,"},
 	{"you can adjust the rotation speed in the camera options.", "puedes ajustar la velocidad de giro en las opciones de c\xE1mara."},
-	{"You can use \\82Center View\\80 to reposition the camera behind you, if needed.", "Puedes usar \x82""Centrar vista\x80 para colocar la c\xE1mara detr\xE1s de ti si lo necesitas."},
-	{"When using a keyboard, \\b6press \\82Ctrl\\80. \\baOn a gamepad, \\b6press the \\83right bumper\\80.", "En el teclado, \xB6presiona \x82""Ctrl\x80. \xBA""En un mando, \xB6presiona el \x83""bot\xF3n superior derecho\x80."},
-	{"Additionally, \\b6you can \\82target\\80 enemies in front of you by holding \\82Center View\\80!", "Adem\xE1s, \xB6\xA1""puedes \x82""fijar\x80 enemigos frente a ti manteniendo \x82""Centrar vista\x80!"},
-	{"To practice this, \\b6try to reach the goal here while always seeing the Jetty-Syn on the screen.", "Para practicar, \xB6intenta llegar a la meta manteniendo siempre al Jetty-Syn en pantalla."},
-	{"Use \\82Ctrl\\80 or the \\83right bumper\\80 to keep an eye on the robot!", "\xA1""Usa \x82""Ctrl\x80 o el \x83""bot\xF3n superior derecho\x80 para no perder de vista al robot!"},
-	{"If it feels uncomfortable to hold, \\b6check out the camera options,", "Si te resulta inc\xF3modo mantenerlo, \xB6revisa las opciones de c\xE1mara,"},
-	{"where you can change the \\82lock button behavior\\80 to a toggle.", "donde puedes cambiar el \x82""comportamiento de fijado\x80 a alternable."},
-	{"Oops, \\b6you lost track of the Jetty-Syn. \\baRemember to keep it on the screen while moving past!", "Ups, \xB6perdiste de vista al Jetty-Syn. \xBA\xA1""Recuerda mantenerlo en pantalla mientras avanzas!"},
-	{"It might be easier to take it slowly.", "Podr\xED""a ser m\xE1""s f\xE1""cil si vas con calma."},
+	{"You can use \x82""Center View\x80 to reposition the camera behind you, if needed.", "Puedes usar \x82""Centrar vista\x80 para colocar la c\xE1mara detr\xE1s de ti si lo necesitas."},
+	{"When using a keyboard, \xB6press \x82""Ctrl\x80. \xBAOn a gamepad, \xB6press the \x83right bumper\x80.", "En el teclado, \xB6presiona \x82""Ctrl\x80. \xBA""En un mando, \xB6presiona el \x83""bot\xF3n superior derecho\x80."},
+	{"Additionally, \xB6you can \x82target\x80 enemies in front of you by holding \x82""Center View\x80!", "Adem\xE1s, \xB6\xA1puedes \x82""fijar\x80 enemigos frente a ti manteniendo \x82""Centrar vista\x80!"},
+	{"To practice this, \xB6try to reach the goal here while always seeing the Jetty-Syn on the screen.", "Para practicar, \xB6intenta llegar a la meta manteniendo siempre al Jetty-Syn en pantalla."},
+	{"Use \x82""Ctrl\x80 or the \x83right bumper\x80 to keep an eye on the robot!", "\xA1Usa \x82""Ctrl\x80 o el \x83""bot\xF3n superior derecho\x80 para no perder de vista al robot!"},
+	{"If it feels uncomfortable to hold, \xB6""check out the camera options,", "Si te resulta inc\xF3modo mantenerlo, \xB6revisa las opciones de c\xE1mara,"},
+	{"where you can change the \x82lock button behavior\x80 to a toggle.", "donde puedes cambiar el \x82""comportamiento de fijado\x80 a alternable."},
+	{"Oops, \xB6you lost track of the Jetty-Syn. \xBARemember to keep it on the screen while moving past!", "Ups, \xB6perdiste de vista al Jetty-Syn. \xBA\xA1Recuerda mantenerlo en pantalla mientras avanzas!"},
+	{"It might be easier to take it slowly.", "Podr\xED""a ser m\xE1s f\xE1""cil si vas con calma."},
 	{"Well done!", "\xA1""Bien hecho!"},
-	{"When using a mouse and keyboard, \\b6you might prefer controlling the camera all by yourself.", "Al jugar con rat\xF3n y teclado, \xB6quiz\xE1s prefieras controlar la c\xE1mara totalmente por tu cuenta."},
-	{"To disable automatic camera movement, \\b6check out the \\82Manual\\80 playstyle in the control options.", "Para desactivar el giro autom\xE1tico, \xB6prueba el modo \x82Manual\x80 en las opciones de control."},
-	{"This is recommended for more experienced players, \\b6as it gives you the most control!", "\xA1""Esto se recomienda a jugadores experimentados, \xB6ya que te da el m\xE1ximo control!"},
-	{"You won't get far if you can't jump! \\baTo jump, \\b6press the \\82Space Bar\\80, \\b6or the \\83A button\\80.", "\xA1""No llegar\xE1s lejos si no puedes saltar! \xBA""Para saltar, \xB6presiona la \x82""Barra espaciadora\x80, \xB6o el \x83""Bot\xF3n A\x80."},
-	{"Holding it down makes you jump higher than releasing it early. \\baJump to reach the next area!", "Mantenerlo presionado te har\xE1 saltar m\xE1s alto. \xBA\xA1""Salta para llegar a la siguiente zona!"},
-	{"Press the \\82Space Bar\\80 or the \\83A button\\80 to jump.", "Presiona la \x82""Barra espaciadora\x80 o el \x83""Bot\xF3n A\x80 para saltar."},
-	{"You can also spin dash and roll, \\b6by pressing \\82Left Shift\\80, \\b6or the \\83X button\\80.", "Tambi\xE9n puedes hacer spin dash y rodar, \xB6presionando \x82Shift Izquierdo\x80, \xB6o el \x83""Bot\xF3n X\x80."},
+	{"When using a mouse and keyboard, \xB6you might prefer controlling the camera all by yourself.", "Al jugar con rat\xF3n y teclado, \xB6quiz\xE1s prefieras controlar la c\xE1mara totalmente por tu cuenta."},
+	{"To disable automatic camera movement, \xB6""check out the \x82Manual\x80 playstyle in the control options.", "Para desactivar el giro autom\xE1tico, \xB6prueba el modo \x82Manual\x80 en las opciones de control."},
+	{"This is recommended for more experienced players, \xB6""as it gives you the most control!", "\xA1""Esto se recomienda a jugadores experimentados, \xB6ya que te da el m\xE1ximo control!"},
+	{"You won't get far if you can't jump! \xBATo jump, \xB6press the \x82Space Bar\x80, \xB6or the \x83""A button\x80.", "\xA1No llegar\xE1s lejos si no puedes saltar! \xBAPara saltar, \xB6presiona la \x82""Barra espaciadora\x80, \xB6o el \x83""Bot\xF3n A\x80."},
+	{"Holding it down makes you jump higher than releasing it early. \xBAJump to reach the next area!", "Mantenerlo presionado te har\xE1 saltar m\xE1s alto. \xBA\xA1Salta para llegar a la siguiente zona!"},
+	{"Press the \x82Space Bar\x80 or the \x83""A button\x80 to jump.", "Presiona la \x82""Barra espaciadora\x80 o el \x83""Bot\xF3n A\x80 para saltar."},
+	{"You can also spin dash and roll, \xB6""by pressing \x82Left Shift\x80, \xB6or the \x83X button\x80.", "Tambi\xE9n puedes hacer spin dash y rodar, \xB6presionando \x82Shift Izquierdo\x80, \xB6o el \x83""Bot\xF3n X\x80."},
 	{"Pressing and holding it down while standing still will charge the spin dash.", "Mantenerlo presionado mientras est\xE1s quieto cargar\xE1 el spin dash."},
-	{"When the button is released, \\b6you roll forward, \\b6with more speed the longer the spin dash was charged.", "Al soltar el bot\xF3n, \xB6saldr\xE1s rodando hacia adelante, \xB6""con m\xE1s velocidad cuanto m\xE1s lo cargues."},
+	{"When the button is released, \xB6you roll forward, \xB6with more speed the longer the spin dash was charged.", "Al soltar el bot\xF3n, \xB6saldr\xE1s rodando hacia adelante, \xB6""con m\xE1s velocidad cuanto m\xE1s lo cargues."},
 	{"Pressing the button while moving makes you roll with the speed you already have.", "Presionar el bot\xF3n en movimiento te har\xE1 rodar con la velocidad que ya llevas."},
-	{"Hit \\82Left Shift\\80 or the \\83X button\\80 to spin dash or roll under the obstacles.", "Usa \x82Shift Izquierdo\x80 o el \x83""Bot\xF3n X\x80 para hacer un spin dash o rodar bajo los obst\xE1""culos."},
-	{"While rolling, \\b6sloped ground has a stronger influence.", "Al rodar, \xB6las pendientes del terreno tienen una mayor influencia."},
-	{"It's also far harder to control while rolling, \\b6so plan ahead!", "Adem\xE1s es mucho m\xE1s dif\xED""cil maniobrar al rodar, \xB6\xA1""as\xED que planea tus movimientos!"},
-	{"Each character has a special ability, \\b6used by \\82Jumping\\80 then pressing \\82Jump\\80 again in midair.", "Cada personaje tiene una habilidad especial, \xB6""activada al \x82Saltar\x80 y presionar \x82Salto\x80 en el aire."},
-	{"Sonic, your ability is called the \\82speed thok\\80, \\b6named for the sound it makes.", "Sonic, tu habilidad se llama \x82speed thok\x80, \xB6nombrada por el sonido que hace."},
-	{"It launches you in the direction you're moving, \\b6which is useful for crossing large gaps.", "Te lanza con fuerza hacia donde te mueves, \xB6lo cual sirve para cruzar grandes abismos."},
-	{"Use the jump and thok to reach the exit!", "\xA1""Usa el salto y el thok para llegar a la salida!"},
-	{"Hit \\82Jump twice\\80 to thok.", "Presiona \x82Salto dos veces\x80 para hacer el thok."},
-	{"The thok is extremely powerful, \\b6but stopping afterwards can be hard.", "El thok es muy potente, \xB6pero detenerse luego puede ser complicado."},
-	{"Like the spin dash, \\b6make sure to plan ahead, \\b6or you'll soar off directly into danger!", "Al igual que con el spin dash, \xB6planea con cuidado, \xB6\xA1""o volar\xE1s directo hacia el peligro!"},
-	{"Finally, \\b6shields in this game all have a special ability you can activate.", "Por \xFAltimo, \xB6todos los escudos tienen una habilidad especial que puedes activar."},
-	{"To use a shield's special ability, \\b6\\82Jump\\80 and then press \\82Spin\\80 in midair.", "Para usar la habilidad de un escudo, \xB6haz un \x82Salto\x80 y luego presiona \x82Girar\x80 en el aire."},
-	{"The Whirlwind shield's special ability is a double jump. \\baUse it to finish the tutorial!", "La habilidad especial del escudo Remolino es un doble salto. \xBA\xA1\xDA""salo para completar el tutorial!"},
-	{"\\82Jump\\80 or \\82Spin\\80 into the Whirlwind shield monitor.", "Dale un golpe con \x82Salto\x80 o \x82Girar\x80 al monitor del escudo Remolino."},
-	{"Hit \\82Jump\\80, \\b6then \\82Spin\\80 to double jump.", "Presiona \x82Salto\x80, \xB6""luego \x82Girar\x80 para hacer un doble salto."},
-	{"Each shield's special ability is different. \\baTry them all out!", "La habilidad de cada escudo es diferente. \xBA\xA1""Pru\xE9""balas todas!"},
-	{"You've finished the tutorial! \\baI hope you enjoy this game as much as they did making it!", "\xA1""Has completado el tutorial! \xBA\xA1""Espero que disfrutes este juego tanto como ellos al crearlo!"},
+	{"Hit \x82Left Shift\x80 or the \x83X button\x80 to spin dash or roll under the obstacles.", "Usa \x82Shift Izquierdo\x80 o el \x83""Bot\xF3n X\x80 para hacer un spin dash o rodar bajo los obst\xE1""culos."},
+	{"While rolling, \xB6sloped ground has a stronger influence.", "Al rodar, \xB6las pendientes del terreno tienen una mayor influencia."},
+	{"It's also far harder to control while rolling, \xB6so plan ahead!", "Adem\xE1s es mucho m\xE1s dif\xED""cil maniobrar al rodar, \xB6\xA1""as\xED que planea tus movimientos!"},
+	{"Each character has a special ability, \xB6used by \x82Jumping\x80 then pressing \x82Jump\x80 again in midair.", "Cada personaje tiene una habilidad especial, \xB6""activada al \x82Saltar\x80 y presionar \x82Salto\x80 en el aire."},
+	{"Sonic, your ability is called the \x82speed thok\x80, \xB6named for the sound it makes.", "Sonic, tu habilidad se llama \x82speed thok\x80, \xB6nombrada por el sonido que hace."},
+	{"It launches you in the direction you're moving, \xB6which is useful for crossing large gaps.", "Te lanza con fuerza hacia donde te mueves, \xB6lo cual sirve para cruzar grandes abismos."},
+	{"Use the jump and thok to reach the exit!", "\xA1Usa el salto y el thok para llegar a la salida!"},
+	{"Hit \x82Jump twice\x80 to thok.", "Presiona \x82Salto dos veces\x80 para hacer el thok."},
+	{"The thok is extremely powerful, \xB6""but stopping afterwards can be hard.", "El thok es muy potente, \xB6pero detenerse luego puede ser complicado."},
+	{"Like the spin dash, \xB6make sure to plan ahead, \xB6or you'll soar off directly into danger!", "Al igual que con el spin dash, \xB6planea con cuidado, \xB6\xA1o volar\xE1s directo hacia el peligro!"},
+	{"Finally, \xB6shields in this game all have a special ability you can activate.", "Por \xFAltimo, \xB6todos los escudos tienen una habilidad especial que puedes activar."},
+	{"To use a shield's special ability, \xB6\x82Jump\x80 and then press \x82Spin\x80 in midair.", "Para usar la habilidad de un escudo, \xB6haz un \x82Salto\x80 y luego presiona \x82Girar\x80 en el aire."},
+	{"The Whirlwind shield's special ability is a double jump. \xBAUse it to finish the tutorial!", "La habilidad especial del escudo Remolino es un doble salto. \xBA\xA1\xDAsalo para completar el tutorial!"},
+	{"\x82Jump\x80 or \x82Spin\x80 into the Whirlwind shield monitor.", "Dale un golpe con \x82Salto\x80 o \x82Girar\x80 al monitor del escudo Remolino."},
+	{"Hit \x82Jump\x80, \xB6then \x82Spin\x80 to double jump.", "Presiona \x82Salto\x80, \xB6luego \x82Girar\x80 para hacer un doble salto."},
+	{"Each shield's special ability is different. \xBATry them all out!", "La habilidad de cada escudo es diferente. \xBA\xA1Pru\xE9""balas todas!"},
+	{"You've finished the tutorial! \xBAI hope you enjoy this game as much as they did making it!", "\xA1Has completado el tutorial! \xBA\xA1""Espero que disfrutes este juego tanto como ellos al crearlo!"},
 	{NULL, NULL}
 };
 
@@ -285,13 +285,13 @@ static const struct leveltr_s promptnametr_table[] = {
 };
 
 static const struct leveltr_s playertexttr_table[] = {
-	{"sonic&tails", "^4Sonic^0 y ^7Tails^0 combinan sus habilidades para enfrentarse al \xFAltimo plan del Dr. Eggman!\n\n^4Habilidad:^0 Vuelo asistido\nCol\xF3""cate junto a Tails y salta cuando aparezca la flecha. Tails te elevar\xE1 hasta que se canse. Presiona girar para descender y salta para soltarte.\n\n^7Consejo:^0 Tails tambi\xE9n se puede controlar directamente configurando los controles del Jugador 2."},
-	{"sonic", "^4Sonic^0 puede recorrer las zonas m\xE1s r\xE1pido que nadie, pero le resulta m\xE1s dif\xED""cil superar los peligros.\n\n^4Habilidad:^0 Speed Thok\nDoble salto para acelerar hacia adelante con un gran impulso de velocidad.\n\n^4Consejo:^0 El Speed Thok puede ser dif\xED""cil de controlar, pero es muy potente una vez dominado. \xA1""Recuerda que puedes mantener hacia atr\xE1s para frenar!"},
-	{"tails", "^7Tails^0 puede superar muchos obst\xE1""culos gracias a su habilidad para volar. Esto lo convierte en una opci\xF3n ideal para principiantes.\n\n^7Habilidad:^0 Volar\nDoble salto para comenzar a volar por tiempo limitado. Pulsa repetidamente salto para ascender. Cuando se agote el tiempo, se cansar\xE1 y descender\xE1 poco a poco.\n\n^7Consejo:^0 Presiona girar mientras vuelas para descender r\xE1pidamente si no est\xE1 cansado."},
-	{"knuckles", "^5Knuckles^0 puede destruir algunas paredes con solo tocarlas, pero no puede saltar tan alto como los dem\xE1s.\n\n^5Habilidad:^0 Planear y escalar\nDoble salto para planear en el aire mientras mantengas salto. Planea hacia una pared para escalarla.\n\n^5Consejo:^0 Salta mientras escalas para soltarte mirando lejos de la pared. O presiona girar para saltar sin mover la c\xE1mara."},
-	{"amy", "^EAmy^0 no puede girar, pero su martillo es capaz de romper paredes, suelos e incluso \xA1""pinchos!\n\n^EHabilidad:^0 Martillo\n\x01""E Presiona girar en el suelo para blandir el martillo.\n\x01""E Doble salto para blandirlo en el aire.\n\n^EConsejo:^0 Golpear un resorte con el martillo lo activar\xE1 y la lanzar\xE1 m\xE1s lejos de lo normal."},
-	{"fang", "^9Fang^0 y su pistola de corchos le facilitan lidiar con sus enemigos, aunque no puede girar.\n\n^9Habilidad:^0 Rebote de cola\nDoble salto para rebotar en el suelo y en algunos peligros. El rebote tambi\xE9n puede destruir ciertos suelos.\n\n^9Habilidad:^0 Pistola de corchos\nEstando quieto, apunta la c\xE1mara a un enemigo o monitor hasta que aparezca el cursor. Presiona girar para disparar."},
-	{"metalsonic", "^4Metal Sonic^0 puede igualar la velocidad de Sonic, pero tambi\xE9n tiene la misma dificultad para sortear obst\xE1""culos.\n\n^4Habilidad:^0 Levitaci\xF3n\nDoble salto para levitar mientras mantengas salto, pero perder\xE1 altura si reduce demasiado la velocidad.\n\n^4Habilidad:^0 Modo Turbo\nMantente a alta velocidad para activarlo, permiti\xE9ndole atravesar pinchos y correr sobre el agua."},
+	{"sonic&tails", "\x84Sonic\x80 y \x87Tails\x80 combinan sus habilidades para enfrentarse al \xFAltimo plan del Dr. Eggman!\n\n\x84Habilidad:\x80 Vuelo asistido\nCol\xF3""cate junto a Tails y salta cuando aparezca la flecha. Tails te elevar\xE1 hasta que se canse. Presiona girar para descender y salta para soltarte.\n\n\x87""Consejo:\x80 Tails tambi\xE9n se puede controlar directamente configurando los controles del Jugador 2."},
+	{"sonic", "\x84Sonic\x80 puede recorrer las zonas m\xE1s r\xE1pido que nadie, pero le resulta m\xE1s dif\xED""cil superar los peligros.\n\n\x84Habilidad:\x80 Speed Thok\nDoble salto para acelerar hacia adelante con un gran impulso de velocidad.\n\n\x84""Consejo:\x80 El Speed Thok puede ser dif\xED""cil de controlar, pero es muy potente una vez dominado. \xA1Recuerda que puedes mantener hacia atr\xE1s para frenar!"},
+	{"tails", "\x87Tails\x80 puede superar muchos obst\xE1""culos gracias a su habilidad para volar. Esto lo convierte en una opci\xF3n ideal para principiantes.\n\n\x87Habilidad:\x80 Volar\nDoble salto para comenzar a volar por tiempo limitado. Pulsa repetidamente salto para ascender. Cuando se agote el tiempo, se cansar\xE1 y descender\xE1 poco a poco.\n\n\x87""Consejo:\x80 Presiona girar mientras vuelas para descender r\xE1pidamente si no est\xE1 cansado."},
+	{"knuckles", "\x85Knuckles\x80 puede destruir algunas paredes con solo tocarlas, pero no puede saltar tan alto como los dem\xE1s.\n\n\x85Habilidad:\x80 Planear y escalar\nDoble salto para planear en el aire mientras mantengas salto. Planea hacia una pared para escalarla.\n\n\x85""Consejo:\x80 Salta mientras escalas para soltarte mirando lejos de la pared. O presiona girar para saltar sin mover la c\xE1mara."},
+	{"amy", "\x8E""Amy\x80 no puede girar, pero su martillo es capaz de romper paredes, suelos e incluso \xA1pinchos!\n\n\x8EHabilidad:\x80 Martillo\n\x01""E Presiona girar en el suelo para blandir el martillo.\n\x01""E Doble salto para blandirlo en el aire.\n\n\x8E""Consejo:\x80 Golpear un resorte con el martillo lo activar\xE1 y la lanzar\xE1 m\xE1s lejos de lo normal."},
+	{"fang", "\x89""Fang\x80 y su pistola de corchos le facilitan lidiar con sus enemigos, aunque no puede girar.\n\n\x89Habilidad:\x80 Rebote de cola\nDoble salto para rebotar en el suelo y en algunos peligros. El rebote tambi\xE9n puede destruir ciertos suelos.\n\n\x89Habilidad:\x80 Pistola de corchos\nEstando quieto, apunta la c\xE1mara a un enemigo o monitor hasta que aparezca el cursor. Presiona girar para disparar."},
+	{"metalsonic", "\x84Metal Sonic\x80 puede igualar la velocidad de Sonic, pero tambi\xE9n tiene la misma dificultad para sortear obst\xE1""culos.\n\n\x84Habilidad:\x80 Levitaci\xF3n\nDoble salto para levitar mientras mantengas salto, pero perder\xE1 altura si reduce demasiado la velocidad.\n\n\x84Habilidad:\x80 Modo Turbo\nMantente a alta velocidad para activarlo, permiti\xE9ndole atravesar pinchos y correr sobre el agua."},
 	{NULL, NULL}
 };
 
@@ -573,10 +573,19 @@ void readPlayer(MYFILE *f, INT32 num)
 				}
 				if (playertext)
 				{
-					// PLAYERTEXT is really weird, so this doesn't use deh_strlcpy.
-					strlcpy(description[num].notes, playertext, NOTE_SIZE);
-					strlcat(description[num].notes,
-						myhashfgets(playertext, NOTE_SIZE, f), NOTE_SIZE);
+					const char *customnotes = M_PlayerTextTr(description[num].skinname);
+					if (customnotes)
+					{
+						strlcpy(description[num].notes, customnotes, NOTE_SIZE);
+						ignorelinesuntilhash(f);
+					}
+					else
+					{
+						// PLAYERTEXT is really weird, so this doesn't use deh_strlcpy.
+						strlcpy(description[num].notes, playertext, NOTE_SIZE);
+						strlcat(description[num].notes,
+							myhashfgets(playertext, NOTE_SIZE, f), NOTE_SIZE);
+					}
 				}
 				else
 					description[num].notes[0] = '\0';
