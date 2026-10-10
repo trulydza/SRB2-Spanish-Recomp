@@ -39,7 +39,7 @@ A diferencia de los mods tradicionales basados en scripts de Lua o archivos SOC 
 
 ### 🛠️ Documentación técnica
 
-Si te interesa ver cómo se estructuraron las traducciones en el código o quieres compilarlo por tu cuenta, puedes revisar [`guia.html`](./guia.html) abriéndolo en tu navegador.
+Si te interesa ver cómo se estructuraron las traducciones en el código o quieres compilarlo por tu cuenta, puedes revisar [`GUIA.md`](./GUIA.md).
 
 ---
 
