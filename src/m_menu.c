@@ -5456,12 +5456,6 @@ static boolean M_PrepareLevelPlatter(INT32 gt, boolean nextmappick)
 		else
 		{
 			sprintf(levelselect.rows[headerRow].header, "%s", mapheaderinfo[mapIterate]->selectheading);
-
-			if (!(mapheaderinfo[mapIterate]->levelflags & LF_NOZONE)
-				&& fastcmp(mapheaderinfo[mapIterate]->selectheading, mapheaderinfo[mapIterate]->lvlttl))
-			{
-				sprintf(levelselect.rows[headerRow].header + strlen(levelselect.rows[headerRow].header), " ZONE");
-			}
 		}
 	}
 
