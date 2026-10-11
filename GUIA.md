@@ -106,10 +106,11 @@ SRB2-recomp\
 │   └── libs\                      ← DLLs del proyecto
 │
 ├── dist\                          ← DISTRIBUCIÓN LISTA
-│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 15)
+│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 16)
 │   ├── srb2win_es_p1.exe          ← Snapshot lote 1
 │   ├── ...                        ← Snapshots lote 2-12
 │   ├── srb2win_es_p13.exe         ← Snapshot lote 13
+│   ├── srb2win_es_p16.exe         ← Snapshot lote 16 (= srb2win_es.exe)
 │   ├── *.dll                      ← Todas las DLLs necesarias
 │   ├── addons\
 │   │   └── srb2_spanish_gfx.pk3   ← Gráficos + fuentes LTFNT/STCFN (100 archivos)
@@ -432,7 +433,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lote 12 — Parche de fuente para tildes y ñ
 - **Archivos:** `hu_stuff.h`, `v_video.c`, `console.c`, `hu_stuff.c`
-- **Exe:** `dist/srb2win_es_p12.exe` (= `dist/srb2win_es.exe`, **actual**)
+- **Exe:** `dist/srb2win_es_p12.exe`
 - **Contenido:**
   - Expandido `FONTEND` de `'~'` (126) a `250` para soportar Latin-1
   - Arreglada detección de color codes en 10 ubicaciones: de `& 0x80` (cualquier byte ≥128) a rango explícito `0x80-0x8F` (los 16 color codes reales)
@@ -440,7 +441,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - Arreglada sign-extension de `char` en 4 funciones de renderizado: cast a `(UINT8)` antes de `toupper()` y resta de FONTSTART
   - Arreglados filtros de chat (validación, input, dibujo) para permitir caracteres Latin-1
   - Generados 14 glifos como patches Doom: á é í ó ú Á É Í Ñ Ó Ú ñ ¿ ¡
-  - Empaquetados en `srb2_spanish_font.pk3` (compatible con NMU, no bloquea MP)
+  - Empaquetados en `srb2_spanish_font.pk3` (compatible con NMU, no bloquea MP). Más adelante este pk3 se unificó en `srb2_spanish_gfx.pk3` (ver lotes 14 y 15)
   - Los strings traducidos ahora pueden usar `\xE1` (á), `\xE9` (é), `\xED` (í), `\xF1` (ñ), `\xF3` (ó), `\xFA` (ú), `\xBF` (¿), `\xA1` (¡)
 - **Verificado:** compilado e integrado; pendiente verificar glifos visualmente en juego
 
@@ -455,7 +456,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lote 14 — Parche tipográfico: glifos LTFNT para Titlecards
 - **Archivos:** `v_video.c`, `dist/addons/srb2_spanish_gfx.pk3`
-- **Exe:** `dist/srb2win_es.exe` (**actual**)
+- **Exe:** `dist/srb2win_es.exe` en su momento (hoy reemplazado por el lote 16)
 - **Contenido:**
   - Implementado decodificador/codificador de Doom Patches en Python para crear glifos auténticos
   - Generados **12 glifos LTFNT** (fuente de Titlecard de nivel) usando los colores oficiales (índices 3=blanco, 14=bisel, 26=sombra):
@@ -467,7 +468,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lote 15 — Glifos STCFN y corrección ortográfica de nombres de niveles
 - **Archivos:** `deh_soc.c`, `dist/addons/srb2_spanish_gfx.pk3`
-- **Exe:** `dist/srb2win_es.exe` (**actual**)
+- **Exe:** `dist/srb2win_es.exe` en su momento (hoy reemplazado por el lote 16)
 - **Contenido:**
   - Generados **16 glifos STCFN** (fuente estándar 8x8 de menús/HUD) con paleta nativa (3=blanco, 26=sombra):
     - Mayúsculas con acento: Á(193) É(201) Í(205) Ñ(209) Ó(211) Ú(218) Ü(220)
@@ -721,8 +722,8 @@ Por eso se usa el script Python con `assert` antes de escribir.
 
 En `dist\` del espacio de trabajo local:
 
-- `srb2win_es_p1.exe` hasta `srb2win_es_p13.exe`
-- `srb2win_es.exe` = último build (lote 15)
+- `srb2win_es_p1.exe` hasta `srb2win_es_p13.exe`, más `srb2win_es_p16.exe`
+- `srb2win_es.exe` = último build (lote 16)
 
 Si algo sale mal, se puede volver a cualquier snapshot anterior. Los binarios publicados están en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
 
