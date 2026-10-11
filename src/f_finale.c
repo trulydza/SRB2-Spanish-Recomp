@@ -352,138 +352,138 @@ void F_StartIntro(void)
 	introtext[0] = " #";
 
 	introtext[1] = M_GetText(
-	"Habian pasado dos meses desde que el\n"
-	"Dr. Eggman intento conquistar el mundo\n"
-	"usando su Satelite de Anillos.\n#");
+	"Hab\xED" "an pasado dos meses desde que el\n"
+	"Dr. Eggman intent\xF3 conquistar el mundo\n"
+	"usando su Sat\xE9lite de Anillos.\n#");
 
 	introtext[2] = M_GetText(
 	"Cuando estaba por drenar los anillos\n"
-	"del planeta, Sonic irrumpio en la sala\n"
-	"de control y,\xB4 creyendo que seria la\n"
-	"ultima vez,\xB4 derroto al Dr. Eggman.\n#");
+	"del planeta, Sonic irrumpi\xF3 en la sala\n"
+	"de control y,\xB4 creyendo que ser\xED" "a la\n"
+	"\xFAltima vez,\xB4 derrot\xF3 al Dr. Eggman.\n#");
 
 	introtext[3] = M_GetText(
 	"\nLo que Sonic, Tails y Knuckles no\n"
-	"habian previsto era que Eggman\n"
-	"volveria,\xB8 trayendo una nueva amenaza.\n#");
+	"hab\xED" "an previsto era que Eggman\n"
+	"volver\xED" "a,\xB8 trayendo una nueva amenaza.\n#");
 
 	introtext[4] = M_GetText(
-	"\xA8""Cada cinco anios, un extrano asteroide\n"
+	"\xA8""Cada cinco a\xF1os, un extra\xF1o asteroide\n"
 	"orbita el planeta.\xBF Aparece de la nada,\n"
 	"da vueltas y,\n"
-	"\xB6- tan misteriosamente como llego -\xB6\n"
+	"\xB6- tan misteriosamente como lleg\xF3 -\xB6\n"
 	"desaparece tras solo una semana.\xBF\n"
-	"Nadie sabe por que aparece, ni como.\n#");
+	"Nadie sabe por qu\xE9 aparece, ni c\xF3mo.\n#");
 
 	introtext[5] = M_GetText(
-	"\xA7\"Maldicion!\"\xA9\xBA grito Eggman. \xA7\"Ese erizo\n"
-	"y sus amigos pagaran caro por esto!\"\xA9\xC8\n"
-	"Justo entonces su escaner detecto la\n"
+	"\xA7\xA1" "Maldici\xF3n!\xA9\xBA grit\xF3 Eggman. \xA7\xA1" "Ese erizo\n"
+	"y sus amigos pagar\xE1n caro por esto!\xA9\xC8\n"
+	"Justo entonces su esc\xE1ner detect\xF3 la\n"
 	"Roca Negra apareciendo de la nada.\xBF\n"
-	"Eggman miro la pantalla y se encogio\n"
+	"Eggman mir\xF3 la pantalla y se encogi\xF3\n"
 	"de hombros.\n#");
 
 	introtext[6] = M_GetText(
-	"Horas despues\n"
-	"se le ocurrio\n"
+	"Horas despu\xE9s\n"
+	"se le ocurri\xF3\n"
 	"una idea. \xBF\xA7\"La Roca\n"
 	"Negra tiene una\n"
 	"gran cantidad de\n"
-	"energia...\xA7\xBF\n"
+	"energ\xED" "a...\xA7\xBF\n"
 	"Si logro\n"
 	"canalizarla,\xB8\n"
-	"podre crear la\n"
-	"estacion de combate\n"
+	"podr\xE9 crear la\n"
+	"estaci\xF3n de combate\n"
 	"definitiva...\xA7\xBF\n"
-	"Y todos suplicaran\n"
+	"Y todos suplicar\xE1n\n"
 	"piedad,\xB8\xA8\n"
 	"incluso Sonic!\"\n#");
 
 	introtext[7] = M_GetText(
 	"\xA8\nAntes de comenzar con su plan,\n"
-	"Eggman decidio prepararle a Sonic\n"
+	"Eggman decidi\xF3 prepararle a Sonic\n"
 	"una fiesta de bienvenida...\n#");
 
 	introtext[8] = M_GetText(
 	"\xA5\"PRE-\xB6PARANDO-\xB6" "DISPARO-\xB4" "EN-\xB6" "15-\xB6SEGUNDOS!\"\xA8\xB8" "\n"
-	"anuncio roboticamente el sistema de\n"
-	"punteria por el intercomunicador. \xBF\xA7\"Excelente!\"\xA8\xB8" "\n"
-	"Eggman fijo la montana Greenflower\n"
-	"e inicio la cuenta regresiva.\n#");
+	"anunci\xF3 rob\xF3ticamente el sistema de\n"
+	"punter\xED" "a por el intercomunicador. \xBF\xA7\xA1" "Excelente!\xA8\xB8" "\n"
+	"Eggman fij\xF3 la monta\xF1" "a Greenflower\n"
+	"e inici\xF3 la cuenta regresiva.\n#");
 
 	introtext[9] = M_GetText(
 	"\xA5\"10...\xD2" "9...\xD2" "8...\"\xA8\xD2\n"
 	"Sonic devoraba terreno a toda velocidad.\n"
-	"Todo era un borron mientras subia\n"
+	"Todo era un borr\xF3n mientras sub\xED" "a\n"
 	"colinas, cruzaba aguas y saltaba riscos\n"
 	"con su velocidad descomunal.\n#");
 
 	introtext[10] = M_GetText(
 	"\xA5\"6...\xD2" "5...\xD2" "4...\"\xA8\xD2\n"
-	"Sonic sintio que estaba muy cerca y\n"
-	"acelero aun mas.\xB4 Por fin, la montana\n"
-	"asomo en el horizonte.\xD2\xD2\n"
+	"Sonic sinti\xF3 que estaba muy cerca y\n"
+	"aceler\xF3 a\xFAn m\xE1s.\xB4 Por fin, la monta\xF1" "a\n"
+	"asom\xF3 en el horizonte.\xD2\xD2\n"
 	"\xA5\"3...\xD2" "2...\xD2" "1...\xD2" "Cero.\"\n#");
 
 	introtext[11] = M_GetText(
-	"La montana Greenflower ya no existia.\xC4\n"
-	"Sonic llego justo a tiempo para ver\n"
-	"lo poco que sobrevivio del impacto.\n"
+	"La monta\xF1" "a Greenflower ya no exist\xED" "a.\xC4\n"
+	"Sonic lleg\xF3 justo a tiempo para ver\n"
+	"lo poco que sobrevivi\xF3 del impacto.\n"
 	"La belleza natural de la zona\n"
-	"habia sido aniquilada.\n#");
+	"hab\xED" "a sido aniquilada.\n#");
 
 	introtext[12] = M_GetText(
-	"\xA7\"Asi que no\n"
+	"\xA7\"\xBF" "As\xED que no\n"
 	"estabas tan\n"
 	"acabado como\n"
-	"creiamos, eh?\xBF\n"
-	"Nos confesaras tu\n"
+	"cre\xED" "amos, eh?\xBF\n"
+	"\xBFNos confesar\xE1s tu\n"
 	"plan como siempre\n"
-	"o \xA8\xB4'tendre que\n"
+	"o \xA8\xB4'tendr\xE9 que\n"
 	"adivinarlo'\xA7 o\n"
 	"algo por el estilo?\"\xD2\xD2\n#");
 
 	introtext[13] = M_GetText(
-	"\"Ya lo veremos\xAA...\xA7\xBF primero un calentamiento\n"
-	"rapido, Sonic!\xA6\xC4 JETTYSYNS!\xA7\xBD Abran fuego!\"\n#");
+	"\"Ya lo veremos\xAA...\xA7\xBF \xA1primero un calentamiento\n"
+	"r\xE1pido, Sonic!\xA6\xC4 \xA1JETTYSYNS!\xA7\xBD \xA1" "Abran fuego!\"\n#");
 
 	introtext[14] = M_GetText(
-	"Eggman aprovecho\n"
-	"la distraccion\n"
+	"Eggman aprovech\xF3\n"
+	"la distracci\xF3n\n"
 	"para escapar,\n"
-	"dejando atras a\n"
+	"dejando atr\xE1s a\n"
 	"Sonic y Tails.\xB6\n"
-	"Tails miro la\n"
+	"Tails mir\xF3 la\n"
 	"destrozada\n"
 	"ladera con cara\n"
-	"triste y suspiro.\xC6\n"
-	"\xA7\"Y ahora,\xB6 que\n"
+	"triste y suspir\xF3.\xC6\n"
+	"\xA7\"\xBFY ahora,\xB6 qu\xE9\n"
 	"haremos?\",\xA9\n"
-	"pregunto.\n#");
+	"pregunt\xF3.\n#");
 
 	introtext[15] = M_GetText(
-	"\xA7\"Facil!\xBF Iremos\n"
+	"\xA7\"\xA1" "F\xE1" "cil!\xBF Iremos\n"
 	"tras Eggman\n"
 	"para detener su\n"
 	"nuevo plan\n"
 	"chiflado.\xBF\n"
 	"Como siempre,\n"
-	"verdad?\xBA\xD2\n\n"
+	"\xBFverdad?\xBA\xD2\n\n"
 	"\xAE...\xA9\xD2\n\n"
-	"\"Tails, que\n"
-	"\xAA*ESTAS*\xA9\n"
+	"\"Tails, \xBFqu\xE9\n"
+	"\xAA*EST\xC1S*\xA9\n"
 	"haciendo?\"\n#");
 
 	introtext[16] = M_GetText(
 	"\xA8\"Rastreo el objetivo del robot\xAC\xB1...\xBF\n"
-	"\xA6 ja!\xBF Aqui esta!\xA8\xBF Nos dira su mision.\xBF\n"
+	"\xA6 \xA1ja!\xBF \xA1" "Aqu\xED est\xE1!\xA8\xBF Nos dir\xE1 su misi\xF3n.\xBF\n"
 	"Dice\xAC\xB1...\"\n"
 	"\xD2\xA3\x83"
 	"* LOCALIZAR:  ESMERALDAS  DEL  CAOS *"
 	"\xBF\n"
 	"* LUGAR CERCANO:  ZONA  GREENFLOWER *"
 	"\x80\n\xA9\xD2\xD2"
-	"\"Bien pensado, Tails\xAF... \xD2\xD2\xA7vamos!\"\n#");
+	"\"\xA1" "Bien pensado, Tails\xAF... \xD2\xD2\xA7\xA1vamos!\"\n#");
 
 /*
 	"What are we waiting for? The first emerald is ours!" Sonic was about to
