@@ -1761,15 +1761,21 @@ static void ST_drawNightsRecords(void)
 		case NTV_GETSPHERES: // Get n Spheres
 		case NTV_GETMORESPHERES: // Get n more Spheres
 		{
+			const char *itemname;
 			if (!stplyr->capsule)
 				return;
 
-			// Yes, this string is an abomination.
-			V_DrawCenteredString(BASEVIDWIDTH/2, 60, aflag,
-								 va(M_GetText("\x80GET\x82 %d\x80 %s%s%s!"), stplyr->capsule->health,
-									(stplyr->textvar == NTV_GETMORESPHERES) ? M_GetText("MORE ") : "",
-									(G_IsSpecialStage(gamemap)) ? "SPHERE" : "CHIP",
-									(stplyr->capsule->health > 1) ? "S" : ""));
+			if (G_IsSpecialStage(gamemap))
+				itemname = (stplyr->capsule->health > 1) ? "ESFERAS" : "ESFERA";
+			else
+				itemname = (stplyr->capsule->health > 1) ? "FICHAS" : "FICHA";
+
+			if (stplyr->textvar == NTV_GETMORESPHERES)
+				V_DrawCenteredString(BASEVIDWIDTH/2, 60, aflag,
+				                     va(M_GetText("\x80\xA1OBT\xC9N\x82 %d\x80 %s M\xC1S!"), stplyr->capsule->health, itemname));
+			else
+				V_DrawCenteredString(BASEVIDWIDTH/2, 60, aflag,
+				                     va(M_GetText("\x80\xA1OBT\xC9N\x82 %d\x80 %s!"), stplyr->capsule->health, itemname));
 			break;
 		}
 		case NTV_BONUSTIMEEND: // End Bonus
@@ -1790,7 +1796,7 @@ static void ST_drawNightsRecords(void)
 			if (!(netgame || multiplayer) && G_GetBestNightsScore(gamemap, stplyr->lastmare + 1, clientGamedata) <= stplyr->lastmarescore)
 			{
 				if (stplyr->texttimer & 16)
-					V_DrawCenteredString(BASEVIDWIDTH/2, 184, aflag, "\x85* \x82NEW RECORD \x85*\x80");
+					V_DrawCenteredString(BASEVIDWIDTH/2, 184, aflag, "\x85* \x82NUEVO RECORD \x85*\x80");
 			}
 
 			if (P_HasGrades(gamemap, stplyr->lastmare + 1))
@@ -2147,8 +2153,8 @@ static void ST_drawNiGHTSHUD(void)
 				aflag |= (9 - 9*drawtime/(TICRATE/2)) << V_ALPHASHIFT;
 			// This one, not quite as much so.
 			V_DrawCenteredString(BASEVIDWIDTH/2, 60, aflag,
-		                     va(M_GetText("\x80GET\x82 %d\x80 SPHERE%s!"), ssspheres,
-		                        (ssspheres > 1) ? "S" : ""));
+			                     va(M_GetText("\x80\xA1OBT\xC9N\x82 %d\x80 ESFERA%s!"), ssspheres,
+			                        (ssspheres > 1) ? "S" : ""));
 		}
 	}
 	else

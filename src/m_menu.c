@@ -468,7 +468,7 @@ static CV_PossibleValue_t ringlimit_cons_t[] = {{0, "MIN"}, {9999, "MAX"}, {0, N
 static CV_PossibleValue_t liveslimit_cons_t[] = {{1, "MIN"}, {99, "MAX"}, {-1, "Infinite"}, {0, NULL}};
 static CV_PossibleValue_t contlimit_cons_t[] = {{0, "MIN"}, {99, "MAX"}, {0, NULL}};
 static CV_PossibleValue_t dummymares_cons_t[] = {
-	{-1, "END"}, {0,"Overall"}, {1,"Mare 1"}, {2,"Mare 2"}, {3,"Mare 3"}, {4,"Mare 4"}, {5,"Mare 5"}, {6,"Mare 6"}, {7,"Mare 7"}, {8,"Mare 8"}, {0,NULL}
+	{-1, "END"}, {0,"General"}, {1,"Mare 1"}, {2,"Mare 2"}, {3,"Mare 3"}, {4,"Mare 4"}, {5,"Mare 5"}, {6,"Mare 6"}, {7,"Mare 7"}, {8,"Mare 8"}, {0,NULL}
 };
 
 static consvar_t cv_dummyteam = CVAR_INIT ("dummyteam", "Spectator", CV_HIDEN, dummyteam_cons_t, NULL);
@@ -476,7 +476,7 @@ static consvar_t cv_dummyscramble = CVAR_INIT ("dummyscramble", "Random", CV_HID
 static consvar_t cv_dummyrings = CVAR_INIT ("dummyrings", "0", CV_HIDEN, ringlimit_cons_t,	NULL);
 static consvar_t cv_dummylives = CVAR_INIT ("dummylives", "0", CV_HIDEN, liveslimit_cons_t, NULL);
 static consvar_t cv_dummycontinues = CVAR_INIT ("dummycontinues", "0", CV_HIDEN, contlimit_cons_t, NULL);
-static consvar_t cv_dummymares = CVAR_INIT ("dummymares", "Overall", CV_HIDEN|CV_CALL, dummymares_cons_t, Dummymares_OnChange);
+static consvar_t cv_dummymares = CVAR_INIT ("dummymares", "General", CV_HIDEN|CV_CALL, dummymares_cons_t, Dummymares_OnChange);
 
 CV_PossibleValue_t marathon_cons_t[] = {{0, "Standard"}, {1, "Live Event Backup"}, {2, "Ultimate"}, {0, NULL}};
 CV_PossibleValue_t loadless_cons_t[] = {{0, "Realtime"}, {1, "In-game"}, {0, NULL}};
@@ -7317,18 +7317,18 @@ static void M_DrawChecklist(void)
 										{
 											case UC_NIGHTSSCORE:
 												if (cond[condnum].extrainfo2)
-													beat = va("Get %d points in %s, mare %d", cond[condnum].requirement, level, cond[condnum].extrainfo2);
+													beat = va("Consigue %d puntos en %s, mare %d", cond[condnum].requirement, level, cond[condnum].extrainfo2);
 												else
-													beat = va("Get %d points in %s", cond[condnum].requirement, level);
+													beat = va("Consigue %d puntos en %s", cond[condnum].requirement, level);
 												break;
 											case UC_NIGHTSTIME:
 												if (cond[condnum].extrainfo2)
-													beat = va("Beat %s, mare %d in %d:%02d.%02d", level, cond[condnum].extrainfo2,
+													beat = va("Supera %s, mare %d en %d:%02d.%02d", level, cond[condnum].extrainfo2,
 													G_TicsToMinutes(cond[condnum].requirement, true),
 													G_TicsToSeconds(cond[condnum].requirement),
 													G_TicsToCentiseconds(cond[condnum].requirement));
 												else
-													beat = va("Beat %s in %d:%02d.%02d",
+													beat = va("Supera %s en %d:%02d.%02d",
 													level,
 													G_TicsToMinutes(cond[condnum].requirement, true),
 													G_TicsToSeconds(cond[condnum].requirement),
@@ -7340,9 +7340,9 @@ static void M_DrawChecklist(void)
 													if (grade < 'A')
 														grade = 'A';
 													if (cond[condnum].extrainfo2)
-														beat = va("Get grade %c in %s, mare %d", grade, level, cond[condnum].extrainfo2);
+														beat = va("Consigue nota %c en %s, mare %d", grade, level, cond[condnum].extrainfo2);
 													else
-														beat = va("Get grade %c in %s", grade, level);
+														beat = va("Consigue nota %c en %s", grade, level);
 												}
 											break;
 											default:

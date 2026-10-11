@@ -1328,7 +1328,7 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 			{
 				HU_SetCEchoFlags(V_AUTOFADEOUT);
 				HU_SetCEchoDuration(4);
-				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Drill Refill"));
+				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Recarga de Drill"));
 			}
 			break;
 		case MT_NIGHTSHELPER:
@@ -1362,7 +1362,7 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 			{
 				HU_SetCEchoFlags(V_AUTOFADEOUT);
 				HU_SetCEchoDuration(4);
-				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Nightopian Helper"));
+				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Ayudante Nightopian"));
 			}
 			break;
 		case MT_NIGHTSEXTRATIME:
@@ -1394,7 +1394,7 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 			{
 				HU_SetCEchoFlags(V_AUTOFADEOUT);
 				HU_SetCEchoDuration(4);
-				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Extra Time"));
+				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Tiempo Extra"));
 			}
 			break;
 		case MT_NIGHTSLINKFREEZE:
@@ -1422,7 +1422,7 @@ void P_TouchSpecialThing(mobj_t *special, mobj_t *toucher, boolean heightcheck)
 			{
 				HU_SetCEchoFlags(V_AUTOFADEOUT);
 				HU_SetCEchoDuration(4);
-				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Link Freeze"));
+				HU_DoCEcho(M_GetText("\\\\\\\\\\\\\\\\Congela Links"));
 			}
 			break;
 		case MT_HOOPCOLLIDE:
