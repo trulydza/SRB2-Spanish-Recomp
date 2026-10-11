@@ -8,10 +8,13 @@ A diferencia de los mods tradicionales basados en scripts de Lua o archivos SOC 
 
 ### ✨ ¿Qué incluye?
 
-- **Menús y configuración:** Menú principal, opciones de video, audio, controles, partida guardada y estadísticas.
+- **Menús y configuración:** Menú principal, opciones de video, audio, controles, partida guardada, estadísticas y Caja de Pandora.
 - **En partida:** Marcadores (puntos, tiempo, anillos), mensajes del HUD, modo espectador y tiempos extra.
-- **Niveles:** Los nombres de las 66 zonas vanilla y etapas especiales adaptados directamente.
+- **Niveles y ortografía:** Los nombres de las 66 zonas vanilla y etapas especiales adaptados con acentos ortográficos correctos (*Cañón Árido*, *Montaña Gélida*, *Volcán*, etc.).
+- **Tutorial completo:** Las 51 páginas de diálogos y guías de Amy Rose, junto con todos los carteles HUD del mapa tutorial.
+- **Personajes:** Descripciones, habilidades y consejos oficiales de los 7 personajes vanilla.
 - **Historia y extras:** Cinemática inicial completa (las 16 páginas), créditos y las frases clásicas al cerrar el juego.
+- **Soporte de fuentes (tildes, eñes y signos):** Glifos nativos integrados para las fuentes del juego (LTFNT y STCFN) mediante el complemento cosmético, con soporte de fallback automático.
 - **Compatible con netplay:** Puedes entrar a servidores públicos sin que te desconecte por discrepancias de archivos.
 
 ---
@@ -37,9 +40,9 @@ A diferencia de los mods tradicionales basados en scripts de Lua o archivos SOC 
 
 ---
 
-### 🛠️ Documentación técnica
+### 🛠️ Documentación técnica y tareas pendientes
 
-Si te interesa ver cómo se estructuraron las traducciones en el código o quieres compilarlo por tu cuenta, puedes revisar [`GUIA.md`](./GUIA.md).
+Si te interesa ver cómo se estructuraron las traducciones en el código, el historial de lotes, compilarlo por tu cuenta o revisar la lista detallada de tareas pendientes, consulta la [**Guía del Proyecto (`GUIA.md`)**](./GUIA.md).
 
 ---
 

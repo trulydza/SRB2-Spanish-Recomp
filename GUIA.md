@@ -510,12 +510,83 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 > ✅ **Tutorial y Personajes completados (Lote 16):** 51 páginas de prompts del mapa tutorial, 8 carteles de aviso HUD y descripciones completas de habilidades y consejos para los 7 personajes vanilla en `deh_soc.c`.
 
-### Por evaluar
+### Lista de tareas pendientes
 
-| # | Qué | Por qué esperar |
-|---|---|---|
-| 4 | Mensajes de combate Ringslinger (~50 strings en `p_inter.c`) | Excluidos a propósito; modos de nicho |
-| 5 | On/Off/Yes/No de cvars (`command.c:78-82`) | Riesgo de romper consola/config.cfg |
+#### 1. Menús y UI en C (`src/m_menu.c`) — *Prioridad Alta / Media*
+- **Pausa en Record Attack / Contrarreloj (`MAPauseMenu`):**
+  - `"Emblem Hints..."`
+  - `"Continue"`
+  - `"Retry"`
+  - `"Abort"`
+- **Submenús de Equipos (`MISC_ScrambleTeamMenu` y `MISC_ChangeTeamMenu`):**
+  - `"Scramble Method"`
+  - `"Select Team"`
+  - `"Confirm"`
+- **Descripciones de modos de juego (`gametypedesc[NUMGAMETYPES]`):**
+  - Las 8 descripciones completas al elegir o configurar modo (Co-op, Competition, Race, Match, Team Match, Tag, Hide & Seek, CTF).
+- **Descripciones de estilos de cámara y control (`M_DrawControlStyle`):**
+  - Explicaciones de los estilos: *Automático*, *Manual*, *Simple*, *Legacy* y *Strafe*.
+- **Generación dinámica de requisitos para Extras/Desbloqueables (`M_DrawSecrets`):**
+  - `"Beat %s"` / `"Beat %s with all emeralds"` / `"Beat %s in Ultimate mode"`
+  - `"Get all rings in %s"` / `"Get %d points in %s"` / `"Beat %s in %d:%02d.%02d"`
+  - `"Beat the game %d times%s"` / `"Collect %s%d emblems"`
+  - `"Get grade %c in %s"` / `"Get a total time of less than %d:%02d.%02d"`
+- **Buscador de servidores y salas online (`M_DrawRoomMenu` y `M_DrawConnectMenu`):**
+  - Estados y títulos: `"Select a room"`, `"Don't connect to the Master Server."`, `"Checking for updates..."`, `"Fetching room info..."`, `"Please wait."`.
+  - En la lista de servidores: `"Server settings"`, `"<Select to change>"`, `"<Unlisted Mode>"`, `"No servers found"`, `"Searching for servers..."`.
+  - Columnas/datos: `"Ping: %u"`, `"Players: %02d/%02d"`, `"Gametype: %s"`.
+- **Pistas de emblemas en menú (`M_DrawEmblemHints`):**
+  - Paginación: `"%d of %d"`.
+  - Aviso de falta de pista: `"No hint available for this emblem."`.
+- **Prompts de rebind de controles (`M_ChangeControls`):**
+  - `"Hit the new key for\n%s\nESC for Cancel"`.
+  - Avisos sobre la tecla de pausa en Record Attack y gamepad ocupado por otro jugador.
+
+#### 2. HUD especial y alertas in-game (`src/st_stuff.c`) — *Prioridad Media*
+- **NiGHTS:**
+  - `"\x80GET\x82 %d\x80 SPHERE%s!"`
+- **Respawn y Vidas:**
+  - `"Respawn in %d..."`
+  - `"You'll steal a life on respawn..."`
+  - `"Wait to respawn..."`
+  - `"%d player%s remaining"`
+- **Tag / Escondite:**
+  - `"Waiting for players to hide..."`
+  - `"Hide before time runs out!"`
+  - `"Flee before you are hunted!"`
+  - `"You cannot move while hiding."`
+- **Espectador y Récords:**
+  - `"Viewpoint:"`
+  - `"\x85* \x82NEW RECORD \x85*\x80"`
+
+#### 3. Pantallas finales y mensajes de guardado (`src/f_finale.c` y `src/g_game.c`) — *Prioridad Media / Baja*
+- **Desbloqueo final (`f_finale.c`):**
+  - `"Unlocked:"` en la pantalla de recompensas finales.
+- **Mensajes de guardado y avisos (`g_game.c`):**
+  - `"Save game from different version...\n\nPress ESC\n"`
+  - `"Savegame file corrupted\n\nPress ESC\n"`
+  - `"Game saved.\n"`
+  - `"*Bot %s has been removed"`
+  - `"The round has ended.\n"`
+
+#### 4. Pistas de Emblemas (95 Haikus en `zones.pk3`) — *Prioridad Media*
+- En `SOC/SOC_EMBM.txt` existen 95 pistas líricas en formato haiku (5-7-5 sílabas) en inglés para encontrar los emblemas de los niveles oficiales. Requiere interceptar o portar los textos en C para no alterar el netplay.
+
+#### 5. Combate PvP, Peligros y Ringslinger (`src/p_inter.c`) — *Opcional / Nicho*
+- Mensajes de muerte ambiental: pinchos, lava, agua nociva, abismo, aplastamiento, ahogamiento, asfixia en el espacio.
+- Mensajes de armas de combate Ringslinger: bombas, raíl, anillos arrojadizos, etc.
+- Mensajes de modos Tag, Hide & Seek y CTF (`"%s is now IT!"`, `"%s was found!"`, `"%s picked up the flag!"`, etc.).
+
+#### 6. Mensajes de Netplay (`src/netcode/d_clisrv.c`) — *Baja*
+- Avisos de caída de conexión: `"Server Timeout\n\nPress Esc\n"`, `"Server has shutdown\n\nPress Esc\n"`, `"Starting Server....\n"`.
+
+---
+
+### Regla estricta: Cvars que NUNCA se deben tocar (`src/command.c`)
+
+> [!CAUTION]
+> **No modificar `command.c` (líneas 78-82):** Los valores literales de cvars (`"On"`, `"Off"`, `"Yes"`, `"No"`, `"True"`, `"False"`) **deben permanecer obligatoriamente en inglés**. Traducir estos valores rompería el analizador de comandos de la consola, la carga y guardado de `config.cfg` y la sincronización de variables de red entre clientes.
+
 
 ---
 
