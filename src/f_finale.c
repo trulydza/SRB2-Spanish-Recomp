@@ -405,25 +405,25 @@ void F_StartIntro(void)
 	"una fiesta de bienvenida...\n#");
 
 	introtext[8] = M_GetText(
-	"\xA5\"PRE-\"\"\xB6\"\"PARANDO-\"\"\xB6\"\"DISPARO-\"\"\xB4\"\"EN-\"\"\xB6\"\"15-\"\"\xB6\"\"SEGUNDOS!\"\xA8\xB8\n"
-	"anuncio roboticamente el sistema\n"
-	"de punteria por el intercomunicador. \xBF\xA7\"Excelente!\"\xA8\xB8\n"
+	"\xA5\"PRE-\xB6PARANDO-\xB6" "DISPARO-\xB4" "EN-\xB6" "15-\xB6SEGUNDOS!\"\xA8\xB8" "\n"
+	"anuncio roboticamente el sistema de\n"
+	"punteria por el intercomunicador. \xBF\xA7\"Excelente!\"\xA8\xB8" "\n"
 	"Eggman fijo la montana Greenflower\n"
 	"e inicio la cuenta regresiva.\n#");
 
 	introtext[9] = M_GetText(
-	"\xA5\"10...\xD2\"\"9...\xD2\"\"8...\"\xA8\xD2\n"
+	"\xA5\"10...\xD2" "9...\xD2" "8...\"\xA8\xD2\n"
 	"Sonic devoraba terreno a toda velocidad.\n"
 	"Todo era un borron mientras subia\n"
 	"colinas, cruzaba aguas y saltaba riscos\n"
 	"con su velocidad descomunal.\n#");
 
 	introtext[10] = M_GetText(
-	"\xA5\"6...\xD2\"\"5...\xD2\"\"4...\"\xA8\xD2\n"
+	"\xA5\"6...\xD2" "5...\xD2" "4...\"\xA8\xD2\n"
 	"Sonic sintio que estaba muy cerca y\n"
 	"acelero aun mas.\xB4 Por fin, la montana\n"
 	"asomo en el horizonte.\xD2\xD2\n"
-	"\xA5\"3...\xD2\"\"2...\xD2\"\"1...\xD2\"\"Cero.\"\n#");
+	"\xA5\"3...\xD2" "2...\xD2" "1...\xD2" "Cero.\"\n#");
 
 	introtext[11] = M_GetText(
 	"La montana Greenflower ya no existia.\xC4\n"
