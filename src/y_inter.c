@@ -59,6 +59,7 @@ typedef union
 		char passed2[16]; // THROUGH THE ACT / PASSED THE ACT
 		INT32 passedx1;
 		INT32 passedx2;
+		INT32 actnumx;
 
 		y_bonus_t bonuses[4];
 		patch_t *bonuspatches[4];
@@ -493,7 +494,7 @@ void Y_IntermissionDrawer(void)
 				V_DrawLevelTitle(data.coop.passedx2, 49+h+2, 0, data.coop.passed2);
 
 				if (data.coop.actnum)
-					V_DrawLevelActNum(244, 42+h, 0, data.coop.actnum);
+					V_DrawLevelActNum(data.coop.actnumx, 42+h, 0, data.coop.actnum);
 			}
 		}
 
@@ -1408,11 +1409,13 @@ void Y_StartIntermission(void)
 			{
 				data.coop.passedx1 = 62 + (176 - V_LevelNameWidth(data.coop.passed1))/2;
 				data.coop.passedx2 = 62 + (176 - V_LevelNameWidth(data.coop.passed2))/2;
+				data.coop.actnumx = data.coop.passedx2 + V_LevelNameWidth(data.coop.passed2) + V_LevelNameWidth(" ");
 			}
 			else
 			{
 				data.coop.passedx1 = (BASEVIDWIDTH - V_LevelNameWidth(data.coop.passed1))/2;
 				data.coop.passedx2 = (BASEVIDWIDTH - V_LevelNameWidth(data.coop.passed2))/2;
+				data.coop.actnumx = 0;
 			}
 			// The above value is not precalculated because it needs only be computed once
 			// at the start of intermission, and precalculating it would preclude mods
@@ -1422,6 +1425,7 @@ void Y_StartIntermission(void)
 			{
 				// Bit of a hack, offset so that the "Zone" text is right aligned like title cards.
 				data.coop.passedx2 = (data.coop.passedx1 + V_LevelNameWidth(data.coop.passed1)) - V_LevelNameWidth(data.coop.passed2);
+				data.coop.actnumx = data.coop.passedx2 + V_LevelNameWidth(data.coop.passed2) + V_LevelNameWidth(" ");
 			}
 
 			break;
