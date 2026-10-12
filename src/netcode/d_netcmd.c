@@ -3332,12 +3332,12 @@ static void Got_RunSOCcmd(UINT8 **cp, INT32 playernum)
 			if (ncs == FS_NOTFOUND)
 			{
 				CONS_Printf(M_GetText("The server tried to add %s,\nbut you don't have this file.\nYou need to find it in order\nto play on this server.\n"), filename);
-				M_StartMessage(va("The server added a file\n(%s)\nthat you do not have.\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+				M_StartMessage(va("El servidor a\xF1""adi\xF3 un archivo\n(%s)\nque no tienes.\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 			}
 			else
 			{
 				CONS_Printf(M_GetText("Unknown error finding soc file (%s) the server added.\n"), filename);
-				M_StartMessage(va("Unknown error trying to load a file\nthat the server added\n(%s).\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+				M_StartMessage(va("Error desconocido al cargar un archivo\nque el servidor a\xF1""adi\xF3\n(%s).\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 			}
 			return;
 		}
@@ -3806,22 +3806,22 @@ static void Got_Addfilecmd(UINT8 **cp, INT32 playernum)
 		if (ncs == FS_FOUND)
 		{
 			CONS_Printf(M_GetText("The server tried to add %s,\nbut you have too many files added.\nRestart the game to clear loaded files\nand play on this server."), filename);
-			M_StartMessage(va("The server added a file \n(%s)\nbut you have too many files added.\nRestart the game to clear loaded files.\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+			M_StartMessage(va("El servidor a\xF1""adi\xF3 un archivo \n(%s)\npero tienes demasiados archivos cargados.\nReinicia el juego para vaciarlos.\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 		}
 		else if (ncs == FS_NOTFOUND)
 		{
 			CONS_Printf(M_GetText("The server tried to add %s,\nbut you don't have this file.\nYou need to find it in order\nto play on this server."), filename);
-			M_StartMessage(va("The server added a file \n(%s)\nthat you do not have.\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+			M_StartMessage(va("El servidor a\xF1""adi\xF3 un archivo \n(%s)\nque no tienes.\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 		}
 		else if (ncs == FS_MD5SUMBAD)
 		{
 			CONS_Printf(M_GetText("Checksum mismatch while loading %s.\nMake sure you have the copy of\nthis file that the server has.\n"), filename);
-			M_StartMessage(va("Checksum mismatch while loading \n%s.\nThe server seems to have a\ndifferent version of this file.\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+			M_StartMessage(va("Discrepancia de suma de verificaci\xF3n al cargar \n%s.\nEl servidor parece tener una\nversi\xF3n distinta de este archivo.\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 		}
 		else
 		{
 			CONS_Printf(M_GetText("Unknown error finding wad file (%s) the server added.\n"), filename);
-			M_StartMessage(va("Unknown error trying to load a file\nthat the server added \n(%s).\n\nPress ESC\n",filename), NULL, MM_NOTHING);
+			M_StartMessage(va("Error desconocido al cargar un archivo\nque el servidor a\xF1""adi\xF3 \n(%s).\n\nPulsa ESC\n",filename), NULL, MM_NOTHING);
 		}
 		return;
 	}
@@ -3854,17 +3854,17 @@ static void Got_Addfoldercmd(UINT8 **cp, INT32 playernum)
 		if (ncs == FS_FOUND)
 		{
 			CONS_Printf(M_GetText("The server tried to add %s,\nbut you have too many files added.\nRestart the game to clear loaded files\nand play on this server."), path);
-			M_StartMessage(va("The server added a folder \n(%s)\nbut you have too many files added.\nRestart the game to clear loaded files.\n\nPress ESC\n",path), NULL, MM_NOTHING);
+			M_StartMessage(va("El servidor a\xF1""adi\xF3 una carpeta \n(%s)\npero tienes demasiados archivos cargados.\nReinicia el juego para vaciarlos.\n\nPulsa ESC\n",path), NULL, MM_NOTHING);
 		}
 		else if (ncs == FS_NOTFOUND)
 		{
 			CONS_Printf(M_GetText("The server tried to add %s,\nbut you don't have this file.\nYou need to find it in order\nto play on this server."), path);
-			M_StartMessage(va("The server added a folder \n(%s)\nthat you do not have.\n\nPress ESC\n",path), NULL, MM_NOTHING);
+			M_StartMessage(va("El servidor a\xF1""adi\xF3 una carpeta \n(%s)\nque no tienes.\n\nPulsa ESC\n",path), NULL, MM_NOTHING);
 		}
 		else
 		{
 			CONS_Printf(M_GetText("Unknown error finding folder (%s) the server added.\n"), path);
-			M_StartMessage(va("Unknown error trying to load a folder\nthat the server added \n(%s).\n\nPress ESC\n",path), NULL, MM_NOTHING);
+			M_StartMessage(va("Error desconocido al cargar una carpeta\nque el servidor a\xF1""adi\xF3 \n(%s).\n\nPulsa ESC\n",path), NULL, MM_NOTHING);
 		}
 		return;
 	}

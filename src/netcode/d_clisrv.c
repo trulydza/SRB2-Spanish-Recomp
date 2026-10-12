@@ -518,19 +518,19 @@ static void Got_KickCmd(UINT8 **p, INT32 playernum)
 		CL_Reset();
 		D_StartTitle();
 		if (msg == KICK_MSG_CON_FAIL)
-			M_StartMessage(M_GetText("Server closed connection\n(synch failure)\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("El servidor cerr\xF3 la conexi\xF3n\n(fallo de sincronizaci\xF3n)\nPulsa ESC\n"), NULL, MM_NOTHING);
 		else if (msg == KICK_MSG_PING_HIGH)
-			M_StartMessage(M_GetText("Server closed connection\n(Broke ping limit)\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("El servidor cerr\xF3 la conexi\xF3n\n(l\xEDmite de ping superado)\nPulsa ESC\n"), NULL, MM_NOTHING);
 		else if (msg == KICK_MSG_IDLE)
-			M_StartMessage(M_GetText("Server closed connection\n(Inactive for too long)\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("El servidor cerr\xF3 la conexi\xF3n\n(demasiado tiempo inactivo)\nPulsa ESC\n"), NULL, MM_NOTHING);
 		else if (msg == KICK_MSG_BANNED)
-			M_StartMessage(M_GetText("You have been banned by the server\n\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("Has sido baneado por el servidor\n\nPulsa ESC\n"), NULL, MM_NOTHING);
 		else if (msg == KICK_MSG_CUSTOM_KICK)
-			M_StartMessage(va(M_GetText("You have been kicked\n(%s)\nPress ESC\n"), reason), NULL, MM_NOTHING);
+			M_StartMessage(va(M_GetText("Has sido expulsado\n(%s)\nPulsa ESC\n"), reason), NULL, MM_NOTHING);
 		else if (msg == KICK_MSG_CUSTOM_BAN)
-			M_StartMessage(va(M_GetText("You have been banned\n(%s)\nPress ESC\n"), reason), NULL, MM_NOTHING);
+			M_StartMessage(va(M_GetText("Has sido baneado\n(%s)\nPulsa ESC\n"), reason), NULL, MM_NOTHING);
 		else
-			M_StartMessage(M_GetText("You have been kicked by the server\n\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("Has sido expulsado por el servidor\n\nPulsa ESC\n"), NULL, MM_NOTHING);
 	}
 	else if (keepbody)
 	{
@@ -694,7 +694,7 @@ void CL_HandleTimeout(void)
 	D_QuitNetGame();
 	CL_Reset();
 	D_StartTitle();
-	M_StartMessage(M_GetText("Server Timeout\n\nPress Esc\n"), NULL, MM_NOTHING);
+	M_StartMessage(M_GetText("Tiempo de espera agotado\n\nPulsa ESC\n"), NULL, MM_NOTHING);
 }
 
 void CL_AddSplitscreenPlayer(void)
@@ -789,7 +789,7 @@ void SV_SpawnServer(void)
 
 	if (!serverrunning)
 	{
-		CONS_Printf(M_GetText("Starting Server....\n"));
+		CONS_Printf(M_GetText("Iniciando servidor...\n"));
 		serverrunning = true;
 		SV_ResetServer();
 		SV_GenContext();
@@ -858,7 +858,7 @@ static void PT_ServerShutdown(SINT8 node)
 	D_QuitNetGame();
 	CL_Reset();
 	D_StartTitle();
-	M_StartMessage(M_GetText("Server has shutdown\n\nPress Esc\n"), NULL, MM_NOTHING);
+	M_StartMessage(M_GetText("El servidor se ha cerrado\n\nPulsa ESC\n"), NULL, MM_NOTHING);
 }
 
 static void PT_Login(SINT8 node, INT32 netconsole)

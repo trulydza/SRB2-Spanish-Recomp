@@ -331,6 +331,114 @@ static const char *M_PlayerTextTr(const char *skinname)
 	return NULL;
 }
 
+static const struct leveltr_s emblemhinttr_table[] = {
+	{"This one's in plain sight.\nWhy haven't you claimed it yet?\nSurely you saw it.", "Este est\xE1 a simple vista.\n\xBFPor qu\xE9 a\xFAn no lo tienes?\nSeguro que lo viste."},
+	{"To find this emblem,\nYou will have to take a dive.\nCheck behind the spring.", "Para hallar este emblema,\ntendr\xE1s que darte un chapuz\xF3n.\nMira tras el muelle."},
+	{"Tails can be helpful\nTo fly you under the arch\nAnd find the entrance.", "Tails puede ser de ayuda\npara volar bajo el arco\ny hallar as\xED la entrada."},
+	{"On top of a box,\nAbove the narrow pathways.\nSpring to get up there.", "Encima de una caja,\nsobre los senderos estrechos.\nRebota para subir."},
+	{"Up high on a ledge,\nThere is a breakable wall.\nSmash it for the prize.", "En lo alto de un saliente,\nhay una pared agrietada.\nR\xF3mpela por tu premio."},
+	{"Near the giant lake\nlies a cave with a 1-Up.\nAn emblem's there, too!", "Cerca del gran lago\nhay una cueva con una vida.\n\xA1Tambi\xE9n hay un emblema!"},
+	{"Such a wet level.\nFind the source of the water\nAtop of the falls.", "Un nivel tan acu\xE1tico.\nHalla el origen del agua\nen la cima de las cascadas."},
+	{"Backtrack a blocked path\nThen go through another one\nTo prove you love him.", "Retrocede un camino cerrado\ny cruza luego por otro\npara probar que lo amas."},
+	{"It's under a bridge,\nRight behind a large pillar.\nEchidnas Only!", "Est\xE1 bajo un puente,\njusto tras un gran pilar.\n\xA1S\xF3lo para equidnas!"},
+	{"High in the canyon,\nThere's a house with a garden.\nCheck inside the fence.", "En lo alto del ca\xF1\xF3n,\nhay una casa con un jard\xEDn.\nRevisa tras la valla."},
+	{"Ya can't miss it, Tails!\nIt's right on top of the cliff.\nJust fly and get it.", "\xA1No tiene p\xE9rdida, Tails!\nEst\xE1 en la cima del risco.\nS\xF3lo vuela y t\xF3malo."},
+	{"The slime lake is deep,\nbut reaching the floor takes height.\nScream Geronimo!...", "El lago de baba es hondo,\nmas llegar al fondo exige altura.\n\xA1Grita Ger\xF3nimo!..."},
+	{"Climbing yields great range.\nYet, on a path for climbers,\nflying is the key.", "Escalar da gran alcance.\nSin embargo, en ruta de escalada,\nvolar es la clave."},
+	{"That's a lot of slime.\nSay, do you ever wonder\nwhat's dumping it all?", "Cu\xE1nta sustancia nociva.\nDime, \xBF""alguna vez te preguntas\nqui\xE9n la vierte aqu\xED?"},
+	{"Knuckles can't go up.\nWell, at least not directly.\nCome back the wrong way.", "Knuckles no puede subir.\nBueno, al menos no directo.\nRegresa por el lado opuesto."},
+	{"Near the first checkpoint,\ntake a look through the windows.\nSee something you want?", "Cerca del primer control,\necha un vistazo a las ventanas.\n\xBFVes algo que deseas?"},
+	{"Behind the windows,\nnear crushers, ever smashing\na conveyor belt.", "Tras las ventanas,\njunto a trituradoras aplastando\nuna cinta sin fin."},
+	{"A button under slime\nnear the end of the level\nwill open the door.", "Un bot\xF3n bajo la baba\ncerca del final del nivel\nabrir\xE1 la compuerta."},
+	{"There is a hallway\nthat a button floods with slime.\nGo through it again!", "Hay un largo pasillo\nque un bot\xF3n inunda de baba.\n\xA1""Cr\xFAzalo otra vez!"},
+	{"Jumping on turtles\nwill send you springing skyward.\nNow, do that six times...", "Saltar sobre tortugas\nte lanzar\xE1 hacia el cielo.\nAhora, hazlo seis veces..."},
+	{"Tails can't break the block,\nKnuckles can't climb up that high,\nWho can tackle both?", "Tails no rompe el bloque,\nKnuckles no sube tan alto,\n\xBFqui\xE9n puede con ambos?"},
+	{"Bridge with a closed door.\nDon't bother going inside.\nCheck the falls instead.", "Puente con puerta cerrada.\nNo te molestes en entrar.\nRevisa la cascada."},
+	{"There are three closed doors.\nThey all lead to a statue.\nOpen all of them.", "Hay tres puertas cerradas.\nTodas llevan a una estatua.\nAbre cada una de ellas."},
+	{"The blue switch is stuck\nBehind a broken blue door.\nJump through the small hole.", "El interruptor azul atascado\ntras una puerta rota azul.\nSalta por el hueco."},
+	{"Push the gargoyle switch\nTo find the purple button\nNear the beginning", "Pulsa el bot\xF3n de la g\xE1rgola\npara hallar el bot\xF3n morado\ncerca del comienzo."},
+	{"A fast waterslide\nThat is filled with many spikes.\nJump before the end.", "Tobog\xE1n r\xE1pido de agua\nrepleto de muchos pinchos.\nSalta antes del final."},
+	{"Up on the high cliff\nBefore reaching the locked gate\nJust out of your view", "En el risco elevado\nantes de llegar a la reja\nlejos de tu vista."},
+	{"Through the fence you see\nAn azure room in a wall\nFind a way inside.", "A trav\xE9s de la reja ves\nun cuarto azul en el muro.\nHalla el modo de entrar."},
+	{"Mount a spinning wheel\nThen turn around and look up\nClimb to claim your prize", "Monta la rueda giratoria,\nluego date la vuelta y mira:\nescala por tu premio."},
+	{"Crushing from above.\nHowever, there is a hole.\nGo see where it leads.", "Aplastamiento superior.\nSin embargo, hay un hueco.\nVe a ver d\xF3nde lleva."},
+	{"A tall bell tower.\nThe only way to get up\nIs to fly or climb.", "Un alto campanario.\nLa \xFAnica forma de subir\nes volando o escalando."},
+	{"Locked in a tower.\nWhat's that behind the banner?\nIs it a way in?", "Encerrado en un torre\xF3n.\n\xBFQu\xE9 hay tras el estandarte?\n\xBF""Es una entrada?"},
+	{"Circle of pillars\nWait, is one of them missing?\nWonder where it is...", "C\xEDrculo de columnas.\nEspera, \xBF""acaso falta una?\nD\xF3nde estar\xE1 metida..."},
+	{"A super tight squeeze\nbetween the wall and a spring\nhides a secret path.", "Un espacio muy estrecho\nentre el muro y un muelle\noculta una senda secreta."},
+	{"Trees growing in caves?\nIt's more likely than you think.\nGo pay a visit.", "\xBF\xC1rboles dentro de cuevas?\nEs m\xE1s probable de lo que crees.\nVe a hacerles una visita."},
+	{"Outside the castle,\nhop along the support beams\nover the brambles.", "Fuera del castillo,\nsalta por las vigas de apoyo\nsobre las zarzas."},
+	{"The eye of the storm\nin a vortex of platforms\nhigh above the ground.", "El ojo de la tormenta\nen un v\xF3rtice de plataformas\nmuy por encima del suelo."},
+	{"Launch from the large wall,\nstop before the shaft of rings.\nSee something moving?", "L\xE1nzate del gran muro,\nfrena ante el pozo de anillos.\n\xBFVes algo moverse?"},
+	{"The goal's within sight!\nBut there's something else above...\nSoar to greater heights!", "\xA1La meta est\xE1 a la vista!\nPero hay algo m\xE1s arriba...\n\xA1Vuela a mayor altura!"},
+	{"In a rocky cave,\non top of a grassy hill,\nthe emblem awaits.", "En una cueva de roca,\nen lo alto de una colina verde,\nel emblema aguarda."},
+	{"Some falling boulders\nNext to a large wooden plank.\nCheck the cliffs above.", "Rocas que caen sin cesar\njunto a un gran tabl\xF3n de madera.\nMira en los riscos arriba."},
+	{"Can't go on the ramp?\nHop the fence and tread slowly.\nIt's a long way down!", "\xBFNo puedes subir la rampa?\nSalta la valla con cautela.\n\xA1La ca\xED""da es muy honda!"},
+	{"It gets annoying\nhearing traffic all the time\nright above my head.", "Resulta muy molesto\no\xEDr el tr\xE1""fico a todas horas\njusto sobre mi cabeza."},
+	{"A crack in the cliff\nnear the end of the highway\ncontains the emblem.", "Una grieta en el risco\ncerca del final de la v\xED""a\ncontiene el emblema."},
+	{"Try to grab the rope\nWhen you launch up the big ramp.\nRide it all the way.", "Intenta agarrar la cuerda\nal saltar por la gran rampa.\nM\xF3ntala hasta el final."},
+	{"Hey! I can see it!\nBut the mine cart can't go there...\nGet in here on foot.", "\xA1Oye! \xA1Lo puedo ver!\nMas la vagoneta no llega...\nEntra aqu\xED a pie."},
+	{"A crack in the box.\nYou can see inside the top.\nJust smash it open.", "Una grieta en la caja.\nPuedes ver dentro por arriba.\nS\xF3lo r\xF3mpela."},
+	{"An X marks the spot\nWhere Knuckles will need to climb\nTo reach this emblem.", "Una X marca el lugar\ndonde Knuckles deber\xE1 trepar\npara alcanzar el emblema."},
+	{"The water's all gone\nAll that is left is cracked sand.\nLeave it to the boss!", "El agua se ha marchado,\ns\xF3lo queda arena agrietada.\n\xA1""D\xE9jaselo al jefe!"},
+	{"Hooray, you made it!\nBut instead of finishing\nWhy don't you explore?", "\xA1Hurra, lo conseguiste!\nPero en vez de terminar,\n\xBFpor qu\xE9 no exploras?"},
+	{"Look around the room,\njust before you clear the stage;\nsomething's hidden there!", "Mira por la sala,\njusto antes de superar la fase;\n\xA1hay algo all\xED oculto!"},
+	{"Ever look upwards\nwhen you're traversing across\ncollapsing platforms?", "\xBF""Alguna vez miras arriba\nmientras vas cruzando\nplataformas que caen?"},
+	{"A lake of magma\nebbs and flows unendingly.\nWait for its nadir.", "Un lago de magma\nsube y baja sin cesar.\nEspera a su punto m\xE1s bajo."},
+	{"Where fire revolves,\nbring a sparkling gold key.\nNo rocks can enter.", "Donde el fuego gira,\ntrae una brillante llave de oro.\nNo pueden entrar rocas."},
+	{"Bring a stone somewhere\nyou would not think it belongs,\nthen ride carefully...", "Lleva una piedra a un lugar\nal que creer\xED""as que no pertenece,\nluego viaja con calma..."},
+	{"Vanishing platforms,\nthen collapsing ones herald\na last-second jump.", "Plataformas que se desvanecen,\ny otras que caen anuncian\nun salto al \xFAltimo segundo."},
+	{"What is this red stuff?\nYou can't breathe it in, but look!\nIt can't reach up there...", "\xBFQu\xE9 es esta materia roja?\nNo puedes respirarla, pero \xA1mira!\nNo llega hasta all\xED arriba..."},
+	{"The team's paths diverge.\nShould Tails run the crusher path?\nNo! Fly outside it!", "Los caminos del grupo divergen.\n\xBFTails deber\xED""a ir a trituradoras?\n\xA1No! \xA1Vuela por fuera!"},
+	{"Don't jump too high here!\nNo conveyor will catch you;\nyou'd fall to your death.", "\xA1No saltes tan alto aqu\xED!\nNinguna cinta te atrapar\xE1;\ncaer\xED""as a tu perdici\xF3n."},
+	{"Conveyors! Magma!\nWhat an intense room this is!\nBut, what brought you here?", "\xA1""Cintas! \xA1Magma!\n\xA1Qu\xE9 sala tan intensa es esta!\nPero, \xBFqu\xE9 te trajo hasta aqu\xED?"},
+	{"Walk on the ceiling;\nresist the urge to flip back!\nFind the cyan path...", "Camina por el techo;\n\xA1resiste las ganas de volver!\nHalla la senda cian..."},
+	{"X marks the spot? Nope!\nTry standing further away\nwhen the timer flips.", "\xBFUna X marca el lugar? \xA1No!\nIntenta quedarte m\xE1s lejos\ncuando el tiempo se invierta."},
+	{"There is more than one\nmethod to going up the\nelevator shaft...", "Hay m\xE1s de una forma\nde subir por el hueco\ndel ascensor..."},
+	{"Gears with missing teeth\ncan hide a clever secret!\nTake them for a spin.", "Engranajes sin dientes\n\xA1pueden guardar un gran secreto!\nDales una vuelta."},
+	{"Just before you reach\nthe defective cargo bay,\nfly under a bridge.", "Justo antes de llegar\nal hangar de carga averiado,\nvuela bajo un puente."},
+	{"What once was moving,\nHas now become motionless.\nIt no longer falls.", "Lo que antes se mov\xED""a,\nahora se ha quedado inm\xF3vil.\nYa no cae jam\xE1s."},
+	{"Below frozen ice.\nA waterfall makes a hole\nYou can go under.", "Bajo el hielo helado.\nUna cascada abre un hueco\npor el que puedes pasar."},
+	{"A cold, frozen heart.\nFree it from the cavern depths\nand its icy cage.", "Un g\xE9lido coraz\xF3n helado.\nLib\xE9ralo de la profunda cueva\ny de su jaula de hielo."},
+	{"Atop a pillar,\nResting in a place where the\nSnow flows like water.", "En lo alto de un pilar,\ndescansando en un lugar donde\nla nieve fluye cual agua."},
+	{"Somewhere near the end,\nThere lies a cave blocked by ice.\nDefeat the penguin.", "Cerca del final,\nhay una cueva bloqueada por hielo.\nDerrota al ping\xFCino."},
+	{"High up in the air,\na cave exposed to the sky.\nOne tree lies below.", "Muy alto en el aire,\nuna cueva abierta al cielo.\nUn solo \xE1rbol yace abajo."},
+	{"Down a pipe, you'll find\nfancy halls and waterfalls.\nTake the clouds outside.", "Por una tuber\xED""a hallar\xE1s\nelegantes salas y cascadas.\nToma las nubes afuera."},
+	{"In the underground,\nthere is a pipe and emblem\nhaving a staredown.", "Bajo tierra,\nuna tuber\xED""a y un emblema\nse miran fijamente."},
+	{"Thwomp atop a shroom.\nTake the thwomp to its apex\nAnd jump to the springs.", "Un Roca Picuda sobre un hongo.\nLl\xE9valo hasta su punto m\xE1s alto\ny salta a los muelles."},
+	{"Thank you Sonic! But\nthe green-colored emblem is\nbehind the castle!", "\xA1Gracias Sonic! Pero\n\xA1""el emblema verde est\xE1\ndetr\xE1s del castillo!"},
+	{"Fortress far away.\nJump the fence, but not too far\nOr else you will fall!", "Fortaleza a lo lejos.\nSalta la valla, pero no mucho\n\xA1o si no caer\xE1s!"},
+	{"Search shallow water\nSurrounding the stronghold wall.\nSurely you'll see it.", "Busca en aguas poco profundas\nrodeando el muro del basti\xF3n.\nSeguro lo ver\xE1s."},
+	{"Heavily guarded.\nLook for the secret passage\nTo drop in unseen.", "Fuertemente custodiado.\nBusca el pasadizo secreto\npara caer sin ser visto."},
+	{"Springing through the air.\nWas there something in the trees?\nTurn around and look.", "Rebotando por los aires.\n\xBFHab\xED""a algo entre los \xE1rboles?\nDate la vuelta y mira."},
+	{"Near the last starpost...\nLook through the gate, to the tree.\nIs there a way out?", "Junto al \xFAltimo poste...\nMira tras la reja, hacia el \xE1rbol.\n\xBFHay alguna salida?"},
+	{"Get a running start,\nThen jump, bounce, and bounce again,\nOn hills near the start.", "Toma carrerilla,\nluego salta, rebota y rebota,\nen colinas del comienzo."},
+	{"Eggman's waist is not\nthe only thing that is fat.\nHis head is big too!", "La cintura de Eggman no es\nlo \xFAnico que est\xE1 gordo.\n\xA1Su cabeza tambi\xE9n es enorme!"},
+	{"Spikes, spikeballs, and springs.\nAnd a whole lot of goop too!\nMost of this room hurts!", "Pinchos, bolas y muelles.\n\xA1Y un mont\xF3n de pringue tambi\xE9n!\n\xA1""Casi todo aqu\xED duele!"},
+	{"Take a leap of faith!\nThe spirit will lift you up\nto find greater heights.", "\xA1""Da un salto de fe!\nEl esp\xEDritu te elevar\xE1\npara alcanzar mayor altura."},
+	{"Behind a goop fall.\nCan echidnas breathe in goop?\nWith a shield they can!", "Tras una cascada de pringue.\n\xBFPueden los equidnas respirar pringue?\n\xA1""Con un escudo s\xED!"},
+	{"A central tower,\none with many waterfalls,\nhides a secret room.", "Una torre central,\ncon multitud de cascadas,\noculta una sala secreta."},
+	{"The path Knuckles takes\nleads to a floor he can't break.\nBe brave, bouncy one.", "El camino de Knuckles\nlleva a un suelo que no puede romper.\nS\xE9 valiente y rebota."},
+	{"Find all four buttons\nthat sink when you stand on them.\nThey'll open a door...", "Halla los cuatro botones\nque se hunden al pisarlos.\nAbrir\xE1n una puerta..."},
+	{"Much like the last one,\nyou need to find some switches.\nOnly two, this time.", "Muy parecido al anterior,\ndebes encontrar interruptores.\nS\xF3lo dos, esta vez."},
+	{"The inner sanctum!\nTeleport to its switches;\nthen, check near the goal.", "\xA1""El santuario interior!\nTeletransp\xF3rtate a sus interruptores;\nluego, mira junto a la meta."},
+	{"For those who can swim,\na long tunnel hides rewards.\nDo mind the Buggles!", "Para quien sabe nadar,\nun largo t\xFAnel oculta premios.\n\xA1""Cuidado con los Buggles!"},
+	{"So many skylights!\nA markedly large one hides\nbehind a starpost...", "\xA1""Cu\xE1ntas claraboyas!\nUna bastante grande se oculta\ndetr\xE1s de un poste..."},
+	{"When you reach gauntlets\nof diagonal fire,\ncheck out the corners.", "Al llegar a las sendas\nde fuego diagonal,\nrevisa las esquinas."},
+	{"A room of currents;\nmost of them are marked by flames.\nThis one? A corner.", "Una sala de corrientes;\ncasi todas marcadas con llamas.\n\xBF""Esta? Una esquina."},
+	{"The only way to hit\nall those gems at once is with\na radial blast.", "La \xFAnica forma de golpear\ntodas esas gemas a la vez\nes con una onda expansiva."},
+	{NULL, NULL}
+};
+
+static const char *M_EmblemHintTr(const char *s)
+{
+	size_t i;
+	for (i = 0; emblemhinttr_table[i].en; i++)
+		if (!strcmp(s, emblemhinttr_table[i].en))
+			return emblemhinttr_table[i].es;
+	return s;
+}
+
 
 
 
@@ -3323,7 +3431,7 @@ void reademblemdata(MYFILE *f, INT32 num)
 			{
 				while ((tmp = strchr(word2, '\\')))
 					*tmp = '\n';
-				deh_strlcpy(emblemlocations[num-1].hint, word2, sizeof (emblemlocations[num-1].hint), va("Emblem %d: hint", num));
+				deh_strlcpy(emblemlocations[num-1].hint, M_EmblemHintTr(word2), sizeof (emblemlocations[num-1].hint), va("Emblem %d: hint", num));
 				continue;
 			}
 			strupr(word2);

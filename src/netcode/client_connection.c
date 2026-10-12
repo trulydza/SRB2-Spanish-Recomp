@@ -58,7 +58,7 @@ static void DrawConnectionStatusBox(void)
 	if (cl_mode == CL_CONFIRMCONNECT || IsDownloadingFile())
 		return;
 
-	V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_YELLOWMAP, "Press ESC to abort");
+	V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_YELLOWMAP, "Pulsa ESC para cancelar");
 }
 
 static void DrawFileProgress(fileneeded_t *file, int y)
@@ -138,17 +138,17 @@ static void CL_DrawConnectionStatus(void)
 				cltext = "";
 				break;
 			case CL_LOADFILES:
-				cltext = M_GetText("Loading server addons...");
+				cltext = M_GetText("Cargando complementos del servidor...");
 				break;
 			case CL_ASKJOIN:
 			case CL_WAITJOINRESPONSE:
 				if (serverisfull)
-					cltext = M_GetText("Server full, waiting for a slot...");
+					cltext = M_GetText("Servidor lleno, esperando un hueco libre...");
 				else
-					cltext = M_GetText("Requesting to join...");
+					cltext = M_GetText("Solicitando unirse...");
 				break;
 			default:
-				cltext = M_GetText("Connecting to server...");
+				cltext = M_GetText("Conectando al servidor...");
 				break;
 		}
 		V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_YELLOWMAP, cltext);
@@ -160,7 +160,7 @@ static void CL_DrawConnectionStatus(void)
 			INT32 totalfileslength;
 			INT32 loadcompletednum = 0;
 
-			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_YELLOWMAP, "Press ESC to abort");
+			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_YELLOWMAP, "Pulsa ESC para cancelar");
 
 			// ima just count files here
 			if (fileneeded)
@@ -171,13 +171,13 @@ static void CL_DrawConnectionStatus(void)
 			}
 
 			// Loading progress
-			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_YELLOWMAP, "Loading server addons...");
+			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_YELLOWMAP, "Cargando complementos del servidor...");
 			totalfileslength = (INT32)((loadcompletednum/(double)(fileneedednum)) * 256);
 			M_DrawTextBox(BASEVIDWIDTH/2-128-8, BASEVIDHEIGHT-16-8, 32, 1);
 			V_DrawFill(BASEVIDWIDTH/2-128, BASEVIDHEIGHT-16, 256, 8, 111);
 			V_DrawFill(BASEVIDWIDTH/2-128, BASEVIDHEIGHT-16, totalfileslength, 8, 96);
 			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16, V_20TRANS|V_MONOSPACE,
-				va(" %2u/%2u files",loadcompletednum,fileneedednum));
+				va(" %2u/%2u archivos",loadcompletednum,fileneedednum));
 		}
 		else if (filedownload.current != -1)
 		{
@@ -221,7 +221,7 @@ static void CL_DrawConnectionStatus(void)
 				? M_GetText("HTTP downloading \"%s\"")
 				: M_GetText("Downloading \"%s\"");
 #else
-			const char *download_str = M_GetText("Downloading \"%s\"");
+			const char *download_str = M_GetText("Descargando \"%s\"");
 #endif
 
 			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_ALLOWLOWERCASE|V_YELLOWMAP,
@@ -245,12 +245,12 @@ static void CL_DrawConnectionStatus(void)
 				}
 
 				V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_ALLOWLOWERCASE|V_YELLOWMAP,
-					va(M_GetText("from %s"), tempname));
+					va(M_GetText("desde %s"), tempname));
 			}
 			else
 			{
 				V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-16, V_ALLOWLOWERCASE|V_YELLOWMAP,
-					M_GetText("from the server"));
+					M_GetText("desde el servidor"));
 			}
 
 			DrawFileProgress(file, BASEVIDHEIGHT-16);
@@ -262,7 +262,7 @@ static void CL_DrawConnectionStatus(void)
 
 			DrawConnectionStatusBox();
 			V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT-16-24, V_YELLOWMAP,
-				M_GetText("Waiting to download files..."));
+				M_GetText("Esperando para descargar archivos..."));
 		}
 	}
 }
@@ -285,7 +285,7 @@ boolean CL_SendJoin(void)
 	UINT8 localplayers = 1;
 	char const *player2name;
 	if (netgame)
-		CONS_Printf(M_GetText("Sending join request...\n"));
+		CONS_Printf(M_GetText("Enviando solicitud para unirse...\n"));
 	netbuffer->packettype = PT_CLIENTJOIN;
 
 	netbuffer->u.clientcfg.modversion = MODVERSION;
@@ -603,9 +603,7 @@ static void BeginDownload(boolean direct)
 
 			// why was this its own cl_mode_t?
 			M_StartMessage(M_GetText(
-				"The direct downloader encountered an error.\n"
-				"See the logfile for more info.\n\n"
-				"Press ESC\n"
+				"El descargador directo encontr\xF3 un error.\nRevisa el archivo de registro para m\xE1s info.\n\nPulsa ESC\n"
 			), NULL, MM_NOTHING);
 		}
 	}
@@ -662,18 +660,11 @@ static void ShowDownloadConsentMessage(void)
 
 	if (serverisfull)
 		M_StartMessage(va(M_GetText(
-			"This server is full!\n"
-			"Download of %s of additional\ncontent is required to join.\n"
-			"\n"
-			"You may download server addons,\nand wait for a slot.\n"
-			"\n"
-			"Press ENTER to continue\nor ESC to cancel.\n"
+			"\xA1""Este servidor est\xE1 lleno!\nSe requiere descargar %s de contenido\nadicional para unirte.\n\nPuedes descargar los complementos\ny esperar por un hueco libre.\n\nPulsa ENTER para continuar\no ESC para cancelar.\n"
 		), downloadsize), M_ConfirmConnect, MM_EVENTHANDLER);
 	else
 		M_StartMessage(va(M_GetText(
-			"Download of %s of additional\ncontent is required to join.\n"
-			"\n"
-			"Press ENTER to continue\nor ESC to cancel.\n"
+			"Se requiere descargar %s de contenido\nadicional para unirte.\n\nPulsa ENTER para continuar\no ESC para cancelar.\n"
 		), downloadsize), M_ConfirmConnect, MM_EVENTHANDLER);
 
 	cl_mode = CL_CONFIRMCONNECT;
@@ -745,10 +736,7 @@ static boolean CL_FinishedFileList(void)
 	{
 		AbortConnection();
 		M_StartMessage(M_GetText(
-			"You have too many WAD files loaded\n"
-			"to add ones the server is using.\n"
-			"Please restart SRB2 before connecting.\n\n"
-			"Press ESC\n"
+			"Tienes demasiados archivos WAD cargados\npara a\xF1""adir los que usa el servidor.\nReinicia SRB2 antes de conectarte.\n\nPulsa ESC\n"
 		), NULL, MM_NOTHING);
 		return false;
 	}
@@ -756,14 +744,7 @@ static boolean CL_FinishedFileList(void)
 	{
 		AbortConnection();
 		M_StartMessage(M_GetText(
-			"You have the wrong addons loaded.\n"
-			"\n"
-			"To play on this server, restart\n"
-			"the game and don't load any addons.\n"
-			"SRB2 will automatically add\n"
-			"everything you need when you join.\n"
-			"\n"
-			"Press ESC\n"
+			"Tienes complementos incompatibles cargados.\n\nPara jugar en este servidor, reinicia el juego\ny no cargues ning\xFAn complemento previo.\nSRB2 a\xF1""adir\xE1 autom\xE1ticamente\ntodo lo necesario al entrar.\n\nPulsa ESC\n"
 		), NULL, MM_NOTHING);
 		return false;
 	}
@@ -772,11 +753,7 @@ static boolean CL_FinishedFileList(void)
 		if (serverisfull)
 		{
 			M_StartMessage(M_GetText(
-				"This server is full!\n"
-				"\n"
-				"You may load server addons (if any), and wait for a slot.\n"
-				"\n"
-				"Press ENTER to continue\nor ESC to cancel.\n\n"
+				"\xA1""Este servidor est\xE1 lleno!\n\nPuedes cargar complementos del servidor y esperar por un hueco libre.\n\nPulsa ENTER para continuar\no ESC para cancelar.\n\n"
 			), M_ConfirmConnect, MM_EVENTHANDLER);
 			cl_mode = CL_CONFIRMCONNECT;
 			curfadevalue = 0;
@@ -795,15 +772,7 @@ static boolean CL_FinishedFileList(void)
 			HandleDirectDownloadFail(status);
 			AbortConnection();
 			M_StartMessage(M_GetText(
-				"An error occurred when trying to\n"
-				"download missing addons.\n"
-				"(This is almost always a problem\n"
-				"with the server, not your game.)\n"
-				"\n"
-				"See the console or log file\n"
-				"for additional details.\n"
-				"\n"
-				"Press ESC\n"
+				"Ocurri\xF3 un error al intentar descargar\nlos complementos que faltaban.\n(Casi siempre es problema del\nservidor, no de tu juego).\n\nRevisa la consola o registro\npara m\xE1s detalles.\n\nPulsa ESC\n"
 			), NULL, MM_NOTHING);
 			return false;
 		}
@@ -825,21 +794,20 @@ static boolean CL_FinishedFileList(void)
 
 static const char * InvalidServerReason (serverinfo_pak *info)
 {
-#define EOT "\nPress ESC\n"
+#define EOT "\nPulsa ESC\n"
 
 	// Magic number for new packet format
 	if (info->_255 != 255)
 	{
 		return
-			"Outdated server (version unknown).\n" EOT;
+			"Servidor desactualizado (versi\xF3n desconocida).\n" EOT;
 	}
 
 	if (strncmp(info->application, SRB2APPLICATION, sizeof
 				info->application))
 	{
 		return va(
-				"%s cannot connect\n"
-				"to %s servers.\n" EOT,
+				"%s no puede conectarse\na servidores de %s.\n" EOT,
 				SRB2APPLICATION,
 				info->application);
 	}
@@ -850,8 +818,7 @@ static const char * InvalidServerReason (serverinfo_pak *info)
 			info->subversion != SUBVERSION
 	){
 		return va(
-				"Incompatible %s versions.\n"
-				"(server version %d.%d.%d)\n" EOT,
+				"Versiones incompatibles de %s.\n(versi\xF3n del servidor %d.%d.%d)\n" EOT,
 				SRB2APPLICATION,
 				info->version / 100,
 				info->version % 100,
@@ -862,23 +829,19 @@ static const char * InvalidServerReason (serverinfo_pak *info)
 	{
 		case REFUSE_BANNED:
 			return
-				"You have been banned\n"
-				"from the server.\n" EOT;
+				"Has sido baneado\ndel servidor.\n" EOT;
 		case REFUSE_JOINS_DISABLED:
 			return
-				"The server is not accepting\n"
-				"joins for the moment.\n" EOT;
+				"El servidor no est\xE1 aceptando\nnuevas conexiones por ahora.\n" EOT;
 		case REFUSE_SLOTS_FULL:
 			return va(
-					"Maximum players reached: %d\n" EOT,
+					"L\xEDmite m\xE1ximo de jugadores alcanzado: %d\n" EOT,
 					info->maxplayer - D_NumBots());
 		default:
 			if (info->refusereason)
 			{
 				return
-					"You can't join.\n"
-					"I don't know why,\n"
-					"but you can't join.\n" EOT;
+					"No puedes unirte.\nNo se sabe por qu\xE9,\npero no puedes unirte.\n" EOT;
 			}
 	}
 
@@ -1095,10 +1058,7 @@ static boolean CL_ServerConnectionTicker(const char *tmpsave, tic_t *oldtic, tic
 				CONS_Printf(M_GetText("5 minute wait time exceeded.\n"));
 				AbortConnection();
 				M_StartMessage(M_GetText(
-					"5 minute wait time exceeded.\n"
-					"You may retry connection.\n"
-					"\n"
-					"Press ESC\n"
+					"Tiempo de espera de 5 minutos superado.\nPuedes reintentar la conexi\xF3n.\n\nPulsa ESC\n"
 				), NULL, MM_NOTHING);
 				return false;
 			}
@@ -1163,7 +1123,7 @@ static boolean CL_ServerConnectionTicker(const char *tmpsave, tic_t *oldtic, tic
 		if (gamekeydown[KEY_ESCAPE] || gamekeydown[KEY_JOY1+1] || cl_mode == CL_ABORTED)
 		{
 			CONS_Printf(M_GetText("Network game synchronization aborted.\n"));
-			M_StartMessage(M_GetText("Network game synchronization aborted.\n\nPress ESC\n"), NULL, MM_NOTHING);
+			M_StartMessage(M_GetText("Sincronizaci\xF3n de partida en red cancelada.\n\nPulsa ESC\n"), NULL, MM_NOTHING);
 
 			AbortConnection();
 
@@ -1366,7 +1326,7 @@ void PT_ServerRefuse(SINT8 node)
 			return;
 		}
 
-		M_StartMessage(va(M_GetText("Server refuses connection\n\nReason:\n%s"),
+		M_StartMessage(va(M_GetText("El servidor rechaz\xF3 la conexi\xF3n\n\nMotivo:\n%s"),
 			reason), NULL, MM_NOTHING);
 
 		AbortConnection();

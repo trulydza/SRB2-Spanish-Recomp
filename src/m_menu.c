@@ -11456,7 +11456,7 @@ static void M_ConnectMenuModChecks(INT32 choice)
 
 	if (modifiedgame)
 	{
-		M_StartMessage(M_GetText("You have add-ons loaded.\nYou won't be able to join netgames!\n\nTo play online, restart the game\nand don't load any addons.\nSRB2 will automatically add\neverything you need when you join.\n\n(Press a key)\n"),M_ConnectMenu,MM_EVENTHANDLER);
+		M_StartMessage(M_GetText("Tienes complementos cargados.\n\xA1No podr\xE1s unirte a partidas en red!\n\nPara jugar en l\xEDnea, reinicia el juego\ny no cargues complementos.\nSRB2 a\xF1""adir\xE1 autom\xE1ticamente\ntodo lo que necesites al entrar.\n\n(Pulsa una tecla)\n"),M_ConnectMenu,MM_EVENTHANDLER);
 		return;
 	}
 
@@ -11805,7 +11805,7 @@ static void M_ConnectIP(INT32 choice)
 
 	if (*setupm_ip == 0)
 	{
-		M_StartMessage("You must specify an IP address.\n", NULL, MM_NOTHING);
+		M_StartMessage("Debes especificar una direcci\xF3n IP.\n", NULL, MM_NOTHING);
 		return;
 	}
 
@@ -11815,7 +11815,7 @@ static void M_ConnectIP(INT32 choice)
 
 	// A little "please wait" message.
 	M_DrawTextBox(56, BASEVIDHEIGHT/2-12, 24, 2);
-	V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT/2, 0, "Connecting to server...");
+	V_DrawCenteredString(BASEVIDWIDTH/2, BASEVIDHEIGHT/2, 0, "Conectando al servidor...");
 	I_OsPolling();
 	I_UpdateNoBlit();
 	if (rendermode == render_soft)
