@@ -106,11 +106,11 @@ SRB2-recomp\
 │   └── libs\                      ← DLLs del proyecto
 │
 ├── dist\                          ← DISTRIBUCIÓN LISTA
-│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 16)
+│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 20)
 │   ├── srb2win_es_p1.exe          ← Snapshot lote 1
 │   ├── ...                        ← Snapshots lote 2-12
 │   ├── srb2win_es_p13.exe         ← Snapshot lote 13
-│   ├── srb2win_es_p16.exe         ← Snapshot lote 16 (= srb2win_es.exe)
+│   ├── srb2win_es_p16.exe         ← Snapshot lote 16 (último snapshot numerado)
 │   ├── *.dll                      ← Todas las DLLs necesarias
 │   ├── addons\
 │   │   └── srb2_spanish_gfx.pk3   ← Gráficos + fuentes LTFNT/STCFN (100 archivos)
@@ -484,12 +484,51 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lote 16 — Tutorial completo y descripciones de personajes
 - **Archivos:** `src/deh_soc.c`
-- **Exe:** `dist/srb2win_es_p16.exe` (= `dist/srb2win_es.exe`, **actual**)
+- **Exe:** `dist/srb2win_es_p16.exe` (último snapshot numerado; `dist/srb2win_es.exe` ya incluye los lotes 17 a 20)
 - **Contenido:**
   - **Tutorial completo:** 51 páginas de diálogos y guías de Amy Rose (`PROMPT 201` a `PROMPT 221`) y 8 nombres de cartel HUD (`Moverse`, `Control de cámara`, `Moverse y mirar`, `Saltar`, `Spin Dash y rodar`, `Habilidad especial`, `Consigue el escudo`, `Habilidad de escudo`) interceptados nativamente en el parser SOC (`readtextpromptpage`).
   - **Descripciones de personajes vanilla:** los 7 personajes oficiales (`sonic&tails`, `sonic`, `tails`, `knuckles`, `amy`, `fang`, `metalsonic`) traducidos con acentos ortográficos y formateo limpio en `readPlayer` (`M_PlayerTextTr`).
   - Todos los strings integrados con códigos de control del motor (`\x82`, `\x83`, `\x80`, `\xBA`, `\xB6`), signos de apertura (`\xA1`) y separación segura de literales hex con `""`.
 - **Verificado:** compilado e integrado
+
+### Lote 17 — Selector de niveles e intermisión
+- **Archivos:** `src/m_menu.c`, `src/y_inter.c`
+- **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
+- **Commits:** `3fd34293c`, `510f72fc6`
+- **Contenido:**
+  - Selector de niveles: se quitó el sufijo `" ZONE"` que el motor añadía a las cabeceras (`selectheading`), porque los nombres traducidos ya no lo llevan.
+  - Intermisión coop: el número de acto ya no va en una posición fija (`244`). Ahora se calcula a partir del ancho del nombre traducido (`data.coop.actnumx`), para que no se superponga con nombres largos.
+
+### Lote 18 — HUD, powerups y requisitos de NiGHTS
+- **Archivos:** `src/st_stuff.c`, `src/p_inter.c`, `src/m_menu.c`
+- **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
+- **Commit:** `02ec49ebd`
+- **Contenido:**
+  - **HUD de NiGHTS:** el aviso `GET %d SPHERE/CHIP` se reescribió con una variable `itemname`: `¡OBTÉN %d ESFERA(S)!` / `FICHA(S)`, y `¡OBTÉN %d ESFERA(S) MÁS!` para `NTV_GETMORESPHERES`. En etapas especiales: `¡OBTÉN %d ESFERA(S)!`.
+  - **Récord:** `NEW RECORD` pasa a `NUEVO RECORD`.
+  - **Powerups de NiGHTS (`p_inter.c`):** `Recarga de Drill`, `Ayudante Nightopian`, `Tiempo Extra`, `Congela Links`.
+  - **Requisitos de Extras (`M_DrawSecrets`):** `Consigue %d puntos en %s`, `Supera %s en %d:%02d.%02d` y `Consigue nota %c en %s`, cada una con su variante `, mare %d`. Solo se tradujeron estas rutas; el resto de requisitos sigue en la sección 10.
+  - **Selector de mares:** `Overall` pasa a `General` (cvar oculto `dummymares`).
+
+### Lote 19 — Intro: tildes, signos y comillas
+- **Archivos:** `src/f_finale.c`
+- **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
+- **Commits:** `69738d041`, `f24217907`
+- **Contenido:**
+  - Tildes, eñes y signos `¿` `¡` en la intro narrativa del Lote 10 (53 líneas).
+  - Corregidas las comillas dobles y un desbordamiento de texto en el parlamento de la cuenta regresiva; los literales se separan con `""` según la regla del hex de la sección 6.
+
+### Lote 20 — Pistas de emblemas y mensajes de red
+- **Archivos:** `src/deh_soc.c`, `src/m_menu.c`, `src/netcode/client_connection.c`, `src/netcode/d_clisrv.c`, `src/netcode/d_netcmd.c`, `src/netcode/mserv.c`
+- **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
+- **Commit:** `7506a6d70`
+- **Contenido:**
+  - **Pistas de emblemas (95 haikus):** nueva tabla `emblemhinttr_table` en `deh_soc.c` (reutiliza `struct leveltr_s`, par inglés/español).
+  - **Pantalla de conexión:** `Conectando al servidor...`, `Pulsa ESC para cancelar`, estados de espera y descarga de archivos (`Descargando`, `Esperando para descargar archivos...`, contador de archivos).
+  - **Errores al unirse:** servidor lleno, descarga adicional requerida, demasiados WAD, complementos incompatibles, versiones incompatibles, baneo, servidor que no acepta conexiones, límite de jugadores y tiempo de espera de 5 minutos.
+  - **Desconexiones:** cierre por fallo de sincronización, límite de ping o inactividad; baneado o expulsado; `Tiempo de espera agotado`; `El servidor se ha cerrado`; `Iniciando servidor...`.
+  - **Archivos añadidos por el servidor (`d_netcmd.c`):** avisos de archivo o carpeta que falta, suma de verificación distinta y demasiados archivos cargados.
+  - **Menú (`m_menu.c`):** aviso de complementos cargados al unirse y `Debes especificar una dirección IP.`
 
 ---
 
@@ -511,6 +550,14 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 > ✅ **Tutorial y Personajes completados (Lote 16):** 51 páginas de prompts del mapa tutorial, 8 carteles de aviso HUD y descripciones completas de habilidades y consejos para los 7 personajes vanilla en `deh_soc.c`.
 
+> ✅ **Selector de niveles e intermisión (Lote 17):** sin sufijo `ZONE` en las cabeceras y número de acto posicionado según el ancho del nombre traducido.
+
+> ✅ **HUD, powerups y NiGHTS (Lote 18):** avisos de esferas y fichas, `NUEVO RECORD`, los 4 powerups de NiGHTS y parte de los requisitos de Extras.
+
+> ✅ **Intro con tildes y signos (Lote 19):** tildes, eñes, `¿` y `¡` en la intro, más corrección de comillas y desbordamiento.
+
+> ✅ **Pistas de emblemas y mensajes de red (Lote 20):** 95 haikus de pistas, pantalla de conexión, errores al unirse, desconexiones y avisos de archivos añadidos por el servidor.
+
 ### Lista de tareas pendientes
 
 #### 1. Menús y UI en C (`src/m_menu.c`) — *Prioridad Alta / Media*
@@ -531,7 +578,8 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - `"Beat %s"` / `"Beat %s with all emeralds"` / `"Beat %s in Ultimate mode"`
   - `"Get all rings in %s"` / `"Get %d points in %s"` / `"Beat %s in %d:%02d.%02d"`
   - `"Beat the game %d times%s"` / `"Collect %s%d emblems"`
-  - `"Get grade %c in %s"` / `"Get a total time of less than %d:%02d.%02d"`
+  - `"Get %d points over all maps"` / `"Get a total time of less than %d:%02d.%02d"`
+  - Parcialmente traducido en el Lote 18 (nota, y puntos/tiempo en algunas rutas). Las cadenas de arriba siguen en inglés en `m_menu.c`.
 - **Buscador de servidores y salas online (`M_DrawRoomMenu` y `M_DrawConnectMenu`):**
   - Estados y títulos: `"Select a room"`, `"Don't connect to the Master Server."`, `"Checking for updates..."`, `"Fetching room info..."`, `"Please wait."`.
   - En la lista de servidores: `"Server settings"`, `"<Select to change>"`, `"<Unlisted Mode>"`, `"No servers found"`, `"Searching for servers..."`.
@@ -544,8 +592,6 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - Avisos sobre la tecla de pausa en Record Attack y gamepad ocupado por otro jugador.
 
 #### 2. HUD especial y alertas in-game (`src/st_stuff.c`) — *Prioridad Media*
-- **NiGHTS:**
-  - `"\x80GET\x82 %d\x80 SPHERE%s!"`
 - **Respawn y Vidas:**
   - `"Respawn in %d..."`
   - `"You'll steal a life on respawn..."`
@@ -556,9 +602,8 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - `"Hide before time runs out!"`
   - `"Flee before you are hunted!"`
   - `"You cannot move while hiding."`
-- **Espectador y Récords:**
+- **Espectador:**
   - `"Viewpoint:"`
-  - `"\x85* \x82NEW RECORD \x85*\x80"`
 
 #### 3. Pantallas finales y mensajes de guardado (`src/f_finale.c` y `src/g_game.c`) — *Prioridad Media / Baja*
 - **Desbloqueo final (`f_finale.c`):**
@@ -570,16 +615,10 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - `"*Bot %s has been removed"`
   - `"The round has ended.\n"`
 
-#### 4. Pistas de Emblemas (95 Haikus en `zones.pk3`) — *Prioridad Media*
-- En `SOC/SOC_EMBM.txt` existen 95 pistas líricas en formato haiku (5-7-5 sílabas) en inglés para encontrar los emblemas de los niveles oficiales. Requiere interceptar o portar los textos en C para no alterar el netplay.
-
-#### 5. Combate PvP, Peligros y Ringslinger (`src/p_inter.c`) — *Opcional / Nicho*
+#### 4. Combate PvP, Peligros y Ringslinger (`src/p_inter.c`) — *Opcional / Nicho*
 - Mensajes de muerte ambiental: pinchos, lava, agua nociva, abismo, aplastamiento, ahogamiento, asfixia en el espacio.
 - Mensajes de armas de combate Ringslinger: bombas, raíl, anillos arrojadizos, etc.
 - Mensajes de modos Tag, Hide & Seek y CTF (`"%s is now IT!"`, `"%s was found!"`, `"%s picked up the flag!"`, etc.).
-
-#### 6. Mensajes de Netplay (`src/netcode/d_clisrv.c`) — *Baja*
-- Avisos de caída de conexión: `"Server Timeout\n\nPress Esc\n"`, `"Server has shutdown\n\nPress Esc\n"`, `"Starting Server....\n"`.
 
 ---
 
@@ -724,7 +763,7 @@ Por eso se usa el script Python con `assert` antes de escribir.
 En `dist\` del espacio de trabajo local:
 
 - `srb2win_es_p1.exe` hasta `srb2win_es_p13.exe`, más `srb2win_es_p16.exe`
-- `srb2win_es.exe` = último build (lote 16)
+- `srb2win_es.exe` = último build (lote 20)
 
 Si algo sale mal, se puede volver a cualquier snapshot anterior. Los binarios publicados están en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
 
