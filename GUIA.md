@@ -612,7 +612,8 @@ La función `W_VerifyNMUSlumps` en `src/w_wad.c` tiene la lista blanca de prefij
 ### Confirmado
 
 - Se entró a servidores vanilla con el exe traducido sin mod ✓
-- Pendiente confirmar con `Jugar_online.bat` (exe + pk3 cosmético)
+- Confirmado con `Jugar_online.bat` (exe + pk3 cosmético): se entró a servidores vanilla ✓
+- También probado en servidores con mods: con un mod de HUD, el HUD nativo traducido se reemplaza limpio y no quedan textos superpuestos (con el enfoque anterior, por mod, sí se superponían) ✓
 
 ---
 
