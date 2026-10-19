@@ -2,8 +2,9 @@
 
 > **Nombre del proyecto:** SRB2 Spanish Recomp
 > **Versión base:** SRB2 v2.2.15 (tag `SRB2_release_2.2.15`, commit `8701ef41`)
-> **Plataforma:** Windows 64-bit
-> **Última actualización:** 2026-10-10
+> **Versión actual:** v1.3.1
+> **Plataformas:** Windows 64-bit / Linux 64-bit (CachyOS, Arch, etc.)
+> **Última actualización:** 2026-10-15
 
 ---
 
@@ -18,7 +19,7 @@
 7. [Glosario de vocabulario fijado](#7-glosario-de-vocabulario-fijado)
 8. [Mapa de archivos fuente](#8-mapa-de-archivos-fuente)
 9. [Historial de lotes](#9-historial-de-lotes)
-10. [Lo que falta por traducir](#10-lo-que-falta-por-traducir)
+10. [Lo que ya esta traducido](#10-lo-que-ya-esta-traducido)
 11. [Compatibilidad online](#11-compatibilidad-online)
 12. [Cómo jugar](#12-cómo-jugar)
 13. [Problemas conocidos y trampas](#13-problemas-conocidos-y-trampas)
@@ -74,13 +75,13 @@ El problema: **el Lua y el SOC bloquean el multijugador** (el servidor exige que
 
 ### ¿Qué va en cada parte?
 
-| Contenido | Dónde vive | Por qué |
-|---|---|---|
-| Textos de menú, HUD, mensajes | C (exe recompilado) | No se pueden cambiar con pk3 |
-| Gráficos de menú/HUD | pk3 cosmético | Los lumps cosméticos no bloquean MP |
-| Nombres de niveles (SOC) | C (tablas de traducción) | El SOC bloquea MP |
-| Lua de HUD | C (portado) | El Lua bloquea MP |
-| Cutscenes/Tutorial (SOC) | Pendiente de portar a C | El SOC bloquea MP |
+| Contenido                     | Dónde vive               | Por qué                             |
+| ----------------------------- | ------------------------ | ----------------------------------- |
+| Textos de menú, HUD, mensajes | C (exe recompilado)      | No se pueden cambiar con pk3        |
+| Gráficos de menú/HUD          | pk3 cosmético            | Los lumps cosméticos no bloquean MP |
+| Nombres de niveles (SOC)      | C (tablas de traducción) | El SOC bloquea MP                   |
+| Lua de HUD                    | C (portado)              | El Lua bloquea MP                   |
+| Cutscenes/Tutorial (SOC)      | Pendiente de portar a C  | El SOC bloquea MP                   |
 
 ---
 
@@ -102,46 +103,54 @@ SRB2-recomp\
 │   │   ├── p_inter.c              ← Mensajes de combate/items
 │   │   └── command.c              ← Cvars (On/Off/Yes/No)
 │   ├── bin\                       ← Salida del build
-│   │   └── srb2win64.exe          ← Exe recién compilado
-│   └── libs\                      ← DLLs del proyecto
+│   │   ├── srb2win64.exe          ← Exe Windows recién compilado
+│   │   └── lsdl2srb2              ← Binario Linux recién compilado
+│   └── libs\                      ← DLLs del proyecto (Windows)
 │
 ├── dist\                          ← DISTRIBUCIÓN LISTA
-│   ├── srb2win_es.exe             ← Exe actual (último build, = lote 20)
+│   ├── srb2win_es.exe             ← Exe Windows actual (último build, = lote 20)
+│   ├── srb2linux_es               ← Binario ejecutable Linux 64-bit (traducido)
+│   ├── srb2linux                  ← Copia/alias ejecutable Linux
 │   ├── srb2win_es_p1.exe          ← Snapshot lote 1
 │   ├── ...                        ← Snapshots lote 2-12
 │   ├── srb2win_es_p13.exe         ← Snapshot lote 13
 │   ├── srb2win_es_p16.exe         ← Snapshot lote 16 (último snapshot numerado)
-│   ├── *.dll                      ← Todas las DLLs necesarias
+│   ├── *.dll                      ← Todas las DLLs necesarias (Windows)
 │   ├── addons\
 │   │   └── srb2_spanish_gfx.pk3   ← Gráficos + fuentes LTFNT/STCFN (100 archivos)
-│   ├── Jugar_online.bat           ← Lanzador EN USO: Exe + pk3 cosmético (MP)
-│   ├── Jugar_traducido.bat        ← Legado (ya no se usa)
-│   └── Jugar_vanilla.bat          ← Legado (ya no se usa)
+│   ├── Jugar_online.bat           ← Windows: EN USO (Exe + pk3 cosmético, MP)
+│   ├── Jugar_traducido.bat        ← Windows: legado (ya no se usa)
+│   ├── Jugar_vanilla.bat          ← Windows: legado (ya no se usa)
+│   ├── Jugar_online.sh            ← Linux: EN USO (Lanzador + pk3 cosmético, MP)
+│   ├── Jugar_traducido.sh         ← Linux: legado (ya no se usa)
+│   └── Jugar_vanilla.sh           ← Linux: legado (ya no se usa)
 │
 ├── build_patchN.log               ← Un log por cada build
 └── GUIA.md                        ← Documentación central del proyecto (este archivo)
 ```
 
-> **En el repositorio de GitHub:** la carpeta `SRB2\` corresponde a la raíz del repo (`src/`, `libs/`, etc.). `dist\` y los `.exe` **no se versionan**: los binarios se publican en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
+> **En el repositorio de GitHub:** la carpeta `SRB2\` corresponde a la raíz del repo (`src/`, `libs/`, etc.). `dist\` y los ejecutables (`.exe` / `srb2linux_es`) **no se versionan**: los binarios se publican en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
 
 ### Carpetas externas (SOLO LECTURA)
 
-| Carpeta | Contenido | Regla |
-|---|---|---|
+| Carpeta                       | Contenido                           | Regla           |
+| ----------------------------- | ----------------------------------- | --------------- |
 | `carpeta_de_instalacion_SRB2` | Juego original, saves, gamedata.dat | **NUNCA TOCAR** |
-| `carpeta_del_mod\` | Mod original `srb2_spanish.pk3` | Solo lectura |
+| `carpeta_del_mod\`            | Mod original `srb2_spanish.pk3`     | Solo lectura    |
 
 ---
 
 ## 4. Cómo compilar
 
-### Requisitos
+### Compilación en Windows
+
+#### Requisitos (Windows)
 
 - **MSYS2** instalado en `C:\msys64`
 - Toolchain **MinGW-w64 x86_64** (64-bit)
 - Paquetes: `mingw-w64-x86_64-gcc`, `make`, `mingw-w64-x86_64-SDL2`, `mingw-w64-x86_64-libgme`, `mingw-w64-x86_64-libopenmpt`
 
-### Comando de build
+#### Comando de build (Windows)
 
 Desde una terminal MSYS2 MinGW64, o con el siguiente argv:
 
@@ -159,7 +168,7 @@ C:\msys64\usr\bin\env.exe MSYSTEM=MINGW64 \
 
 > **Importante:** el flag `-Wno-error=incompatible-pointer-types` es necesario porque GCC 16 trata esos warnings como error y el código de SRB2 los tiene.
 
-### Después del build
+#### Después del build (Windows)
 
 ```bash
 # Copiar el exe a dist (sobrescribir)
@@ -174,16 +183,60 @@ md5sum dist/srb2win_es.exe dist/srb2win_es_pN.exe
 
 (`N` = número del lote.)
 
-### Build incremental
-
-Solo recompila los archivos modificados. Tarda ~1-3 minutos.
-
-### Build limpio (si algo falla)
+#### Build limpio (Windows)
 
 ```bash
 cd /ruta/hacia/SRB2-recomp/SRB2
 make -C src MINGW64=1 clean
 CFLAGS="-Wno-error=incompatible-pointer-types" make -C src MINGW64=1 -j4
+```
+
+---
+
+### Compilación en Linux (CachyOS / Arch Linux / Ubuntu)
+
+#### Requisitos y Dependencias (Linux)
+
+En distribuciones basadas en Arch Linux (CachyOS, EndeavourOS, Manjaro) con `pacman`:
+```bash
+sudo pacman -S --needed base-devel miniupnpc sdl2_mixer libpng libgme libopenmpt curl mesa glu
+```
+*(Nota: En CachyOS/Arch, SDL2 viene proporcionado de forma moderna por `sdl2-compat` o `sdl2`).*
+
+En Debian / Ubuntu:
+```bash
+sudo apt install build-essential libsdl2-mixer-dev libminiupnpc-dev libpng-dev libgme-dev libopenmpt-dev libcurl4-openssl-dev libgl1-mesa-dev libglu1-mesa-dev
+```
+
+#### Compatibilidad con GCC 15/16 y C23
+En compiladores recientes como GCC 16 (predeterminado en CachyOS/Arch rolling), el compilador activa el estándar C23 por defecto, donde `true` y `false` son palabras reservadas del lenguaje. Esto causaría un conflicto con `enum {false = 0, true = 1};` en `doomtype.h`.
+Para garantizar compilación limpia sin errores de tipos o palabras clave, el Makefile ya incluye `-std=gnu11` en la variable `opts`.
+
+#### Comando de Build en Linux
+Entrar a la carpeta `SRB2/src/` y ejecutar:
+```bash
+cd SRB2/src
+make LINUX64=1 NOUPX=1 -j$(nproc)
+```
+El ejecutable resultante se genera en: `SRB2/bin/lsdl2srb2`.
+
+#### Sincronización después del Build en Linux
+```bash
+cp SRB2/bin/lsdl2srb2 dist/srb2linux_es
+cp SRB2/bin/lsdl2srb2 dist/srb2linux
+cp SRB2/bin/lsdl2srb2 srb2linux_es
+cp SRB2/bin/lsdl2srb2 run/srb2linux_es
+chmod +x dist/srb2linux_es dist/srb2linux srb2linux_es run/srb2linux_es
+```
+
+#### Build incremental en Linux
+Solo recompila los archivos modificados. Tarda unos pocos segundos gracias al paralelismo (`-j$(nproc)`).
+
+#### Build limpio en Linux (si algo falla o tras cambios estructurales)
+```bash
+cd SRB2/src
+make LINUX64=1 clean
+make LINUX64=1 NOUPX=1 -j$(nproc)
 ```
 
 ---
@@ -234,14 +287,14 @@ grep -n 'TEXTO_ORIGINAL' src/ARCHIVO.c
 
 ### Caracteres permitidos
 
-| Permitido | Notas |
-|---|---|
-| ASCII 32-126 (letras sin acento, números, símbolos básicos) | Siempre disponible |
-| Vocales acentuadas: á é í ó ú (y mayúsculas Á É Í Ó Ú) | Via hex: `\xE1`, `\xE9`, `\xED`, `\xF3`, `\xFA`, `\xC1`, `\xC9`, `\xCD`, `\xD3`, `\xDA` |
-| Eñe: ñ Ñ | Via hex: `\xF1`, `\xD1` |
-| Diéresis: ü Ü | Via hex: `\xFC`, `\xDC` |
-| Signos de apertura: ¡ ¿ | Via hex: `\xA1`, `\xBF` |
-| Códigos de control del motor (`\x82`, `\x83`, etc.) | Formato visual |
+| Permitido                                                   | Notas                                                                                   |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| ASCII 32-126 (letras sin acento, números, símbolos básicos) | Siempre disponible                                                                      |
+| Vocales acentuadas: á é í ó ú (y mayúsculas Á É Í Ó Ú)      | Via hex: `\xE1`, `\xE9`, `\xED`, `\xF3`, `\xFA`, `\xC1`, `\xC9`, `\xCD`, `\xD3`, `\xDA` |
+| Eñe: ñ Ñ                                                    | Via hex: `\xF1`, `\xD1`                                                                 |
+| Diéresis: ü Ü                                               | Via hex: `\xFC`, `\xDC`                                                                 |
+| Signos de apertura: ¡ ¿                                     | Via hex: `\xA1`, `\xBF`                                                                 |
+| Códigos de control del motor (`\x82`, `\x83`, etc.)         | Formato visual                                                                          |
 
 > Se crearon glifos nativos para **LTFNT** (fuente de Titlecard, 12 glifos) y **STCFN** (fuente estándar de menús/HUD, 16 glifos) empaquetados en `srb2_spanish_gfx.pk3`. El motor también tiene `V_FontFallback` que sustituye por la letra base sin acento si el glifo no existe.
 
@@ -253,13 +306,13 @@ grep -n 'TEXTO_ORIGINAL' src/ARCHIVO.c
 
 ### Cosas que NO se tocan
 
-| Qué | Ejemplo | Por qué |
-|---|---|---|
-| Format specifiers | `%d`, `%s`, `%hu`, `%hd` | El motor los necesita |
-| Newlines | `\n` | Estructura del texto |
-| Códigos de color | `\x82` (amarillo), `\x83` (verde), `\x85` (rojo), `\x80` (blanco) | Formato visual |
-| Flechas de ejes | `\x17`, `\x18` | Iconos del gamepad |
-| Teclas de confirmación | `'Y'` / `'N'` | El motor lee las teclas físicas Y/N, nunca S |
+| Qué                    | Ejemplo                                                           | Por qué                                      |
+| ---------------------- | ----------------------------------------------------------------- | -------------------------------------------- |
+| Format specifiers      | `%d`, `%s`, `%hu`, `%hd`                                          | El motor los necesita                        |
+| Newlines               | `\n`                                                              | Estructura del texto                         |
+| Códigos de color       | `\x82` (amarillo), `\x83` (verde), `\x85` (rojo), `\x80` (blanco) | Formato visual                               |
+| Flechas de ejes        | `\x17`, `\x18`                                                    | Iconos del gamepad                           |
+| Teclas de confirmación | `'Y'` / `'N'`                                                     | El motor lee las teclas físicas Y/N, nunca S |
 
 ### Cuidado con el hex después de `\xNN`
 
@@ -277,14 +330,14 @@ Si el carácter que sigue a un `\xNN` es un dígito hex (0-9, a-f, A-F), el comp
 
 Algunos strings van a arrays de tamaño fijo. **No exceder el límite:**
 
-| Variable | Tamaño máx. | Dónde |
-|---|---|---|
-| `passed1` | 21 chars | `y_inter.c` (nombre del personaje en intermisión) |
-| `passed2` | 16 chars | `y_inter.c` (texto de estado coop: `"zona completa"` = 13 chars, OK) |
-| `spec.passed2` | 17 chars | `y_inter.c` (Special Stage: `"Etapa Especial"` = 14 chars, OK) |
-| `unlockables[].name` | 64 chars | `deh_soc.c` |
-| `unlockables[].objective` | 64 chars | `deh_soc.c` |
-| `levelname` | 22 chars | `deh_soc.c` (límite del header SOC) |
+| Variable                  | Tamaño máx. | Dónde                                                                |
+| ------------------------- | ----------- | -------------------------------------------------------------------- |
+| `passed1`                 | 21 chars    | `y_inter.c` (nombre del personaje en intermisión)                    |
+| `passed2`                 | 16 chars    | `y_inter.c` (texto de estado coop: `"zona completa"` = 13 chars, OK) |
+| `spec.passed2`            | 17 chars    | `y_inter.c` (Special Stage: `"Etapa Especial"` = 14 chars, OK)       |
+| `unlockables[].name`      | 64 chars    | `deh_soc.c`                                                          |
+| `unlockables[].objective` | 64 chars    | `deh_soc.c`                                                          |
+| `levelname`               | 22 chars    | `deh_soc.c` (límite del header SOC)                                  |
 
 ---
 
@@ -292,31 +345,31 @@ Algunos strings van a arrays de tamaño fijo. **No exceder el límite:**
 
 Estas traducciones ya están aplicadas en el código y deben mantenerse consistentes. Los nombres de niveles y desbloqueables usan hex escapes para acentos (`\xE1`, `\xF1`, etc.); los strings de menú y HUD también pueden usarlos si hay glifos disponibles:
 
-| Inglés | Español | Notas |
-|---|---|---|
-| Zone | Zona | |
-| Act | Acto | |
-| Ring | Anillo | |
-| Spin | Girar | |
-| Add-ons | Complementos | |
-| Record Attack | Contrarreloj | |
-| Item Monitors | Monitores | |
-| Starposts | Checkpoints | |
-| Special Stage | Etapa Especial | |
-| Options | Opciones | |
-| Multiplayer | Multijugador | |
-| 1 Player | 1 Jugador | |
-| Quit | Salir | |
-| Secrets | Extras | |
-| Pandora's Box | Caja de Pandora | |
-| Emblem Hints | Pistas de emblemas | |
-| Pause | Pausa | |
-| Sound Test | Prueba de sonido | |
-| Lives | Vidas | No aparece como texto, es gráfico |
-| Emerald | Esmeralda | |
-| Save | Guardar / Partida guardada | Según contexto |
-| Continue | Continuar | En menús de pausa |
-| Game Over | Game Over | Se mantiene en inglés (es marca) |
+| Inglés        | Español                    | Notas                             |
+| ------------- | -------------------------- | --------------------------------- |
+| Zone          | Zona                       |                                   |
+| Act           | Acto                       |                                   |
+| Ring          | Anillo                     |                                   |
+| Spin          | Girar                      |                                   |
+| Add-ons       | Complementos               |                                   |
+| Record Attack | Contrarreloj               |                                   |
+| Item Monitors | Monitores                  |                                   |
+| Starposts     | Checkpoints                |                                   |
+| Special Stage | Etapa Especial             |                                   |
+| Options       | Opciones                   |                                   |
+| Multiplayer   | Multijugador               |                                   |
+| 1 Player      | 1 Jugador                  |                                   |
+| Quit          | Salir                      |                                   |
+| Secrets       | Extras                     |                                   |
+| Pandora's Box | Caja de Pandora            |                                   |
+| Emblem Hints  | Pistas de emblemas         |                                   |
+| Pause         | Pausa                      |                                   |
+| Sound Test    | Prueba de sonido           |                                   |
+| Lives         | Vidas                      | No aparece como texto, es gráfico |
+| Emerald       | Esmeralda                  |                                   |
+| Save          | Guardar / Partida guardada | Según contexto                    |
+| Continue      | Continuar                  | En menús de pausa                 |
+| Game Over     | Game Over                  | Se mantiene en inglés (es marca)  |
 
 ---
 
@@ -324,19 +377,19 @@ Estas traducciones ya están aplicadas en el código y deben mantenerse consiste
 
 Qué archivo controla qué parte del juego:
 
-| Archivo | Qué contiene | Líneas aprox. |
-|---|---|---|
-| `src/m_menu.c` | **Todo el sistema de menús**: principal, submenús, opciones, Record Attack, NiGHTS, Marathon, servidor, controles, video, sonido, datos, partidas guardadas, quit messages, mensajes de confirmación, estadísticas | ~14000 |
-| `src/st_stuff.c` | **HUD in-game**: SCORE/TIME/RINGS (gráficos), titlecard (Zona/Acto), NiGHTS HUD, Game Over, textos de estado, overtime | ~2900 |
-| `src/y_inter.c` | **Intermisiones**: pantalla post-nivel (coop, match, CTF, competition, special stage), conteo de puntaje | ~1400 |
-| `src/f_finale.c` | **Finale/créditos**: texto de introducción (16 páginas), créditos, pantalla Continue, evaluación final, Marathon, cutscenes | ~4700 |
-| `src/deh_soc.c` | **Parser SOC**: lee los archivos SOC del pk3. Aquí viven las tablas de traducción (`M_UnlockTr()`, `M_LevelTr()`, `M_LevelSubTr()`) | ~3500 |
-| `src/m_cond.c` | **Condiciones de desbloqueo**: lógica de unlockables y mensaje de "desbloqueado!" | ~400 |
-| `src/g_game.c` | **Lógica del juego**: récords, replays, mensajes de consola (NEW RECORD, Earned emblems) | ~4000 |
-| `src/p_inter.c` | **Interacción de jugadores**: mensajes de muerte/combate, CTF flags, power-ups NiGHTS | ~2200 |
-| `src/command.c` | **Cvars**: valores On/Off/Yes/No/True/False (delicado, la consola los parsea) | ~1700 |
-| `src/hu_stuff.c` | **Chat y mensajes HUD**: comandos say/sayteam/csay | ~700 |
-| `src/v_video.c` | **Renderizado de texto**: `V_FontFallback` (fallback de glifos acentuados a letra base) | ~4000 |
+| Archivo          | Qué contiene                                                                                                                                                                                                       | Líneas aprox. |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `src/m_menu.c`   | **Todo el sistema de menús**: principal, submenús, opciones, Record Attack, NiGHTS, Marathon, servidor, controles, video, sonido, datos, partidas guardadas, quit messages, mensajes de confirmación, estadísticas | ~14000        |
+| `src/st_stuff.c` | **HUD in-game**: SCORE/TIME/RINGS (gráficos), titlecard (Zona/Acto), NiGHTS HUD, Game Over, textos de estado, overtime                                                                                             | ~2900         |
+| `src/y_inter.c`  | **Intermisiones**: pantalla post-nivel (coop, match, CTF, competition, special stage), conteo de puntaje                                                                                                           | ~1400         |
+| `src/f_finale.c` | **Finale/créditos**: texto de introducción (16 páginas), créditos, pantalla Continue, evaluación final, Marathon, cutscenes                                                                                        | ~4700         |
+| `src/deh_soc.c`  | **Parser SOC**: lee los archivos SOC del pk3. Aquí viven las tablas de traducción (`M_UnlockTr()`, `M_LevelTr()`, `M_LevelSubTr()`)                                                                                | ~3500         |
+| `src/m_cond.c`   | **Condiciones de desbloqueo**: lógica de unlockables y mensaje de "desbloqueado!"                                                                                                                                  | ~400          |
+| `src/g_game.c`   | **Lógica del juego**: récords, replays, mensajes de consola (NEW RECORD, Earned emblems)                                                                                                                           | ~4000         |
+| `src/p_inter.c`  | **Interacción de jugadores**: mensajes de muerte/combate, CTF flags, power-ups NiGHTS                                                                                                                              | ~2200         |
+| `src/command.c`  | **Cvars**: valores On/Off/Yes/No/True/False (delicado, la consola los parsea)                                                                                                                                      | ~1700         |
+| `src/hu_stuff.c` | **Chat y mensajes HUD**: comandos say/sayteam/csay                                                                                                                                                                 | ~700          |
+| `src/v_video.c`  | **Renderizado de texto**: `V_FontFallback` (fallback de glifos acentuados a letra base)                                                                                                                            | ~4000         |
 
 ---
 
@@ -345,42 +398,49 @@ Qué archivo controla qué parte del juego:
 Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y se guardaron como snapshot.
 
 ### Lote 1 — Menú principal
+
 - **Archivo:** `m_menu.c`
 - **Exe:** `dist/srb2win_es_p1.exe`
 - **Contenido:** menú principal (1 Jugador, Multijugador, Complementos, Opciones, Salir). Level Select: `ACT %d` → `ACTO %d`, `THE ACT` → `EL ACTO`.
 - **Verificado:** sí (confirmado visualmente)
 
 ### Lote 2 — Submenús
+
 - **Archivo:** `m_menu.c`
 - **Exe:** `dist/srb2win_es_p2.exe`
 - **Contenido:** submenús de 1 Jugador, Multijugador, Opciones (principal, controles J1/J2), menús de pausa SP y MP.
 - **Verificado:** sí
 
 ### Lote 3 — Controles y opciones avanzadas
+
 - **Archivo:** `m_menu.c`
 - **Exe:** `dist/srb2win_es_p3.exe`
 - **Contenido:** lista de controles, gamepad, Video, Sonido, Datos (capturas de pantalla, borrar datos).
 - **Verificado:** sí (confirmado visualmente)
 
 ### Lote 4 — Extras y desbloqueables
+
 - **Archivos:** `deh_soc.c`, `m_menu.c`, `m_cond.c`
 - **Exe:** `dist/srb2win_es_p4.exe`
 - **Contenido:** tabla `M_UnlockTr()` con 27 nombres + 24 objetivos de unlockables, aplicada al parser SOC. Caja de Pandora. Pistas de emblemas. Aviso "desbloqueado!". Nombres de zona tomados del mod de traducción previo.
 - **Verificado:** parcialmente (falta confirmar en pantalla que todo cabe)
 
 ### Lote 5 — Opciones adicionales
+
 - **Archivo:** `m_menu.c`
 - **Exe:** `dist/srb2win_es_p5.exe`
 - **Contenido:** Mouse, Cámara, Color, OpenGL, Servidor, Monitores sorpresa (resumidos).
 - **Verificado:** no (visualmente)
 
 ### Lote 6 — Mensajes y confirmaciones
+
 - **Archivo:** `m_menu.c`
 - **Exe:** `dist/srb2win_es_p6.exe`
 - **Contenido:** Record Attack/NiGHTS/Marathon, Multijugador, ~35 mensajes de confirmación (`M_StartMessage`), etiquetas dibujadas (`"Juego en pausa"`, `"Pulsa ESC para salir"`).
 - **Verificado:** no (visualmente)
 
 ### Lote 7 — HUD e intermisiones
+
 - **Archivos:** `st_stuff.c`, `y_inter.c`
 - **Exe:** `dist/srb2win_es_p7.exe`
 - **Contenido:**
@@ -391,6 +451,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** no (falta ver la alineación del HUD en pantalla)
 
 ### Lote 8 — Prioridad alta (Load Game, Records, HUD NiGHTS, Continue, Rebind, Quit Messages)
+
 - **Archivos:** `m_menu.c`, `st_stuff.c`, `f_finale.c`
 - **Exe:** `dist/srb2win_es_p8.exe`
 - **Contenido:**
@@ -403,6 +464,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 9 — Prioridad media (Intermisión MP y mensajes de consola)
+
 - **Archivos:** `y_inter.c`, `g_game.c`
 - **Exe:** `dist/srb2win_es_p9.exe`
 - **Contenido:**
@@ -414,6 +476,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 10 — Prioridad baja (Intro narrativa, Créditos y Maratón)
+
 - **Archivo:** `f_finale.c`
 - **Exe:** `dist/srb2win_es_p10.exe`
 - **Contenido:**
@@ -423,6 +486,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 11 — Prioridad alta (Nombres de niveles y subtítulos SOC en C)
+
 - **Archivo:** `deh_soc.c`
 - **Exe:** `dist/srb2win_es_p11.exe`
 - **Contenido:**
@@ -432,6 +496,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 12 — Parche de fuente para tildes y ñ
+
 - **Archivos:** `hu_stuff.h`, `v_video.c`, `console.c`, `hu_stuff.c`
 - **Exe:** `dist/srb2win_es_p12.exe`
 - **Contenido:**
@@ -446,6 +511,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado; pendiente verificar glifos visualmente en juego
 
 ### Lote 13 — Strings sueltos de finales y transiciones
+
 - **Archivo:** `f_finale.c`
 - **Exe:** `dist/srb2win_es_p13.exe`
 - **Contenido:**
@@ -455,6 +521,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 14 — Parche tipográfico: glifos LTFNT para Titlecards
+
 - **Archivos:** `v_video.c`, `dist/addons/srb2_spanish_gfx.pk3`
 - **Exe:** `dist/srb2win_es.exe` en su momento (hoy reemplazado por el lote 16)
 - **Contenido:**
@@ -467,6 +534,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado; la Titlecard muestra "Cañón Árido" con tildes correctas y minúsculas/mayúsculas proporcionales
 
 ### Lote 15 — Glifos STCFN y corrección ortográfica de nombres de niveles
+
 - **Archivos:** `deh_soc.c`, `dist/addons/srb2_spanish_gfx.pk3`
 - **Exe:** `dist/srb2win_es.exe` en su momento (hoy reemplazado por el lote 16)
 - **Contenido:**
@@ -483,6 +551,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 16 — Tutorial completo y descripciones de personajes
+
 - **Archivos:** `src/deh_soc.c`
 - **Exe:** `dist/srb2win_es_p16.exe` (último snapshot numerado; `dist/srb2win_es.exe` ya incluye los lotes 17 a 20)
 - **Contenido:**
@@ -492,6 +561,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 - **Verificado:** compilado e integrado
 
 ### Lote 17 — Selector de niveles e intermisión
+
 - **Archivos:** `src/m_menu.c`, `src/y_inter.c`
 - **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
 - **Commits:** `3fd34293c`, `510f72fc6`
@@ -500,6 +570,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - Intermisión coop: el número de acto ya no va en una posición fija (`244`). Ahora se calcula a partir del ancho del nombre traducido (`data.coop.actnumx`), para que no se superponga con nombres largos.
 
 ### Lote 18 — HUD, powerups y requisitos de NiGHTS
+
 - **Archivos:** `src/st_stuff.c`, `src/p_inter.c`, `src/m_menu.c`
 - **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
 - **Commit:** `02ec49ebd`
@@ -511,6 +582,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - **Selector de mares:** `Overall` pasa a `General` (cvar oculto `dummymares`).
 
 ### Lote 19 — Intro: tildes, signos y comillas
+
 - **Archivos:** `src/f_finale.c`
 - **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
 - **Commits:** `69738d041`, `f24217907`
@@ -519,6 +591,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
   - Corregidas las comillas dobles y un desbordamiento de texto en el parlamento de la cuenta regresiva; los literales se separan con `""` según la regla del hex de la sección 6.
 
 ### Lote 20 — Pistas de emblemas y mensajes de red
+
 - **Archivos:** `src/deh_soc.c`, `src/m_menu.c`, `src/netcode/client_connection.c`, `src/netcode/d_clisrv.c`, `src/netcode/d_netcmd.c`, `src/netcode/mserv.c`
 - **Exe:** `dist/srb2win_es.exe` (sin snapshot numerado)
 - **Commit:** `7506a6d70`
@@ -532,7 +605,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ---
 
-## 10. Lo que falta por traducir
+## 10. Lo que ya esta traducido
 
 > ✅ **Prioridad alta completada (Lote 8):** Load Game, etiquetas de récords/stats, Continue, prompt de rebind de controles, quit messages y HUD NiGHTS/espectador/carreras/overtime.
 
@@ -560,65 +633,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lista de tareas pendientes
 
-#### 1. Menús y UI en C (`src/m_menu.c`) — *Prioridad Alta / Media*
-- **Pausa en Record Attack / Contrarreloj (`MAPauseMenu`):**
-  - `"Emblem Hints..."`
-  - `"Continue"`
-  - `"Retry"`
-  - `"Abort"`
-- **Submenús de Equipos (`MISC_ScrambleTeamMenu` y `MISC_ChangeTeamMenu`):**
-  - `"Scramble Method"`
-  - `"Select Team"`
-  - `"Confirm"`
-- **Descripciones de modos de juego (`gametypedesc[NUMGAMETYPES]`):**
-  - Las 8 descripciones completas al elegir o configurar modo (Co-op, Competition, Race, Match, Team Match, Tag, Hide & Seek, CTF).
-- **Descripciones de estilos de cámara y control (`M_DrawControlStyle`):**
-  - Explicaciones de los estilos: *Automático*, *Manual*, *Simple*, *Legacy* y *Strafe*.
-- **Generación dinámica de requisitos para Extras/Desbloqueables (`M_DrawSecrets`):**
-  - `"Beat %s"` / `"Beat %s with all emeralds"` / `"Beat %s in Ultimate mode"`
-  - `"Get all rings in %s"` / `"Get %d points in %s"` / `"Beat %s in %d:%02d.%02d"`
-  - `"Beat the game %d times%s"` / `"Collect %s%d emblems"`
-  - `"Get %d points over all maps"` / `"Get a total time of less than %d:%02d.%02d"`
-  - Parcialmente traducido en el Lote 18 (nota, y puntos/tiempo en algunas rutas). Las cadenas de arriba siguen en inglés en `m_menu.c`.
-- **Buscador de servidores y salas online (`M_DrawRoomMenu` y `M_DrawConnectMenu`):**
-  - Estados y títulos: `"Select a room"`, `"Don't connect to the Master Server."`, `"Checking for updates..."`, `"Fetching room info..."`, `"Please wait."`.
-  - En la lista de servidores: `"Server settings"`, `"<Select to change>"`, `"<Unlisted Mode>"`, `"No servers found"`, `"Searching for servers..."`.
-  - Columnas/datos: `"Ping: %u"`, `"Players: %02d/%02d"`, `"Gametype: %s"`.
-- **Pistas de emblemas en menú (`M_DrawEmblemHints`):**
-  - Paginación: `"%d of %d"`.
-  - Aviso de falta de pista: `"No hint available for this emblem."`.
-- **Prompts de rebind de controles (`M_ChangeControls`):**
-  - `"Hit the new key for\n%s\nESC for Cancel"`.
-  - Avisos sobre la tecla de pausa en Record Attack y gamepad ocupado por otro jugador.
-
-#### 2. HUD especial y alertas in-game (`src/st_stuff.c`) — *Prioridad Media*
-- **Respawn y Vidas:**
-  - `"Respawn in %d..."`
-  - `"You'll steal a life on respawn..."`
-  - `"Wait to respawn..."`
-  - `"%d player%s remaining"`
-- **Tag / Escondite:**
-  - `"Waiting for players to hide..."`
-  - `"Hide before time runs out!"`
-  - `"Flee before you are hunted!"`
-  - `"You cannot move while hiding."`
-- **Espectador:**
-  - `"Viewpoint:"`
-
-#### 3. Pantallas finales y mensajes de guardado (`src/f_finale.c` y `src/g_game.c`) — *Prioridad Media / Baja*
-- **Desbloqueo final (`f_finale.c`):**
-  - `"Unlocked:"` en la pantalla de recompensas finales.
-- **Mensajes de guardado y avisos (`g_game.c`):**
-  - `"Save game from different version...\n\nPress ESC\n"`
-  - `"Savegame file corrupted\n\nPress ESC\n"`
-  - `"Game saved.\n"`
-  - `"*Bot %s has been removed"`
-  - `"The round has ended.\n"`
-
-#### 4. Combate PvP, Peligros y Ringslinger (`src/p_inter.c`) — *Opcional / Nicho*
-- Mensajes de muerte ambiental: pinchos, lava, agua nociva, abismo, aplastamiento, ahogamiento, asfixia en el espacio.
-- Mensajes de armas de combate Ringslinger: bombas, raíl, anillos arrojadizos, etc.
-- Mensajes de modos Tag, Hide & Seek y CTF (`"%s is now IT!"`, `"%s was found!"`, `"%s picked up the flag!"`, etc.).
+> La lista detallada con ~120 strings pendientes, traducciones sugeridas y checkboxes se encuentra en [traduccion-pendiente-unificada.md](traduccion-pendiente-unificada.md).
 
 ---
 
@@ -626,7 +641,6 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 > [!CAUTION]
 > **No modificar `command.c` (líneas 78-82):** Los valores literales de cvars (`"On"`, `"Off"`, `"Yes"`, `"No"`, `"True"`, `"False"`) **deben permanecer obligatoriamente en inglés**. Traducir estos valores rompería el analizador de comandos de la consola, la carga y guardado de `config.cfg` y la sincronización de variables de red entre clientes.
-
 
 ---
 
@@ -659,13 +673,15 @@ La función `W_VerifyNMUSlumps` en `src/w_wad.c` tiene la lista blanca de prefij
 ## 12. Cómo jugar
 
 > [!IMPORTANT]
-> **Lanzador en uso:** el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los modos `Jugar_traducido.bat` y `Jugar_vanilla.bat` se conservan solo como legado y ya no se incluyen en el ZIP.
+> **Lanzador en uso:** el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`** (Windows) y **`Jugar_online.sh`** (Linux). Los modos `Jugar_traducido` y `Jugar_vanilla` se conservan solo como legado y ya no se incluyen en las distribuciones.
 
-### Instalación desde Release
+### Cómo jugar en Windows
+
+#### Instalación desde Release (Windows)
 
 Descarga `SRB2_Spanish_Recomp_v2.2.15.zip` y `srb2_spanish_gfx.pk3` desde [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases) y sigue las instrucciones del README. Solo `Jugar_online.bat` viene en el zip; los `.bat` legado ya no se incluyen.
 
-### Modo online (compatible con servidores) — EN USO
+#### Modo online en Windows (compatible con servidores) — EN USO
 
 Usar `Jugar_online.bat`:
 
@@ -676,7 +692,7 @@ start "" "srb2win_es.exe" -file addons\srb2_spanish_gfx.pk3
 
 Carga el exe traducido + gráficos cosméticos. Se puede entrar a cualquier servidor vanilla.
 
-### Modo traducción completa (offline) — legado
+#### Modo traducción completa en Windows (offline) — legado
 
 Usar `Jugar_traducido.bat`:
 
@@ -687,13 +703,74 @@ start "" "srb2win_es.exe" -file "RUTA_AL_MOD\srb2_spanish.pk3"
 
 Carga todo: exe traducido + mod completo con Lua/SOC. Solo para jugar en solitario.
 
-### Modo exe solo (sin mods) — legado
+#### Modo exe solo en Windows (sin mods) — legado
 
 Usar `Jugar_vanilla.bat`: corre el exe traducido sin ningún mod adicional. Los menús y el HUD están en español; los gráficos de cabecera siguen en inglés.
 
+---
+
+### Cómo jugar en Linux (CachyOS / Arch Linux / distribuciones modernas)
+
+#### Binarios y Scripts en Linux
+
+En Linux se utiliza el binario nativo de 64 bits `srb2linux_es` (ubicado en `dist/` o en la raíz del proyecto) junto con los scripts `.sh` ejecutables equivalentes a los `.bat`.
+
+Asegurarse de que tienen permisos de ejecución:
+```bash
+chmod +x dist/srb2linux_es dist/Jugar_*.sh
+```
+
+#### Modo online en Linux (compatible con servidores) — EN USO
+
+Ejecutar [`Jugar_online.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_online.sh):
+```bash
+./dist/Jugar_online.sh
+# O desde la raíz:
+./Jugar_online.sh
+```
+Carga automáticamente el binario nativo traducido junto con el addon gráfico cosmético `srb2_spanish_gfx.pk3`. Permite entrar a servidores multijugador oficiales y vanilla sin problemas de consistencia.
+
+#### Modo traducción completa en Linux (offline) — legado
+
+Ejecutar [`Jugar_traducido.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_traducido.sh):
+```bash
+./dist/Jugar_traducido.sh
+```
+Carga el mod completo `addons/srb2_spanish.pk3` con Lua y SOC para una experiencia 100% en español en modo un jugador.
+
+#### Modo vanilla en Linux (sin mods adicionales) — legado
+
+Ejecutar [`Jugar_vanilla.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_vanilla.sh):
+```bash
+./dist/Jugar_vanilla.sh
+```
+
+#### Detección Inteligente de Recursos (Fallback Flatpak / Sistema)
+
+Los lanzadores `.sh` de Linux cuentan con búsqueda inteligente de assets:
+1. Si los archivos `.pk3` oficiales (`srb2.pk3`, `zones.pk3`, etc.) están en `dist/` o la carpeta local, los carga directamente.
+2. Si no están en la carpeta local, detecta y monta automáticamente la instalación oficial de **Flatpak** (`/var/lib/flatpak/app/org.srb2.SRB2/current/active/files/share/games/srb2` o en `~/.local/share/flatpak/...`) mediante la variable `SRB2WADDIR`.
+3. Si están instalados a nivel de sistema (`/usr/share/games/SRB2`), los toma de ahí.
+
+#### Atajo con Shell Fish (Abrir y Cerrar Terminal Automáticamente)
+
+Para abrir el juego desde la terminal con un atajo rápido y que la ventana de la terminal se cierre de inmediato sin cerrar el juego:
+Se definen las funciones `srb2` o `srb2-online` en `~/.config/fish/functions/srb2.fish`:
+```fish
+function srb2 --description "Iniciar SRB2 Spanish Recomp (Online) y cerrar terminal"
+    setsid -f "/ruta/hacia/SRB2-recomp/dist/Jugar_online.sh" $argv >/dev/null 2>&1
+    exit
+end
+```
+Con esto, basta con escribir `srb2` (o `srb2 -warp 1`) en la terminal: el juego se inicia en una nueva sesión en segundo plano y la terminal se cierra automáticamente.
+
+---
+
 ### Datos del juego
 
-El exe guarda su config y saves **separados** del juego original. No comparte `gamedata.dat` ni saves con la instalación en `carpeta_de_instalacion_SRB2`.
+Tanto en Windows como en Linux, el juego guarda su configuración y partidas guardadas de forma estándar:
+- **Windows:** En la carpeta local o en `%APPDATA%\Sonic Robo Blast 2`.
+- **Linux:** En `~/.srb2/` (o si corre vía Flatpak sandbox en `~/.var/app/org.srb2.SRB2/.srb2/`). No altera tus partidas de otras versiones.
 
 ---
 
@@ -701,33 +778,36 @@ El exe guarda su config y saves **separados** del juego original. No comparte `g
 
 ### Entorno de build
 
-| Problema | Solución |
-|---|---|
-| `bash -s` no encuentra `sed`, `grep`, etc. | Usar `bash -lc` (login shell) |
-| `git` no está en el PATH de MSYS2 | Usar el `git` de Windows directamente |
-| `python` no existe en el bash de MSYS | Invocar `python` desde Windows |
-| `find /` cuelga la herramienta | No escanear fuera de las carpetas del proyecto |
+| Problema                                               | Solución                                                              |
+| ------------------------------------------------------ | --------------------------------------------------------------------- |
+| `bash -s` no encuentra `sed`, `grep`, etc.             | Usar `bash -lc` (login shell)                                         |
+| `git` no está en el PATH de MSYS2                      | Usar el `git` de Windows directamente                                 |
+| `python` no existe en el bash de MSYS                  | Invocar `python` desde Windows                                        |
+| `find /` cuelga la herramienta                         | No escanear fuera de las carpetas del proyecto                        |
 | Los números de línea de notas anteriores pueden variar | Verificar siempre con grep, no confiar ciegamente en números de línea |
+| En Linux con GCC 15/16: error de `false`/`true` en C23 | Añadir `-std=gnu11` al `Makefile` en la variable `opts` (ya incluido) |
+| Permiso denegado al ejecutar scripts `.sh` en Linux    | Dar permisos con `chmod +x dist/srb2linux_es dist/Jugar_*.sh`         |
+| Assets no encontrados en Linux sin copiar los `.pk3`   | Instalar SRB2 vía Flatpak; los `.sh` exportan `SRB2WADDIR` automáticamente |
 
 ### Código
 
-| Problema | Solución |
-|---|---|
-| `#ifdef ALAM_LIGHTING` contiene menús OpenGL | No traducir: está desactivado en vanilla |
-| `grep` del exe no encuentra strings | GCC compila `strcpy` con inmediatos de 8 bytes; el texto no queda contiguo. Buscar trozos cortos o confiar en el diff |
-| Un hex después de `\xNN` se come la siguiente letra | Cerrar y reabrir el string: `"\x82""Texto"` |
-| `M_GetText()` parece una función de i18n | Es un **stub** que devuelve el mismo string. No traduce nada |
+| Problema                                            | Solución                                                                                                              |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `#ifdef ALAM_LIGHTING` contiene menús OpenGL        | No traducir: está desactivado en vanilla                                                                              |
+| `grep` del exe no encuentra strings                 | GCC compila `strcpy` con inmediatos de 8 bytes; el texto no queda contiguo. Buscar trozos cortos o confiar en el diff |
+| Un hex después de `\xNN` se come la siguiente letra | Cerrar y reabrir el string: `"\x82""Texto"`                                                                           |
+| `M_GetText()` parece una función de i18n            | Es un **stub** que devuelve el mismo string. No traduce nada                                                          |
 
 ### Traducción
 
-| Problema | Solución |
-|---|---|
-| Glifos de LTFNT y STCFN para acentos | ✅ Resuelto: glifos generados con Doom Patch encoder e inyectados en `srb2_spanish_gfx.pk3` |
-| Hex escape seguido de carácter hex | Separar el literal: `"\xF1""as"` para ñas, `"\xE9""ditos"` para éditos |
-| Confirmaciones con Y/N | El motor lee la tecla física. Escribir `'Y'`/`'N'`, nunca `'S'` |
-| Textos de menú con `strcmp` | Se verificó: `m_menu.c` NO compara strings de menú por contenido |
-| `config.cfg` guarda valores de cvars como texto | No traducir `"On"`/`"Off"` en `command.c` sin separar display de parse |
-| Fuente sin glifo para un carácter Latin-1 | `V_FontFallback` sustituye automáticamente por la letra base sin acento |
+| Problema                                        | Solución                                                                                   |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Glifos de LTFNT y STCFN para acentos            | ✅ Resuelto: glifos generados con Doom Patch encoder e inyectados en `srb2_spanish_gfx.pk3` |
+| Hex escape seguido de carácter hex              | Separar el literal: `"\xF1""as"` para ñas, `"\xE9""ditos"` para éditos                     |
+| Confirmaciones con Y/N                          | El motor lee la tecla física. Escribir `'Y'`/`'N'`, nunca `'S'`                            |
+| Textos de menú con `strcmp`                     | Se verificó: `m_menu.c` NO compara strings de menú por contenido                           |
+| `config.cfg` guarda valores de cvars como texto | No traducir `"On"`/`"Off"` en `command.c` sin separar display de parse                     |
+| Fuente sin glifo para un carácter Latin-1       | `V_FontFallback` sustituye automáticamente por la letra base sin acento                    |
 
 ---
 
@@ -744,11 +824,15 @@ Los glifos se inyectan en `srb2_spanish_gfx.pk3` como lumps cosméticos (no bloq
 
 ### Si modifico un archivo .c, ¿tengo que recompilar todo?
 
-No. El build es incremental: solo recompila los `.c` que cambiaron. Tarda 1-3 minutos.
+No. El build es incremental: solo recompila los `.c` que cambiaron. En Linux tarda unos pocos segundos con `make LINUX64=1 NOUPX=1 -j$(nproc)`, y en Windows 1-3 minutos.
 
 ### ¿Se puede jugar online con la traducción?
 
-Sí, usando `Jugar_online.bat`. El exe traducido es compatible con servidores vanilla. El pk3 cosmético no bloquea la conexión.
+Sí, usando `Jugar_online.bat` (en Windows) o `./Jugar_online.sh` / `srb2` (en Linux). El ejecutable traducido es compatible con servidores vanilla. El pk3 cosmético no bloquea la conexión.
+
+### ¿Se puede compilar y jugar de forma nativa en Linux / CachyOS / Steam Deck?
+
+**Sí, completamente nativo.** El recompilado compila limpiamente en Linux x86_64 usando GCC y Make. Además, cuenta con scripts lanzadores (`Jugar_online.sh`, etc.) que detectan si tienes la versión oficial de Flatpak instalada (`org.srb2.SRB2`) para aprovechar sus archivos `.pk3` sin necesidad de duplicarlos en disco.
 
 ### ¿Hay riesgo de romper algo al traducir?
 
@@ -766,7 +850,8 @@ Por eso se usa el script Python con `assert` antes de escribir.
 En `dist\` del espacio de trabajo local:
 
 - `srb2win_es_p1.exe` hasta `srb2win_es_p13.exe`, más `srb2win_es_p16.exe`
-- `srb2win_es.exe` = último build (lote 20)
+- `srb2win_es.exe` = último build Windows (lote 20)
+- `srb2linux_es` = último build nativo Linux
 
 Si algo sale mal, se puede volver a cualquier snapshot anterior. Los binarios publicados están en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
 
