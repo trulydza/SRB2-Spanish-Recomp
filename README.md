@@ -34,7 +34,8 @@ Después, pon `srb2_spanish_gfx.pk3` dentro de la carpeta `addons/` (créala si 
 Para jugar:
 
 - `Jugar_online.bat` carga los textos y los gráficos traducidos. Sirve tanto en solitario como en servidores.
-- `Jugar_vanilla.bat` arranca sin el pk3 de gráficos.
+
+> **Aviso:** actualmente el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los lanzadores `Jugar_traducido.bat` y `Jugar_vanilla.bat` quedan como legado.
 
 ## Compilar y documentación técnica
 

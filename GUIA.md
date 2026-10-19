@@ -114,9 +114,9 @@ SRB2-recomp\
 │   ├── *.dll                      ← Todas las DLLs necesarias
 │   ├── addons\
 │   │   └── srb2_spanish_gfx.pk3   ← Gráficos + fuentes LTFNT/STCFN (100 archivos)
-│   ├── Jugar_online.bat           ← Exe + pk3 cosmético (MP)
-│   ├── Jugar_traducido.bat        ← Exe + mod completo (offline)
-│   └── Jugar_vanilla.bat          ← Exe sin mod
+│   ├── Jugar_online.bat           ← Lanzador EN USO: Exe + pk3 cosmético (MP)
+│   ├── Jugar_traducido.bat        ← Legado (ya no se usa)
+│   └── Jugar_vanilla.bat          ← Legado (ya no se usa)
 │
 ├── build_patchN.log               ← Un log por cada build
 └── GUIA.md                        ← Documentación central del proyecto (este archivo)
@@ -658,11 +658,14 @@ La función `W_VerifyNMUSlumps` en `src/w_wad.c` tiene la lista blanca de prefij
 
 ## 12. Cómo jugar
 
+> [!IMPORTANT]
+> **Lanzador en uso:** el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los modos `Jugar_traducido.bat` y `Jugar_vanilla.bat` se conservan solo como legado.
+
 ### Instalación desde Release
 
 Descarga `SRB2_Spanish_Recomp_v2.2.15.zip` y `srb2_spanish_gfx.pk3` desde [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases) y sigue las instrucciones del README. Los `.bat` de abajo vienen en el zip.
 
-### Modo online (compatible con servidores)
+### Modo online (compatible con servidores) — EN USO
 
 Usar `Jugar_online.bat`:
 
@@ -673,7 +676,7 @@ start "" "srb2win_es.exe" -file addons\srb2_spanish_gfx.pk3
 
 Carga el exe traducido + gráficos cosméticos. Se puede entrar a cualquier servidor vanilla.
 
-### Modo traducción completa (offline)
+### Modo traducción completa (offline) — legado
 
 Usar `Jugar_traducido.bat`:
 
@@ -684,7 +687,7 @@ start "" "srb2win_es.exe" -file "RUTA_AL_MOD\srb2_spanish.pk3"
 
 Carga todo: exe traducido + mod completo con Lua/SOC. Solo para jugar en solitario.
 
-### Modo exe solo (sin mods)
+### Modo exe solo (sin mods) — legado
 
 Usar `Jugar_vanilla.bat`: corre el exe traducido sin ningún mod adicional. Los menús y el HUD están en español; los gráficos de cabecera siguen en inglés.
 
