@@ -659,11 +659,11 @@ La función `W_VerifyNMUSlumps` en `src/w_wad.c` tiene la lista blanca de prefij
 ## 12. Cómo jugar
 
 > [!IMPORTANT]
-> **Lanzador en uso:** el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los modos `Jugar_traducido.bat` y `Jugar_vanilla.bat` se conservan solo como legado.
+> **Lanzador en uso:** el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los modos `Jugar_traducido.bat` y `Jugar_vanilla.bat` se conservan solo como legado y ya no se incluyen en el ZIP.
 
 ### Instalación desde Release
 
-Descarga `SRB2_Spanish_Recomp_v2.2.15.zip` y `srb2_spanish_gfx.pk3` desde [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases) y sigue las instrucciones del README. Los `.bat` de abajo vienen en el zip.
+Descarga `SRB2_Spanish_Recomp_v2.2.15.zip` y `srb2_spanish_gfx.pk3` desde [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases) y sigue las instrucciones del README. Solo `Jugar_online.bat` viene en el zip; los `.bat` legado ya no se incluyen.
 
 ### Modo online (compatible con servidores) — EN USO
 

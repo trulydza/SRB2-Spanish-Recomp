@@ -35,7 +35,7 @@ Para jugar:
 
 - `Jugar_online.bat` carga los textos y los gráficos traducidos. Sirve tanto en solitario como en servidores.
 
-> **Aviso:** actualmente el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los lanzadores `Jugar_traducido.bat` y `Jugar_vanilla.bat` quedan como legado.
+> **Aviso:** actualmente el proyecto se trabaja y soporta **únicamente con `Jugar_online.bat`**. Los lanzadores `Jugar_traducido.bat` y `Jugar_vanilla.bat` quedan como legado y ya no se incluyen en el ZIP.
 
 ## Compilar y documentación técnica
 
