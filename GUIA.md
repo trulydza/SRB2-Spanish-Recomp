@@ -4,7 +4,7 @@
 > **Versión base:** SRB2 v2.2.15 (tag `SRB2_release_2.2.15`, commit `8701ef41`)
 > **Versión actual:** v1.3.1
 > **Plataformas:** Windows 64-bit / Linux 64-bit (CachyOS, Arch, etc.)
-> **Última actualización:** 2026-10-15
+> **Última actualización:** 2026-10-19
 
 ---
 
@@ -633,7 +633,7 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 
 ### Lista de tareas pendientes
 
-> La lista detallada con ~120 strings pendientes, traducciones sugeridas y checkboxes se encuentra en [traduccion-pendiente-unificada.md](traduccion-pendiente-unificada.md).
+> La lista detallada con ~75-80 strings pendientes, traducciones sugeridas y checkboxes se encuentra en [traduccion-pendiente-unificada.md](traduccion-pendiente-unificada.md).
 
 ---
 

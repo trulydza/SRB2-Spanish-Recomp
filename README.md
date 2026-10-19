@@ -12,6 +12,8 @@ Los textos están dentro del ejecutable, no en un addon de Lua o SOC. Por eso se
 - Tutorial completo: las 51 páginas de diálogo de Amy Rose y todos los carteles del mapa.
 - Los 7 personajes vanilla: descripciones, habilidades y consejos.
 - Intro completa (las 16 páginas), créditos y las frases al salir del juego.
+- Pistas de emblemas: las 95 pistas en formato haiku del menú de secretos traducidas al español.
+- Multijugador y conexión en red: pantalla de conexión, descarga de addons, avisos de sincronización y mensajes de estado/expulsión del servidor.
 - Tildes, eñes y signos en las fuentes LTFNT y STCFN. Los glifos vienen en el pk3 de gráficos; sin él, el juego usa un fallback automático.
 
 Los valores de las variables de consola (On/Off, Yes/No) se dejan en inglés a propósito.

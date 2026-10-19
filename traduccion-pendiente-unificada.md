@@ -73,24 +73,23 @@ Estos los ve **TODO el mundo** en cada partida online:
 ### Mensajes de conexión (visibles al unirse)
 - [ ] `"%s has joined the game (player %d)"` → `"%s se unió a la partida (jugador %d)"`
 - [ ] `"%s renamed to %s"` → `"%s cambió su nombre a %s"`
-- [ ] `"Connection Timeout"` → `"Tiempo de conexión agotado"`
+- [x] `"Connection Timeout"` / `"Server Timeout"` → `"Tiempo de espera agotado"` *(Lote 20)*
 - [ ] `"Downloading game state..."` → `"Descargando estado del juego..."`
 - [ ] `"Waiting to download game state..."` → `"Esperando para descargar..."`
 - [ ] `"Waiting for the server..."` → `"Esperando al servidor..."`
-- [ ] `"Connection timeout..."` → `"Tiempo de conexión agotado..."`
 - [ ] `"Cannot connect to the server."` → `"No se pudo conectar al servidor."`
 - [ ] `"Connection refused... Probably, the server is full."` → `"Conexión rechazada... Probablemente el servidor está lleno."`
 - [ ] `"The server is not responding"` → `"El servidor no responde"`
 
 ### Errores de servidor (visibles al intentar unirse)
 - [ ] `"Server not found!"` → `"¡Servidor no encontrado!"`
-- [ ] `"The server is too old to connect"` → `"El servidor es demasiado antiguo"`
-- [ ] `"The server is using a different game modification"` → `"El servidor usa una modificación diferente"`
-- [ ] `"Server full!"` → `"¡Servidor lleno!"`
-- [ ] `"You have been banned from the server."` → `"Has sido baneado del servidor."`
+- [x] `"The server is too old to connect"` → `"Servidor desactualizado..."` *(Lote 20)*
+- [x] `"The server is using a different game modification"` → `"Versiones incompatibles..."` *(Lote 20)*
+- [x] `"Server full!"` → `"¡Este servidor está lleno!"` *(Lote 20)*
+- [x] `"You have been banned from the server."` → `"Has sido baneado del servidor."` *(Lote 20)*
 - [ ] `"You can't join because the game is over."` → `"No puedes unirte, la partida terminó."`
-- [ ] `"Server is not accepting joins for the moment."` → `"El servidor no acepta jugadores por el momento."`
-- [ ] `"Server Shutdown"` / `"Server has shutdown..."` → `"Servidor cerrado"` / `"El servidor se ha cerrado..."`
+- [x] `"Server is not accepting joins for the moment."` → `"El servidor no está aceptando nuevas conexiones por ahora."` *(Lote 20)*
+- [x] `"Server Shutdown"` / `"Server has shutdown..."` → `"El servidor se ha cerrado..."` *(Lote 20)*
 
 ---
 
@@ -157,16 +156,16 @@ Estos los ve **TODO el mundo** en cada partida online:
 
 ## 📊 Resumen Total
 
-| # | Archivo | Strings | Prioridad |
-|---|---------|---------|-----------|
+| # | Archivo | Strings Pendientes | Prioridad |
+|---|---------|---------------------|-----------|
 | 1 | `hu_stuff.c` | ~11 | 🔴 Alta |
-| 2 | `m_menu.c` | ~35 | 🔴🟠 Alta/Media |
-| 3 | `d_clisrv.c` | ~18 | 🔴 Alta |
+| 2 | `m_menu.c` | ~28 | 🔴🟠 Alta/Media |
+| 3 | `d_clisrv.c` | ~11 | 🔴 Alta |
 | 4 | `mserv.c` | ~18 | 🔴 Alta |
 | 5 | `st_stuff.c` | ~9 | 🟠 Media |
 | 6 | `f_finale.c` / `g_game.c` | ~6 | 🟡 Baja |
 | 7 | `p_inter.c` | ~20+ | 🟡 Opcional |
-| | **Total** | **~120** | |
+| | **Total pendientes** | **~75-80** | |
 
 > [!IMPORTANT]
 > Algunos de estos strings pueden ya estar traducidos en el Lote 20 (mensajes de red). Hay que verificar contra el código actual antes de tocarlos.
