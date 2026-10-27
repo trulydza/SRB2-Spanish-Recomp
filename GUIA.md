@@ -52,25 +52,25 @@ El problema: **el Lua y el SOC bloquean el multijugador** (el servidor exige que
 ## 2. Arquitectura y estrategia
 
 ```
-┌─────────────────────────────────────────────┐
-│              JUEGO TRADUCIDO                │
-├──────────────────┬──────────────────────────┤
-│  srb2win_es.exe  │  srb2_spanish_gfx.pk3    │
-│  (motor en C)    │  (gráficos cosméticos)   │
-│                  │                          │
-│  • Menús         │  • Cabeceras de menú     │
-│  • HUD           │  • Iconos HUD            │
-│  • Mensajes      │  • Fuentes extendidas:   │
-│  • Intermisiones │    12 LTFNT (Titlecard)   │
-│  • Titlecards    │    16 STCFN (texto std)   │
-│  • Unlockables   │  • Parches visuales      │
-│  • Soporte Latin-1│                          │
-│  • Fallback font │  100 archivos, todos     │
-│                  │  lumps cosméticos        │
-├──────────────────┴──────────────────────────┤
-│  RESULTADO: Compatible con servidores       │
-│  vanilla. Se puede jugar online.            │
-└─────────────────────────────────────────────┘
+┌───────────────────────────────────────────────┐
+│                JUEGO TRADUCIDO                │
+├────────────────────┬──────────────────────────┤
+│  srb2win_es.exe    │  srb2_spanish_gfx.pk3    │
+│  (motor en C)      │  (gráficos cosméticos)   │
+│                    │                          │
+│  • Menús           │  • Cabeceras de menú     │
+│  • HUD             │  • Iconos HUD            │
+│  • Mensajes        │  • Fuentes extendidas:   │
+│  • Intermisiones   │    12 LTFNT (Titlecard)  │
+│  • Titlecards      │    16 STCFN (texto std)  │
+│  • Unlockables     │  • Parches visuales      │
+│  • Soporte Latin-1 │                          │
+│  • Fallback font   │  100 archivos, todos     │
+│                    │  lumps cosméticos        │
+├────────────────────┴──────────────────────────┤
+│  RESULTADO: Compatible con servidores         │
+│  vanilla. Se puede jugar online.              │
+└───────────────────────────────────────────────┘
 ```
 
 ### ¿Qué va en cada parte?
