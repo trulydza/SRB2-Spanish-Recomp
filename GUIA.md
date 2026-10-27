@@ -3,8 +3,8 @@
 > **Nombre del proyecto:** SRB2 Spanish Recomp
 > **Versión base:** SRB2 v2.2.15 (tag `SRB2_release_2.2.15`, commit `8701ef41`)
 > **Versión actual:** v1.3.1
-> **Plataformas:** Windows 64-bit / Linux 64-bit (CachyOS, Arch, etc.)
-> **Última actualización:** 2026-10-19
+> **Plataformas:** Windows 64-bit / Linux 64-bit (CachyOS, Arch, etc.) / Android (arm64-v8a)
+> **Última actualización:** 2026-10-27
 
 ---
 
@@ -31,9 +31,9 @@
 
 SRB2 (Sonic Robo Blast 2) tiene todos sus textos hardcodeados en C: menús, HUD, mensajes de confirmación, intermisiones, títulos de nivel, etc. Un mod `.pk3` puede cambiar gráficos y agregar Lua/SOC, pero **no puede tocar esos strings en C**.
 
-Este proyecto **recompila el motor** con los textos traducidos al español. El resultado es un `srb2win_es.exe` que:
+Este proyecto **recompila el motor** con los textos traducidos al español. El resultado es un binario nativo (`srb2win_es.exe` en Windows, `srb2linux_es` en Linux y APK instalable en Android) que:
 
-- Muestra todo en español (menús, HUD, mensajes)
+- Muestra todo en español (menús, HUD, mensajes, tutorial, intermisiones y pistas)
 - **Sigue siendo compatible con servidores vanilla** (se puede jugar online)
 - Se complementa con un `.pk3` cosmético para los gráficos traducidos
 
@@ -77,11 +77,12 @@ El problema: **el Lua y el SOC bloquean el multijugador** (el servidor exige que
 
 | Contenido                     | Dónde vive               | Por qué                             |
 | ----------------------------- | ------------------------ | ----------------------------------- |
-| Textos de menú, HUD, mensajes | C (exe recompilado)      | No se pueden cambiar con pk3        |
+| Textos de menú, HUD, mensajes | C (exe/app recompilada)  | No se pueden cambiar con pk3        |
 | Gráficos de menú/HUD          | pk3 cosmético            | Los lumps cosméticos no bloquean MP |
 | Nombres de niveles (SOC)      | C (tablas de traducción) | El SOC bloquea MP                   |
 | Lua de HUD                    | C (portado)              | El Lua bloquea MP                   |
-| Cutscenes/Tutorial (SOC)      | Pendiente de portar a C  | El SOC bloquea MP                   |
+| Tutorial (SOC)                | C (portado en Lote 16)   | El SOC bloquea MP                   |
+| Cutscenes de historia (SOC)   | Pendiente de portar a C  | El SOC bloquea MP                   |
 
 ---
 
@@ -130,6 +131,14 @@ SRB2-recomp\
 ```
 
 > **En el repositorio de GitHub:** la carpeta `SRB2\` corresponde a la raíz del repo (`src/`, `libs/`, etc.). `dist\` y los ejecutables (`.exe` / `srb2linux_es`) **no se versionan**: los binarios se publican en [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp/releases).
+
+### Ecosistema de Repositorios
+
+El proyecto se distribuye en 4 repositorios oficiales interconectados:
+1. **[SRB2-Spanish](https://github.com/trulydza/SRB2-Spanish)**: Portal central / Hub de distribución, descargas de releases y extras/mods traducidos.
+2. **[SRB2-Spanish-Recomp](https://github.com/trulydza/SRB2-Spanish-Recomp)**: Repositorio maestro del motor C (Windows x64 / MinGW-w64).
+3. **[SRB2-Spanish-Recomp-Linux](https://github.com/trulydza/SRB2-Spanish-Recomp-Linux)**: Repositorio de distribución para Linux (binarios ELF nativos y scripts de ejecución).
+4. **[SRB2-Spanish-Recomp-Android](https://github.com/trulydza/SRB2-Spanish-Recomp-Android)**: Port oficial para Android (arm64-v8a) con controles táctiles en pantalla y aceleración OpenGL ES (`gl4es`).
 
 ### Carpetas externas (SOLO LECTURA)
 
@@ -238,6 +247,29 @@ cd SRB2/src
 make LINUX64=1 clean
 make LINUX64=1 NOUPX=1 -j$(nproc)
 ```
+
+---
+
+### Compilación en Android (arm64-v8a)
+
+El port para Android se compila desde el subproyecto `SRB2/android-port/` en la rama `android-port` (o el repositorio independiente `SRB2-Spanish-Recomp-Android`).
+
+#### Requisitos y Toolchain
+- **JDK**: Eclipse Temurin 17 (o superior) en `/home/daza/android/jdk`
+- **Android SDK**: `/home/daza/android/sdk` (API 34/36)
+- **Android NDK**: r25c (`25.1.8937393`) en `/home/daza/android/sdk/ndk/25.1.8937393`
+- **CMake**: `3.22.1`
+
+#### Comando de Build (Release)
+```bash
+cd "SRB2/android-port"
+export JAVA_HOME="/home/daza/android/jdk"
+export ANDROID_HOME="/home/daza/android/sdk"
+export ANDROID_NDK_HOME="/home/daza/android/sdk/ndk/25.1.8937393"
+./gradlew assembleRelease
+```
+El APK firmado resultante se genera en:
+`SRB2/android-port/app/build/outputs/apk/release/app-release.apk`
 
 ---
 
@@ -630,6 +662,8 @@ Cada lote es un conjunto de traducciones que se hicieron juntas, se compilaron y
 > ✅ **Intro con tildes y signos (Lote 19):** tildes, eñes, `¿` y `¡` en la intro, más corrección de comillas y desbordamiento.
 
 > ✅ **Pistas de emblemas y mensajes de red (Lote 20):** 95 haikus de pistas, pantalla de conexión, errores al unirse, desconexiones y avisos de archivos añadidos por el servidor.
+
+> ✅ **Extras y Mods traducidos (MRCE):** Adaptación completa de Mystic Realm Community Edition (*MRCE*) con nombres de zonas en español, interfaz gráfica del HUD (`TIEMPO`, `ANILLOS`, `ESCUDO` / `GUARDIA`), intermisiones, menús y textos de jugabilidad. Disponible en el repositorio Hub [SRB2-Spanish](https://github.com/trulydza/SRB2-Spanish/releases/tag/mrce-es).
 
 ### Lista de tareas pendientes
 
