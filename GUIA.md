@@ -255,17 +255,17 @@ make LINUX64=1 NOUPX=1 -j$(nproc)
 El port para Android se compila desde el subproyecto `SRB2/android-port/` en la rama `android-port` (o el repositorio independiente `SRB2-Spanish-Recomp-Android`).
 
 #### Requisitos y Toolchain
-- **JDK**: Eclipse Temurin 17 (o superior) en `/home/daza/android/jdk`
-- **Android SDK**: `/home/daza/android/sdk` (API 34/36)
-- **Android NDK**: r25c (`25.1.8937393`) en `/home/daza/android/sdk/ndk/25.1.8937393`
+- **JDK**: Eclipse Temurin 17 (o superior)
+- **Android SDK**: API 34 o 36 (SDK Platforms y Build-Tools)
+- **Android NDK**: r25c (`25.1.8937393`) o compatible
 - **CMake**: `3.22.1`
 
 #### Comando de Build (Release)
 ```bash
 cd "SRB2/android-port"
-export JAVA_HOME="/home/daza/android/jdk"
-export ANDROID_HOME="/home/daza/android/sdk"
-export ANDROID_NDK_HOME="/home/daza/android/sdk/ndk/25.1.8937393"
+export JAVA_HOME="/ruta/a/tu/jdk"
+export ANDROID_HOME="/ruta/a/tu/android/sdk"
+export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/25.1.8937393"
 ./gradlew assembleRelease
 ```
 El APK firmado resultante se genera en:
@@ -756,7 +756,7 @@ chmod +x dist/srb2linux_es dist/Jugar_*.sh
 
 #### Modo online en Linux (compatible con servidores) — EN USO
 
-Ejecutar [`Jugar_online.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_online.sh):
+Ejecutar `Jugar_online.sh`:
 ```bash
 ./dist/Jugar_online.sh
 # O desde la raíz:
@@ -766,7 +766,7 @@ Carga automáticamente el binario nativo traducido junto con el addon gráfico c
 
 #### Modo traducción completa en Linux (offline) — legado
 
-Ejecutar [`Jugar_traducido.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_traducido.sh):
+Ejecutar `Jugar_traducido.sh`:
 ```bash
 ./dist/Jugar_traducido.sh
 ```
@@ -774,7 +774,7 @@ Carga el mod completo `addons/srb2_spanish.pk3` con Lua y SOC para una experienc
 
 #### Modo vanilla en Linux (sin mods adicionales) — legado
 
-Ejecutar [`Jugar_vanilla.sh`](file:///home/daza/Proyecto%20SRB2/SRB2-recomp/dist/Jugar_vanilla.sh):
+Ejecutar `Jugar_vanilla.sh`:
 ```bash
 ./dist/Jugar_vanilla.sh
 ```
