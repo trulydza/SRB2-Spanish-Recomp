@@ -290,13 +290,29 @@ make MINGW64=1 PREFIX=x86_64-w64-mingw32 NOUPX=1 -j$(nproc)
 
 ### Compilación en Android (arm64-v8a)
 
-El port para Android se compila desde el subproyecto `SRB2/android-port/` en la rama `android-port` (o el repositorio independiente `SRB2-Spanish-Recomp-Android`).
+El port para Android se compila desde el subproyecto `SRB2/android-port/` en la rama `android-port` (o el repositorio independiente [SRB2-Spanish-Recomp-Android](https://github.com/trulydza/SRB2-Spanish-Recomp-Android)).
 
 #### Requisitos y Toolchain
 - **JDK**: Eclipse Temurin 17 (o superior)
 - **Android SDK**: API 34 o 36 (SDK Platforms y Build-Tools)
 - **Android NDK**: r25c (`25.1.8937393`) o compatible
 - **CMake**: `3.22.1`
+- **Arquitectura objetivo**: `arm64-v8a` (única soportada por el port)
+
+#### Dependencias Nativas
+
+El `jni/CMakeLists.txt` del port compila y enlaza las siguientes librerías:
+
+| Librería | Fuente | Notas |
+|---|---|---|
+| **SDL2** | Clonada (`release-2.28.5`+) | Gestiona ventana nativa, eventos táctiles y ciclo de vida |
+| **SDL2_mixer** | Clonada (`release-2.6.3`) | Audio y música (sustituye a `libgme`/`libopenmpt` de PC) |
+| **libpng** | Vendorizada en `libs/libpng-src` | Con optimizaciones NEON para ARM |
+| **zlib** | Del NDK/sistema | — |
+| **libcurl + mbedTLS** | Clonadas | Necesarias para master server / juego online HTTPS |
+| **gl4es** | Vendorizada | Capa OpenGL 1.x/2.x sobre OpenGL ES 2.0 (render hardware) |
+
+> **Nota:** `libgme` y `libopenmpt` **no** se usan en Android; el audio lo cubre SDL2_mixer.
 
 #### Comando de Build (Release)
 ```bash
@@ -308,6 +324,22 @@ export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/25.1.8937393"
 ```
 El APK firmado resultante se genera en:
 `SRB2/android-port/app/build/outputs/apk/release/app-release.apk`
+
+#### Sincronización después del Build (Android)
+```bash
+cp SRB2/android-port/app/build/outputs/apk/release/app-release.apk dist/SRB2_Spanish_Recomp_v1.3.1_Android.apk
+```
+
+#### Lecciones Aprendidas (referencia técnica)
+
+Problemas reales encontrados al desarrollar el port y cómo se resolvieron:
+
+- **gl4es y multi-ABI**: escribía `libGL.so` en `${CMAKE_SOURCE_DIR}/lib` (ruta compartida), así que arm64 y x86_64 se pisaban. Solución: redirigir la salida a la carpeta por-ABI.
+- **OpenGL — resolución de funciones GL**: `SDL_GL_GetProcAddress` retornaba `NULL` para extensiones emuladas por gl4es. Se corrigió en `ogl_sdl.c:GetGLFunc()` con fallbacks a `gl4es_GetProcAddress()` y `dlsym(RTLD_DEFAULT, ...)`.
+- **OpenGL — shaders con `sampler3D`**: GLES2/gl4es no soporta texturas 3D. Se desactivó `gr_paletterendering` en Android por defecto.
+- **OpenGL — desbordamiento de framebuffer**: `MakeScreenTexture` intentaba leer fuera del framebuffer. Se corrigió usando `glTexImage2D` + `glCopyTexSubImage2D` con dimensiones exactas.
+- **Dos capas táctiles**: conviven el overlay Java (`TouchControlsView`) y la capa nativa de `i_video.c` (`Touch_HandleEvent`). Cualquier detección de mando/ratón debe apagar ambas.
+- **Falsos positivos de ratón**: en algunos Samsung, `sec_touchpad` se expone con flags `MOUSE | TOUCHPAD` sin ratón real. Filtrar por dispositivo, no solo por flags.
 
 ---
 
@@ -838,11 +870,86 @@ Con esto, basta con escribir `srb2` (o `srb2 -warp 1`) en la terminal: el juego 
 
 ---
 
+### Cómo jugar en Android
+
+#### Instalación desde Release (Android)
+
+Descarga el APK (`SRB2_Spanish_Recomp_v1.3.1_Android.apk`) y `srb2_spanish_gfx.pk3` desde [Releases](https://github.com/trulydza/SRB2-Spanish-Recomp-Android/releases).
+
+1. Instalar el APK (permitir orígenes desconocidos).
+2. **Abrirlo una vez**: la app crea la carpeta `/sdcard/SRB2/` y copia automáticamente `srb2_spanish_gfx.pk3` desde sus assets internos.
+3. Copiar los 4 pk3 base (`srb2.pk3`, `zones.pk3`, `characters.pk3`, `music.pk3`) a `/sdcard/SRB2/` desde una instalación oficial del juego.
+4. Conceder el permiso "Todos los archivos" (`MANAGE_EXTERNAL_STORAGE`) para que pueda guardar `config.cfg` y partidas.
+5. ¡Jugar! El estilo de control **Manual** viene configurado por defecto y es el recomendado para táctil.
+
+> [!WARNING]
+> Los 4 pk3 base son propiedad de SEGA / Sonic Team Junior y **nunca** se distribuyen con el proyecto. El usuario debe obtenerlos de una instalación oficial.
+
+#### Estructura de Datos en el Móvil
+
+El port pasa `-home /storage/emulated/0/SRB2` y el motor le agrega `.srb2/` como subdirectorio de datos:
+
+```
+/sdcard/SRB2/
+├── srb2.pk3, zones.pk3, characters.pk3, music.pk3
+├── srb2_spanish_gfx.pk3          ← copiado automáticamente al primer inicio
+├── addons/
+└── .srb2/                         ← srb2home (configuración y guardado)
+    ├── config.cfg                 (ajustes del juego; se reescribe al salir)
+    ├── gamedata.dat               (progreso: secretos, récords)
+    ├── srb2sav1..N.ssg            (partidas guardadas por slot)
+    └── logs/
+```
+
+> **Nota:** `/sdcard/srb2` y `/sdcard/SRB2` son el mismo directorio (FUSE case-insensitive). Los guardados van en `.srb2/`, no en la raíz.
+
+#### Ajustes por Defecto Optimizados (Android)
+
+Estos valores se configuraron en el código C (`#ifdef ANDROID` en `d_main.c` / `command.c`) tras pruebas de juego en hardware real:
+
+| Parámetro | Valor | Razón |
+|---|---|---|
+| Resolución interna | `960x600` | Balance rendimiento/nitidez para pantallas móviles |
+| `cam_dist` | `256` | Mayor campo visual para controles táctiles |
+| `cam_height` | `60` | Ángulo elevado para no tapar la vista con el sprite |
+| `configanalog` | `Off` | Modo Manual: movimiento directo con D-Pad virtual |
+| `autobrake` | `Off` | Mayor fluidez y conservación de momentum |
+| `fpscap` | `Unlimited` | Aprovecha pantallas de 90/120 Hz |
+| `showfps` | `Compact` | Contador de FPS discreto |
+| `tutorialprompt` | `On` | Tutorial activo para nuevos jugadores |
+| `gr_shaders` | `Off` | El pipeline estándar corre a 60 FPS estables en GPUs Mali |
+
+#### Instalación y Prueba por ADB (desarrollo)
+
+Para instalar, copiar assets y probar desde la terminal (requiere Depuración USB activada en el teléfono):
+
+```bash
+export PATH="$HOME/android/sdk/platform-tools:$PATH"
+APK=/ruta/al/app-release.apk
+PKG=<package>                     # el que declare el AndroidManifest
+ACT=.<ActivityPrincipal>          # p. ej. .SRB2Activity
+
+adb devices -l                                     # verificar que el móvil aparezca
+adb install -r "$APK"
+adb shell am start -n "$PKG/$ACT"                  # 1er arranque: crea carpeta + copia gfx pk3
+sleep 15
+adb shell appops set "$PKG" MANAGE_EXTERNAL_STORAGE allow
+adb shell am force-stop "$PKG"
+adb push srb2.pk3 zones.pk3 characters.pk3 music.pk3 /sdcard/SRB2/
+adb shell am start -n "$PKG/$ACT"
+adb logcat -d -v brief | grep -E "I/SRB2" | head -30
+```
+
+Verificar en el log: `Loading Spanish graphics addon`, `Added file ... music.pk3` y `Entering main game loop`.
+
+---
+
 ### Datos del juego
 
-Tanto en Windows como en Linux, el juego guarda su configuración y partidas guardadas de forma estándar:
+Tanto en Windows, Linux como en Android, el juego guarda su configuración y partidas guardadas de forma estándar:
 - **Windows:** En la carpeta local o en `%APPDATA%\Sonic Robo Blast 2`.
 - **Linux:** En `~/.srb2/` (o si corre vía Flatpak sandbox en `~/.var/app/org.srb2.SRB2/.srb2/`). No altera tus partidas de otras versiones.
+- **Android:** En `/sdcard/SRB2/.srb2/` (configuración, guardados y logs). Los pk3 base van en `/sdcard/SRB2/`.
 
 ---
 
