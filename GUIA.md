@@ -248,6 +248,44 @@ make LINUX64=1 clean
 make LINUX64=1 NOUPX=1 -j$(nproc)
 ```
 
+#### Cross-compilación de Windows (x64) desde Linux
+
+Si tu máquina principal es Linux, puedes generar el ejecutable `srb2win64.exe` sin necesitar una instalación de Windows ni MSYS2. El Makefile de SRB2 soporta cross-compilación mediante la variable `PREFIX`.
+
+**Requisitos (cross-compiler):**
+
+En Arch Linux / CachyOS / Manjaro:
+```bash
+sudo pacman -S mingw-w64-gcc
+```
+
+En Debian / Ubuntu:
+```bash
+sudo apt install gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64
+```
+
+**Comando de build (cross-compilación):**
+```bash
+cd SRB2/src
+make MINGW64=1 PREFIX=x86_64-w64-mingw32 NOUPX=1 -j$(nproc)
+```
+El ejecutable resultante se genera en: `SRB2/bin/srb2win64.exe`.
+
+> **Nota sobre DLLs:** las DLLs de dependencia (SDL2.dll, libcurl-x64.dll, etc.) ya están versionadas en `dist/` y no cambian entre builds. Solo necesitas copiar el nuevo `.exe`.
+
+**Sincronización después del build (cross-compilación):**
+```bash
+cp SRB2/bin/srb2win64.exe dist/srb2win_es.exe
+cp SRB2/bin/srb2win64.exe dist/srb2win.exe
+```
+
+**Build limpio (cross-compilación):**
+```bash
+cd SRB2/src
+make MINGW64=1 PREFIX=x86_64-w64-mingw32 clean
+make MINGW64=1 PREFIX=x86_64-w64-mingw32 NOUPX=1 -j$(nproc)
+```
+
 ---
 
 ### Compilación en Android (arm64-v8a)
